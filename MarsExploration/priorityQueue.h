@@ -1,23 +1,28 @@
 #pragma once
-#include "Node.h"
-#include "QueueADT.h"
-using namespace std;
-template <typename T>
 
+#include "QueueADT.h"
+#include "PNode.h"
+
+using namespace std;
+
+template <typename T>
 class PriorityQueue :public QueueADT<T>
 {
 private:
-	Node<T>*backPtr;
-	Node<T>* frontPtr;
-	
+	PNode<T>* backPtr;
+	PNode<T>* frontPtr;
+	int count;
 public:
 	PriorityQueue();
 	bool isEmpty() const;
-	bool enqueue(const T& newEntry);
+	bool enqueue(const T& newEntry, const int& priority);
 	bool dequeue(T& frntEntry);
 	bool peek(T& frntEntry)  const;
+	void PrintList();
 	~PriorityQueue();
-	PriorityQueue(const PriorityQueue<T>& LQ);
+
+	// Copy constructor
+	PriorityQueue(const PriorityQueue<T>& PQ);
 };
 
 //------------------------------------------------------------IMPLEMENTAION--------------------------------------------------------//
@@ -26,7 +31,7 @@ PriorityQueue<T>::PriorityQueue()
 {
 	backPtr = nullptr;
 	frontPtr = nullptr;
-
+	count = 0;
 }
 
 template <typename T>
@@ -36,17 +41,47 @@ bool PriorityQueue<T>::isEmpty() const
 }
 
 template <typename T>
-bool PriorityQueue<T>::enqueue(const T& newEntry)
+bool PriorityQueue<T>::enqueue(const T& newEntry,const int& priority)
 {
-	Node<T>* newNodePtr = new Node<T>(newEntry);
+	count++;
+	PNode<T>* newPNptr = new PNode<T>(newEntry, priority);
 
-	if (isEmpty())
-		frontPtr = newNodePtr;
-	else
-		backPtr->setNext(newNodePtr);
+	if (isEmpty()) {
+		frontPtr = newPNptr;
+		backPtr = frontPtr;
+		return true;
+	}
+	else {
+		PNode<T>* prev = frontPtr;
+		PNode<T>* curr = frontPtr;
 
-	backPtr = newNodePtr;
-	return true;
+		while (curr) {
+			if (newPNptr->getPriority() > curr->getPriority()) {
+				if (curr == frontPtr) {
+					frontPtr = newPNptr;
+					newPNptr->setNext(curr);
+					return true;
+				}
+				else {
+					newPNptr->setNext(curr);
+					prev->setNext(newPNptr);
+					return true;
+				}
+			}
+			else {
+				if (curr == backPtr) {
+					backPtr->setNext(newPNptr);
+					backPtr = newPNptr;
+					return true;
+				}
+				prev = curr;
+				curr = curr->getNext();
+			}
+		}
+	}
+
+	return false;
+
 }
 
 template <typename T>
@@ -55,14 +90,15 @@ bool PriorityQueue<T>::dequeue(T& frntEntry)
 	if (isEmpty())
 		return false;
 
-	Node<T>* nodeToDeletePtr = frontPtr;
+	PNode<T>* PNodeToDeletePtr = frontPtr;
 	frntEntry = frontPtr->getItem();
 	frontPtr = frontPtr->getNext();
 
-	if (nodeToDeletePtr == backPtr)
+	if (PNodeToDeletePtr == backPtr)
 		backPtr = nullptr;
-	delete nodeToDeletePtr;
+	delete PNodeToDeletePtr;
 
+	count--;
 	return true;
 
 }
@@ -77,6 +113,19 @@ bool PriorityQueue<T>::peek(T& frntEntry) const
 	return true;
 }
 
+template<typename T>
+inline void PriorityQueue<T>::PrintList()
+{
+	PNode<T>* p = frontPtr;
+	while (p)
+	{
+		cout << p->getItem() << " ";
+		p = p->getNext();
+	}
+	cout << endl;
+	
+}
+
 template <typename T>
 PriorityQueue<T>::~PriorityQueue()
 {
@@ -85,23 +134,24 @@ PriorityQueue<T>::~PriorityQueue()
 }
 
 template <typename T>
-PriorityQueue<T>::PriorityQueue(const PriorityQueue<T>& LQ)
+PriorityQueue<T>::PriorityQueue(const PriorityQueue<T>& PQ)
 {
-	Node<T>* NodePtr = LQ.frontPtr;
-	if (!NodePtr)
+	count = PQ.count;
+	PNode<T>* PNodePtr = PQ.frontPtr;
+	if (!PNodePtr)
 	{
 		frontPtr = backPtr = nullptr;
 		return;
 	}
 
-	Node<T>* ptr = new Node<T>(NodePtr->getItem());
+	PNode<T>* ptr = new PNode<T>(PNodePtr->getItem());
 	frontPtr = backPtr = ptr;
-	NodePtr = NodePtr->getNext();
-	while (NodePtr)
+	PNodePtr = PNodePtr->getNext();
+	while (PNodePtr)
 	{
-		Node<T>* ptr = new Node<T>(NodePtr->getItem());
+		PNode<T>* ptr = new PNode<T>(PNodePtr->getItem());
 		backPtr->setNext(ptr);
 		backPtr = ptr;
-		NodePtr = NodePtr->getNext();
+		PNodePtr = PNodePtr->getNext();
 	}
 }

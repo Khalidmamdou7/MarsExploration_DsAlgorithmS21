@@ -33,7 +33,7 @@
     <ClInclude Include="LinkedQueue.h">
       <Filter>DataStructures\Implementations</Filter>
     </ClInclude>
-    <ClInclude Include="priorityQueue.h">
+    <ClInclude Include="PriorityQueue.h">
       <Filter>DataStructures\Implementations</Filter>
     </ClInclude>
     <ClInclude Include="QueueADT.h">
@@ -41,6 +41,9 @@
     </ClInclude>
     <ClInclude Include="ListADT.h">
       <Filter>DataStructures\Interafces</Filter>
+    </ClInclude>
+    <ClInclude Include="PNode.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
