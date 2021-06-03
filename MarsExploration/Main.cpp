@@ -1,7 +1,16 @@
 using namespace std;
 #include <iostream>
+// Include ADTs
+#include "LinkedList.h"
+#include "LinkedQueue.h"
+#include "PriorityQueue.h"
 
 int main() {
-//	TO AVOID ERRORS
+
+	// Test Linked List
+
+	// Test Linked Queue
+
+	// Test Priority Queue
 
 }
