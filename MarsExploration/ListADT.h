@@ -10,5 +10,5 @@ public:
 	virtual void DeleteAll()=0;
 	virtual bool DeleteNode(const T&)=0;
 	virtual T& traverselist_position(const T&)=0;
-	virtual ~LinkedList() { } 
+	virtual ~listADT() { }
 };

@@ -1,5 +1,6 @@
 #pragma once
 #include "ListADT.h"
+#include "Node.h"
 using namespace std;
 
 template <typename T>
@@ -14,7 +15,6 @@ public:
 	void ReadList();
 	void InsertEnd(const T&);
 	void InsertBegin(const T&);
-	void InsertBegin(const T&);
 	void DeleteAll();
 	bool DeleteNode(const T&);
 	bool traverselist_search(const T&);
@@ -26,7 +26,7 @@ public:
 template <typename T>
 LinkedList<T>::LinkedList()
 {
-		Head = nullptr;
+	Head = nullptr;
 }
 
 template <typename T>
@@ -142,7 +142,7 @@ bool LinkedList<T>::traverselist_search(const T& value)
 			return c;
 		temp = temp->getNext();
 	}
-	return false
+	return false;
 }
 
 
