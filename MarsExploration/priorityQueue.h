@@ -4,25 +4,25 @@
 using namespace std;
 template <typename T>
 
-class priorityQueue :public QueueADT<T>
+class PriorityQueue :public QueueADT<T>
 {
 private:
 	Node<T>*backPtr;
 	Node<T>* frontPtr;
 	
 public:
-	priorityQueue();
+	PriorityQueue();
 	bool isEmpty() const;
 	bool enqueue(const T& newEntry);
 	bool dequeue(T& frntEntry);
 	bool peek(T& frntEntry)  const;
-	~priorityQueue();
-	priorityQueue(const priorityQueue<T>& LQ);
+	~PriorityQueue();
+	PriorityQueue(const PriorityQueue<T>& LQ);
 };
 
 //------------------------------------------------------------IMPLEMENTAION--------------------------------------------------------//
 template <typename T>
-priorityQueue<T>::priorityQueue()
+PriorityQueue<T>::PriorityQueue()
 {
 	backPtr = nullptr;
 	frontPtr = nullptr;
@@ -30,13 +30,13 @@ priorityQueue<T>::priorityQueue()
 }
 
 template <typename T>
-bool priorityQueue<T>::isEmpty() const
+bool PriorityQueue<T>::isEmpty() const
 {
 	return (frontPtr == nullptr);
 }
 
 template <typename T>
-bool priorityQueue<T>::enqueue(const T& newEntry)
+bool PriorityQueue<T>::enqueue(const T& newEntry)
 {
 	Node<T>* newNodePtr = new Node<T>(newEntry);
 
@@ -50,7 +50,7 @@ bool priorityQueue<T>::enqueue(const T& newEntry)
 }
 
 template <typename T>
-bool priorityQueue<T>::dequeue(T& frntEntry)
+bool PriorityQueue<T>::dequeue(T& frntEntry)
 {
 	if (isEmpty())
 		return false;
@@ -68,7 +68,7 @@ bool priorityQueue<T>::dequeue(T& frntEntry)
 }
 
 template <typename T>
-bool priorityQueue<T>::peek(T& frntEntry) const
+bool PriorityQueue<T>::peek(T& frntEntry) const
 {
 	if (isEmpty())
 		return false;
@@ -78,14 +78,14 @@ bool priorityQueue<T>::peek(T& frntEntry) const
 }
 
 template <typename T>
-priorityQueue<T>::~priorityQueue()
+PriorityQueue<T>::~PriorityQueue()
 {
 	T temp;
 	while (dequeue(temp));
 }
 
 template <typename T>
-priorityQueue<T>::priorityQueue(const priorityQueue<T>& LQ)
+PriorityQueue<T>::PriorityQueue(const PriorityQueue<T>& LQ)
 {
 	Node<T>* NodePtr = LQ.frontPtr;
 	if (!NodePtr)
