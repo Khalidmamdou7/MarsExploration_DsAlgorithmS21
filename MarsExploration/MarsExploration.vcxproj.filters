@@ -13,5 +13,39 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="DataStructures">
+      <UniqueIdentifier>{5ef11f3e-ddf2-489d-a9ab-258c4ae6166c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DataStructures\Interafces">
+      <UniqueIdentifier>{f3b07ffd-33f5-4faf-a7e8-f817055b413a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DataStructures\Implementations">
+      <UniqueIdentifier>{a5ca1b9e-9084-4d65-bbce-499bb519fb13}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Node.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LinkedList.h">
+      <Filter>DataStructures\Implementations</Filter>
+    </ClInclude>
+    <ClInclude Include="LinkedQueue.h">
+      <Filter>DataStructures\Implementations</Filter>
+    </ClInclude>
+    <ClInclude Include="priorityQueue.h">
+      <Filter>DataStructures\Implementations</Filter>
+    </ClInclude>
+    <ClInclude Include="QueueADT.h">
+      <Filter>DataStructures\Interafces</Filter>
+    </ClInclude>
+    <ClInclude Include="ListADT.h">
+      <Filter>DataStructures\Interafces</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
