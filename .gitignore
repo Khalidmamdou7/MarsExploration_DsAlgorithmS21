@@ -1,4 +1,7 @@
 /.vs
-
+\.vs\
 *.db
 MarsExploration/.vs/
+*.db
+*.db-shm
+*.opendb
