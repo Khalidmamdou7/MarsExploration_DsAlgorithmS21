@@ -5,12 +5,19 @@ private:
 	int eventDay;
 	int missionID;
 public:
+	Event(int ED = 0, int mID = 0);
 	int getEventDay() const;
 	void setEventDay(const int& ED);
 	int getMissionID() const;
 	void setMissionID(const int& mID);
 	virtual void Execute() = 0;
 };
+
+inline Event::Event(int ED, int mID)
+{
+	eventDay = ED;
+	missionID = mID;
+}
 
 int Event::getEventDay() const {
 	return eventDay;
