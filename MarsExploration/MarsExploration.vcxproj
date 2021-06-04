@@ -139,6 +139,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+
+    <ClInclude Include="EmergencyRover.h" />
+    <ClInclude Include="MountainousRover.h" />
+    <ClInclude Include="PolarRover.h" />
     <ClInclude Include="CancelEvent.h" />
     <ClInclude Include="EmergencyMission.h" />
     <ClInclude Include="Event.h" />
@@ -154,10 +158,12 @@
     <ClInclude Include="PriorityQueue.h" />
     <ClInclude Include="PromoteEvent.h" />
     <ClInclude Include="QueueADT.h" />
+    <ClInclude Include="Rover.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EmergencyMission.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Rover.cpp" />
     <ClCompile Include="MountainuousMission.cpp" />
     <ClCompile Include="PolarMissions.cpp" />
   </ItemGroup>
