@@ -2,7 +2,7 @@
 class Mission
 {
 private:
-	char Type;			// Mission types (E: Emergency, M: Mountainuous, P: Polar, U: Unassigned (just for check))
+	// char Type;			// Mission types (E: Emergency, M: Mountainuous, P: Polar, U: Unassigned (just for check))
 	int FD;				// Formulation Day: the day when the mission formulation is finalized and the mission becomes ready to be assigned to a rover.
 	int TargetLocation; // The distance (in kilometers) from the base station to the target location of the mission.
 	int Duration;		// The number of days needed to fulfill the mission requirements at the target location(assumed constant regardless of rover type)
@@ -10,10 +10,10 @@ private:
 	char Status;		// Status of the mission ( W: Waiting, E: In-execution, C: Completed, U: Unassigned (just for check)). Not sure if needed yet.
 	// Rover* assignedRover;
 public:
-	Mission(int r_FD = -1, char r_Type = 'U', int r_TargetLocation = -1 , int r_Duration = -1, int r_Significance = -1, char r_Status = 'U');
+	Mission(int r_FD = -1, int r_TargetLocation = -1 , int r_Duration = -1, int r_Significance = -1, char r_Status = 'U');
 	
-	char getType() const;
-	void setType(char r_Type);
+	// char getType() const;
+	// void setType(char r_Type);
 
 	int getFD() const;
 	void setFD(int r_FD);
@@ -32,24 +32,24 @@ public:
 
 };
 
-Mission::Mission(int r_FD, char r_Type, int r_TargetLocation, int r_Duration, int r_Significance, char r_Status) {
+Mission::Mission(int r_FD, int r_TargetLocation, int r_Duration, int r_Significance, char r_Status) {
 	FD = r_FD;
-	Type = r_Type;
+	// Type = r_Type;
 	TargetLocation = r_TargetLocation;
 	Duration = r_Duration;
 	Significance = r_Significance;
 	Status = r_Status;
 }
 
-inline char Mission::getType() const
-{
-	return Type;
-}
-
-inline void Mission::setType(char r_Type)
-{
-	Type = r_Type;
-}
+//inline char Mission::getType() const
+//{
+//	return Type;
+//}
+//
+//inline void Mission::setType(char r_Type)
+//{
+//	Type = r_Type;
+//}
 
 inline int Mission::getFD() const
 {

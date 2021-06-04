@@ -66,10 +66,28 @@
     <ClInclude Include="Mission.h">
       <Filter>Mission Classes</Filter>
     </ClInclude>
+    <ClInclude Include="EmergencyMission.h">
+      <Filter>Mission Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="PolarMissions.h">
+      <Filter>Mission Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="MountainuousMission.h">
+      <Filter>Mission Classes</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="EmergencyMission.cpp">
+      <Filter>Mission Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="PolarMissions.cpp">
+      <Filter>Mission Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="MountainuousMission.cpp">
+      <Filter>Mission Classes</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
