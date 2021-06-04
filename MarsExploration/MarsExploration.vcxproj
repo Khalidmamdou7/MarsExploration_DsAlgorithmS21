@@ -139,12 +139,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="CancelEvent.h" />
+    <ClInclude Include="Event.h" />
+    <ClInclude Include="FormulationEvent.h" />
     <ClInclude Include="LinkedList.h" />
     <ClInclude Include="LinkedQueue.h" />
     <ClInclude Include="ListADT.h" />
     <ClInclude Include="Node.h" />
     <ClInclude Include="PNode.h" />
     <ClInclude Include="PriorityQueue.h" />
+    <ClInclude Include="PromoteEvent.h" />
     <ClInclude Include="QueueADT.h" />
   </ItemGroup>
   <ItemGroup>
