@@ -1,13 +1,14 @@
 #pragma once
 class Event
 {
-private:
-	int eventDay;
+protected:
+	// MarsStation* pStation;
+	int FormulationDay;
 	int mID;
 public:
 	Event(int ED = 0, int mID = 0);
-	int getEventDay() const;
-	void setEventDay(const int& ED);
+	int getFormulationDay() const;
+	void setFormulationDay(const int& ED);
 	int getmID() const;
 	void setmID(const int& mID);
 	virtual void Execute() = 0;
@@ -15,18 +16,18 @@ public:
 
 inline Event::Event(int r_ED, int r_mID)
 {
-	eventDay = r_ED;
+	FormulationDay = r_ED;
 	mID = r_mID;
 }
 
-int Event::getEventDay() const {
-	return eventDay;
+int Event::getFormulationDay() const {
+	return FormulationDay;
 }
 
-inline void Event::setEventDay(const int& r_ED)
+inline void Event::setFormulationDay(const int& r_ED)
 {
 	if (r_ED > 0)
-		eventDay = r_ED;
+		FormulationDay = r_ED;
 }
 
 inline int Event::getmID() const
@@ -38,6 +39,7 @@ inline void Event::setmID(const int& r_mID)
 {
 	mID = r_mID;
 }
+
 
 
 
