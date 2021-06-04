@@ -25,7 +25,6 @@
     <Filter Include="Rover Classes">
       <UniqueIdentifier>{8141a797-53c8-4a71-9010-92adf644114b}</UniqueIdentifier>
     </Filter>
-
     <Filter Include="Event Classes">
       <UniqueIdentifier>{89e613fe-bb9d-4263-a3d9-9bf5880672b3}</UniqueIdentifier>
     </Filter>
@@ -85,10 +84,10 @@
     <ClInclude Include="EmergencyRover.h">
       <Filter>Rover Classes</Filter>
     </ClInclude>
-    <ClInclude Include="PolarRover.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="MountainousRover.h">
+      <Filter>Rover Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="PolarRover.h">
       <Filter>Rover Classes</Filter>
     </ClInclude>
   </ItemGroup>
@@ -96,7 +95,6 @@
     <ClCompile Include="Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-
     <ClCompile Include="Rover.cpp">
       <Filter>Rover Classes</Filter>
     </ClCompile>
