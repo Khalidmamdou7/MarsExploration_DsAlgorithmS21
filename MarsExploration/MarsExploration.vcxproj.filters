@@ -22,6 +22,9 @@
     <Filter Include="DataStructures\Implementations">
       <UniqueIdentifier>{a5ca1b9e-9084-4d65-bbce-499bb519fb13}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Event Classes">
+      <UniqueIdentifier>{89e613fe-bb9d-4263-a3d9-9bf5880672b3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Node.h">
@@ -43,6 +46,18 @@
       <Filter>DataStructures\Interafces</Filter>
     </ClInclude>
     <ClInclude Include="PNode.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Event.h">
+      <Filter>Event Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="FormulationEvent.h">
+      <Filter>Event Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="CancelEvent.h">
+      <Filter>Event Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="PromoteEvent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
