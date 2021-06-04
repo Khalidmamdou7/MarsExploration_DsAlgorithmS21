@@ -139,11 +139,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="EmergencyRover.h" />
     <ClInclude Include="LinkedList.h" />
     <ClInclude Include="LinkedQueue.h" />
     <ClInclude Include="ListADT.h" />
+    <ClInclude Include="MountainousRover.h" />
     <ClInclude Include="Node.h" />
     <ClInclude Include="PNode.h" />
+    <ClInclude Include="PolarRover.h" />
     <ClInclude Include="PriorityQueue.h" />
     <ClInclude Include="QueueADT.h" />
     <ClInclude Include="Rover.h" />

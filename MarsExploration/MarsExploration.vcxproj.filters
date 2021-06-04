@@ -22,6 +22,9 @@
     <Filter Include="DataStructures\Implementations">
       <UniqueIdentifier>{a5ca1b9e-9084-4d65-bbce-499bb519fb13}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Rover Classes">
+      <UniqueIdentifier>{8141a797-53c8-4a71-9010-92adf644114b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Node.h">
@@ -46,7 +49,16 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Rover.h">
+      <Filter>Rover Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="EmergencyRover.h">
+      <Filter>Rover Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="PolarRover.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MountainousRover.h">
+      <Filter>Rover Classes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -57,7 +69,7 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Rover.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Rover Classes</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
