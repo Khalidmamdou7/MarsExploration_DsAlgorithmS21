@@ -21,4 +21,32 @@ void Rover::setSpeed(int S)
 {
 	this->Speed = S;
 }
+void Rover::setEmergency(char* E)
+{
+	this->Emergency = E;
+}
+char* Rover::getEmergency()
+{
+	return Emergency;
+}
+void Rover::setMountainous(char* M)
+{
+	this->Mountainous = M;
+}
+char* Rover::getMountainous()
+{
+	return Mountainous;
+}
+void Rover::setPolar(char* P)
+{
+	this->Polar = P;
+}
+char* Rover::getPolar()
+{
+	return Polar;
+}
+
+
+
+
 Rover::~Rover(){}
