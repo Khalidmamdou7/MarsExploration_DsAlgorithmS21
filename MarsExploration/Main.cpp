@@ -9,6 +9,13 @@
 #include "PNode.h"
 #include "Node.h"
 
+// Include Event Classes
+#include "FormulationEvent.h"
+#include "CancelEvent.h"
+#include "PromoteEvent.h"
+
+// Include Mission Class
+#include "Mission.h"
 
 using namespace std;
 
