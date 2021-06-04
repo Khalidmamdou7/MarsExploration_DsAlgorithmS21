@@ -139,7 +139,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-
     <ClInclude Include="EmergencyRover.h" />
     <ClInclude Include="MountainousRover.h" />
     <ClInclude Include="PolarRover.h" />
@@ -163,6 +162,7 @@
   <ItemGroup>
     <ClCompile Include="EmergencyMission.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="MarsStation.cpp" />
     <ClCompile Include="Rover.cpp" />
     <ClCompile Include="MountainuousMission.cpp" />
     <ClCompile Include="PolarMissions.cpp" />

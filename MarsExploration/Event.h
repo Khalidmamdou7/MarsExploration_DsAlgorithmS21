@@ -2,7 +2,7 @@
 class Event
 {
 protected:
-	// MarsStation* pStation;
+	//MarsStation* pStation;
 	int FormulationDay;
 	int mID;
 public:
