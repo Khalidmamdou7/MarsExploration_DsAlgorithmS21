@@ -3,40 +3,40 @@ class Event
 {
 private:
 	int eventDay;
-	int missionID;
+	int mID;
 public:
 	Event(int ED = 0, int mID = 0);
 	int getEventDay() const;
 	void setEventDay(const int& ED);
-	int getMissionID() const;
-	void setMissionID(const int& mID);
+	int getmID() const;
+	void setmID(const int& mID);
 	virtual void Execute() = 0;
 };
 
-inline Event::Event(int ED, int mID)
+inline Event::Event(int r_ED, int r_mID)
 {
-	eventDay = ED;
-	missionID = mID;
+	eventDay = r_ED;
+	mID = r_mID;
 }
 
 int Event::getEventDay() const {
 	return eventDay;
 }
 
-inline void Event::setEventDay(const int& ED)
+inline void Event::setEventDay(const int& r_ED)
 {
-	if (ED > 0)
-		eventDay = ED;
+	if (r_ED > 0)
+		eventDay = r_ED;
 }
 
-inline int Event::getMissionID() const
+inline int Event::getmID() const
 {
-	return missionID;
+	return mID;
 }
 
-inline void Event::setMissionID(const int& mID)
+inline void Event::setmID(const int& r_mID)
 {
-	missionID = mID;
+	mID = r_mID;
 }
 
 
