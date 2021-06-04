@@ -25,11 +25,11 @@
     <Filter Include="Event Classes">
       <UniqueIdentifier>{89e613fe-bb9d-4263-a3d9-9bf5880672b3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Mission Classes">
+      <UniqueIdentifier>{67fe3b8f-4004-4b03-b127-da2dd3541f09}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Node.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="LinkedList.h">
       <Filter>DataStructures\Implementations</Filter>
     </ClInclude>
@@ -45,9 +45,6 @@
     <ClInclude Include="ListADT.h">
       <Filter>DataStructures\Interafces</Filter>
     </ClInclude>
-    <ClInclude Include="PNode.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Event.h">
       <Filter>Event Classes</Filter>
     </ClInclude>
@@ -58,7 +55,16 @@
       <Filter>Event Classes</Filter>
     </ClInclude>
     <ClInclude Include="PromoteEvent.h">
-      <Filter>Header Files</Filter>
+      <Filter>Event Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Node.h">
+      <Filter>DataStructures\Implementations</Filter>
+    </ClInclude>
+    <ClInclude Include="PNode.h">
+      <Filter>DataStructures\Implementations</Filter>
+    </ClInclude>
+    <ClInclude Include="Mission.h">
+      <Filter>Mission Classes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

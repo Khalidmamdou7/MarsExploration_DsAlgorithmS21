@@ -145,6 +145,7 @@
     <ClInclude Include="LinkedList.h" />
     <ClInclude Include="LinkedQueue.h" />
     <ClInclude Include="ListADT.h" />
+    <ClInclude Include="Mission.h" />
     <ClInclude Include="Node.h" />
     <ClInclude Include="PNode.h" />
     <ClInclude Include="PriorityQueue.h" />
