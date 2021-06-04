@@ -1,24 +1,18 @@
 #pragma once
 class Rover
 {
-private:
-	int Duration;
-	int Speed;
-	char *Emergency;
-	char* Mountainous;
-	char *Polar;
+protected:
+	int CheckupDuration;
+	int rSpeed;
 public:
-	Rover();
-	int getDuration();
-	void setDuration(int D);
-	int getSpeed() ;
-	void setSpeed(int S) ;
-	void setEmergency(char* E);
-	char* getEmergency();
-	void setMountainous(char* M);
-	char* getMountainous();
-	void setPolar(char* P);
-	char* getPolar();
+	Rover(int r_CheckupDuration = 0, int r_rSpeed = 0);
+	int getCheckupDuration();
+	void setCheckupDuration(int D);
+	
+	int getrSpeed() ;
+	void setrSpeed(int S) ;
+	
+	
 	~Rover() ;
 };
 
