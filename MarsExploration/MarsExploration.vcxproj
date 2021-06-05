@@ -140,29 +140,23 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="CancelEvent.h" />
-    <ClInclude Include="EmergencyMission.h" />
     <ClInclude Include="Event.h" />
     <ClInclude Include="FormulationEvent.h" />
     <ClInclude Include="LinkedList.h" />
     <ClInclude Include="LinkedQueue.h" />
     <ClInclude Include="ListADT.h" />
     <ClInclude Include="Mission.h" />
-    <ClInclude Include="MountainuousMission.h" />
     <ClInclude Include="Node.h" />
     <ClInclude Include="PNode.h" />
-    <ClInclude Include="PolarMissions.h" />
     <ClInclude Include="PriorityQueue.h" />
     <ClInclude Include="PromoteEvent.h" />
     <ClInclude Include="QueueADT.h" />
     <ClInclude Include="Rover.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="EmergencyMission.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Mission.cpp" />
     <ClCompile Include="Rover.cpp" />
-    <ClCompile Include="MountainuousMission.cpp" />
-    <ClCompile Include="PolarMissions.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,9 +1,9 @@
 #include "Mission.h"
 
 
-Mission::Mission(int r_FD, int r_TargetLocation, int r_Duration, int r_Significance, char r_Status, Rover* r_assignedRover) {
+Mission::Mission(char r_Type, int r_FD, int r_TargetLocation, int r_Duration, int r_Significance, char r_Status, Rover* r_assignedRover) {
 	FD = r_FD;
-	// Type = r_Type;
+	Type = r_Type;
 	TargetLocation = r_TargetLocation;
 	Duration = r_Duration;
 	Significance = r_Significance;
@@ -11,15 +11,15 @@ Mission::Mission(int r_FD, int r_TargetLocation, int r_Duration, int r_Significa
 	assignedRover = r_assignedRover;
 }
 
-//char Mission::getType() const
-//{
-//	return Type;
-//}
-//
-//void Mission::setType(char r_Type)
-//{
-//	Type = r_Type;
-//}
+char Mission::getType() const
+{
+	return Type;
+}
+
+void Mission::setType(char r_Type)
+{
+	Type = r_Type;
+}
 
 int Mission::getFD() const
 {
