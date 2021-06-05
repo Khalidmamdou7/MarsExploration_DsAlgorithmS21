@@ -35,7 +35,7 @@ inline FormulationEvent::FormulationEvent(int r_eventD, int r_mID, char r_mType,
 	mDuration = r_mDuration;
 	mSignificance = r_mSignificance;
 }
-
+ 
 void FormulationEvent::Execute() {
 	// TODO: Create a new mission and add it to the appropriate list
 

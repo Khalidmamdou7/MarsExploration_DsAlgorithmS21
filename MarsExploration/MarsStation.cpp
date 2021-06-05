@@ -4,8 +4,6 @@
 using namespace std;
 
 #pragma once
-#include "EmergencyMission.h"
-#include "PolarMissions.h"
 #include "MountainuousMission.h"
 #include "QueueADT.h"
 #include "PNode.h"
@@ -42,10 +40,12 @@ class MarsStation
 private:
 	////////////////////////////////////////////// DECLERATION//////////////////////////////////////////
 
-	LinkedQueue<Event*>*  Events;   
+	LinkedQueue<Event*>* Events;   
 	LinkedQueue<Rover*>* EmergencyRovers; 
 	LinkedQueue<Rover*>* MountRovers;
 	LinkedQueue<Rover*>* PolarRovers;
+
+	int current_day = 1;
 
 	int numof_mount_rovers , numof_emer_rovers , numof_polar_rovers;
 	int speed_mount_rovers, speed_emer_rovers, speed_polar_rovers;
@@ -65,6 +65,7 @@ private:
 
 public:
 	void load();
+	void Simulate();
 	
 
 	MarsStation(string = "Input_File")
@@ -133,22 +134,26 @@ public:
 
 			//Adding MountRovers to MountRovers Queue
 			for (int i = 0; i < numof_mount_rovers; i++) {
-				Rover* rover_To_add = new Rover(mount_rovers_checkup_duration, speed_mount_rovers, numof_missions_before_checkup);
+				Rover* rover_To_add = new Rover('M',mount_rovers_checkup_duration, speed_mount_rovers, numof_missions_before_checkup);
 				MountRovers->enqueue(rover_To_add);
 			}
 
 			//Adding PolarRovers to PolarRovers Queue
 			for (int i = 0; i < numof_polar_rovers; i++) {
-				Rover* rover_To_add = new Rover(polar_rovers_checkup_duration, speed_polar_rovers, numof_missions_before_checkup);
+				Rover* rover_To_add = new Rover('P',polar_rovers_checkup_duration, speed_polar_rovers, numof_missions_before_checkup);
 				PolarRovers->enqueue(rover_To_add);
 			}
 
 			//Adding EmergencyRovers to EmergencyRovers Queue
 			for (int i = 0; i < numof_emer_rovers; i++) {
-				Rover* rover_To_add = new Rover(emer_rovers_checkup_duration, speed_emer_rovers, numof_missions_before_checkup);
+				Rover* rover_To_add = new Rover('E',emer_rovers_checkup_duration, speed_emer_rovers, numof_missions_before_checkup);
 				EmergencyRovers->enqueue(rover_To_add);
 			}
 		}
+	}
+
+	void MarsStation::Simulate() {
+
 	}
 	
 

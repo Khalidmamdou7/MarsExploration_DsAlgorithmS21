@@ -1,10 +1,11 @@
 #include "Rover.h"
 
-Rover::Rover(char r_Type, int r_CheckupDuration, int r_Speed)
+Rover::Rover(char r_Type, int r_CheckupDuration, int r_Speed, int n_noMissionsBeforeCheckUp)
 {
 	Type = r_Type;
 	CheckupDuration = r_CheckupDuration;
 	Speed = r_Speed;
+	noMissionsBeforeCheckUp = n_noMissionsBeforeCheckUp;
 }
 
 int Rover::getCheckupDuration()
