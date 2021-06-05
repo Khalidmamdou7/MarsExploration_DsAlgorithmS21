@@ -5,9 +5,9 @@ class EmergencyRover :
 {
 
 public:
-    EmergencyRover(int r_CheckupDuration, int r_rSpeed);
+    EmergencyRover(int r_CheckupDuration, int r_rSpeed , int n_no_Mission_before_checkUp);
 };
 
-EmergencyRover::EmergencyRover(int r_CheckupDuration, int r_rSpeed)
+EmergencyRover::EmergencyRover(int r_CheckupDuration, int r_rSpeed , int n_no_Mission_before_checkUp)
     : Rover(r_CheckupDuration, r_rSpeed) {
     }

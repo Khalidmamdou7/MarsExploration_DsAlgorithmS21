@@ -5,10 +5,15 @@ class CancelEvent :
 {
 public:
     CancelEvent();
+    CancelEvent(int r_eventD, int r_mID);
     virtual void Execute();
 };
 
 CancelEvent::CancelEvent() {
+}
+CancelEvent::CancelEvent(int r_eventD, int r_mID) {
+    FormulationDay = r_eventD;
+    mID = r_mID;
 
 }
 

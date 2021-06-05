@@ -1,5 +1,6 @@
 #include <iostream>
 #include <fstream>
+#include <string>
 using namespace std;
 
 #pragma once
@@ -9,6 +10,9 @@ using namespace std;
 #include "QueueADT.h"
 #include "PNode.h"
 #include "Event.h"
+#include "FormulationEvent.h"
+#include "CancelEvent.h"
+#include "PromoteEvent.h"
 #include "LinkedList.h"
 #include "ListADT.h"
 #include "LinkedQueue.h"
@@ -36,8 +40,12 @@ the events list.
 class MarsStation
 {
 private:
-	LinkedList<Event>** Events;   //list of event pointers // is it queue?
-	LinkedQueue<Rover> ** Rovers;
+	////////////////////////////////////////////// DECLERATION//////////////////////////////////////////
+
+	LinkedQueue<Event*>*  Events;   
+	LinkedQueue<Rover*>* EmergencyRovers; 
+	LinkedQueue<Rover*>* MountRovers;
+	LinkedQueue<Rover*>* PolarRovers;
 
 	int numof_mount_rovers , numof_emer_rovers , numof_polar_rovers;
 	int speed_mount_rovers, speed_emer_rovers, speed_polar_rovers;
@@ -45,18 +53,37 @@ private:
 	int  numof_missions_before_checkup;
 	int  mount_rovers_checkup_duration , polar_rovers_checkup_duration , emer_rovers_checkup_duration;
 
-public:
-	MarsStation() 
-	{
-		//Rovers = new * LinkedQueue <Rover>(number here); //to start assigning data
+	int mount_rovers_autoP;
 
+	int num_events;
+
+	char event_type , misson_type;
+	int event_day, misson_id, target_loc, days_needed_for_mission, misson_significance;
+	
+	////////////////////////////////////////////END DECLERATION//////////////////////////////////////////
+
+
+public:
+	void load();
+	
+
+	MarsStation(string = "Input_File")
+	{
+		//Import From File to Create a Rovers,Missions,Events lists (or queues)..
+		load();
+		
+		
+	}
+};
+
+	void MarsStation::load() {
 		ifstream inputfile("Input_File", ios::in);
 		while (!inputfile.eof())
 		{
-
-			inputfile >> numof_mount_rovers ;
-			inputfile >> numof_polar_rovers ;
-			inputfile >> numof_emer_rovers ;
+			//Reading rovers and their properties to add them to the rovers queue
+			inputfile >> numof_mount_rovers;
+			inputfile >> numof_polar_rovers;
+			inputfile >> numof_emer_rovers;
 
 			inputfile >> speed_mount_rovers;
 			inputfile >> speed_polar_rovers;
@@ -66,21 +93,66 @@ public:
 			inputfile >> mount_rovers_checkup_duration;
 			inputfile >> polar_rovers_checkup_duration;
 			inputfile >> emer_rovers_checkup_duration;
-		
+
+			//Reading AutoPromotion Limit
+			inputfile >> mount_rovers_autoP;
+
+			//Reading Number Of Events
+			inputfile >> num_events;
+
+			//Reading the events itself & adding them to Events 
+			for (int i = 0; i < num_events; i++) {
+				inputfile >> event_type;
+
+				if (event_type == 'F') {
+					//This is formulation event
+					inputfile >> misson_type;
+					inputfile >> event_day;
+					inputfile >> misson_id;
+					inputfile >> target_loc;
+					inputfile >> days_needed_for_mission;
+					inputfile >> misson_significance;
+					FormulationEvent* E1 = new FormulationEvent(event_day, misson_id, misson_type, target_loc, days_needed_for_mission, misson_significance);
+					Events->enqueue(E1);
+				}
+				else if (event_type == 'P') {
+					//This is promotion event
+					inputfile >> event_day;
+					inputfile >> misson_id;
+					PromoteEvent* E1 = new PromoteEvent(event_day, misson_id);
+				}
+
+				else if (event_type == 'X') {
+					//This is cancelltion event
+					inputfile >> event_day;
+					inputfile >> misson_id;
+					CancelEvent* E1 = new CancelEvent(event_day, misson_id);
+				}
+
+			}
+
+			//Adding MountRovers to MountRovers Queue
+			for (int i = 0; i < numof_mount_rovers; i++) {
+				Rover* rover_To_add = new Rover(mount_rovers_checkup_duration, speed_mount_rovers, numof_missions_before_checkup);
+				MountRovers->enqueue(rover_To_add);
+			}
+
+			//Adding PolarRovers to PolarRovers Queue
+			for (int i = 0; i < numof_polar_rovers; i++) {
+				Rover* rover_To_add = new Rover(polar_rovers_checkup_duration, speed_polar_rovers, numof_missions_before_checkup);
+				PolarRovers->enqueue(rover_To_add);
+			}
+
+			//Adding EmergencyRovers to EmergencyRovers Queue
+			for (int i = 0; i < numof_emer_rovers; i++) {
+				Rover* rover_To_add = new Rover(emer_rovers_checkup_duration, speed_emer_rovers, numof_missions_before_checkup);
+				EmergencyRovers->enqueue(rover_To_add);
+			}
 		}
-		
-		//assign data after read
-
-
-
 	}
-
-
-	//ON EACH DAY FUNS
 	
 
 
 
 
 
-};

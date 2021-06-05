@@ -5,10 +5,16 @@ class PromoteEvent :
 {
 public:
     PromoteEvent();
+    PromoteEvent(int r_eventD, int r_mID);
     virtual void Execute();
 };
 
 PromoteEvent::PromoteEvent() {}
+PromoteEvent::PromoteEvent( int r_eventD, int r_mID) {
+    FormulationDay = r_eventD;
+    mID = r_mID;
+
+}
 
 inline void PromoteEvent::Execute()
 {
