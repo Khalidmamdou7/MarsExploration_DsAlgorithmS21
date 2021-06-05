@@ -1,9 +1,7 @@
 #pragma once
 #include "Event.h"
 
-#include "EmergencyMission.h"
-#include "PolarMissions.h"
-#include "MountainuousMission.h"
+#include "Mission.h"
 
 class FormulationEvent :
     public Event
@@ -41,37 +39,33 @@ inline FormulationEvent::FormulationEvent(int r_eventD, int r_mID, char r_mType,
 void FormulationEvent::Execute() {
     // TODO: Create a new mission and add it to the appropriate list
 
-    EmergencyMission* pEM = NULL;
-    PolarMissions* pPM = NULL;
-    MountainuousMission* pMM = NULL;
+    Mission* pM = new Mission(mType, FormulationDay, mTargetLocation, mDuration, mSignificance, 'W');
     switch (mType) {
-    case 'E':
-        pEM = new EmergencyMission(FormulationDay, mTargetLocation, mDuration, mSignificance, 'W');
-        break;
-    case 'P':
-        pPM = new PolarMissions(FormulationDay, mTargetLocation, mDuration, mSignificance, 'W');
-        break;
-    case 'M':
-        pMM = new MountainuousMission(FormulationDay, mTargetLocation, mDuration, mSignificance, 'W', mAutoP);
-        break;
-    default:
-        break;
-    }
+    case 'E': {
+        // Calculates Priority equation
+        // Priority = (Mission's significance*10) + Mission's Duration + Target Location - Formulation Day
+        int priority = (mSignificance * 10) + mDuration + mTargetLocation - FormulationDay;
 
-    
-
-    if (pEM) {
         // Add to priority queue of waiting Emergency mission using MarsStation
         // pStation->get(pMission);
+
+        break;
     }
-    if (pPM) {
+    case 'P':
         // Add to queue of waiting Polar missions using MarStation
         // pStation->AddMission(pMission)
-    }
-    if (pMM) {
+
+        break;
+    case 'M':
         // Add to queue of waiting Mountainuous missions using MarStation
 
+        break;
+    default:
+
+        break;
     }
+
+
 
 }
 
