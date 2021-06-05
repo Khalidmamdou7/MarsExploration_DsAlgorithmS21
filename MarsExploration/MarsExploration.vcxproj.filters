@@ -31,6 +31,9 @@
     <Filter Include="Mission Classes">
       <UniqueIdentifier>{67fe3b8f-4004-4b03-b127-da2dd3541f09}</UniqueIdentifier>
     </Filter>
+    <Filter Include="MarsStation">
+      <UniqueIdentifier>{4612b8cb-b311-41b4-9783-4ce4b90098f7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="LinkedList.h">
@@ -82,6 +85,9 @@
     </ClCompile>
     <ClCompile Include="Mission.cpp">
       <Filter>Mission Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="MarsStation.cpp">
+      <Filter>MarsStation</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
