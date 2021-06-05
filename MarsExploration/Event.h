@@ -1,8 +1,11 @@
 #pragma once
+#include "MarsStation.h"
+
+
 class Event
 {
 protected:
-	// MarsStation* pStation;
+	MarsStation* pStation;
 	int FormulationDay;
 	int mID;
 public:
@@ -11,11 +14,12 @@ public:
 	void setFormulationDay(const int& ED);
 	int getmID() const;
 	void setmID(const int& mID);
-	virtual void Execute() = 0;
+	virtual void Execute(MarsStation* pS) = 0;
 };
 
 inline Event::Event(int r_ED, int r_mID)
 {
+	pStation = NULL;
 	FormulationDay = r_ED;
 	mID = r_mID;
 }

@@ -86,7 +86,7 @@
     <ClCompile Include="Mission.cpp">
       <Filter>Mission Classes</Filter>
     </ClCompile>
-    <ClCompile Include="MarsStation.cpp">
+    <ClCompile Include="MarsStation.h">
       <Filter>MarsStation</Filter>
     </ClCompile>
   </ItemGroup>

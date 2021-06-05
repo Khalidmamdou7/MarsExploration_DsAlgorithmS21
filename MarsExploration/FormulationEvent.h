@@ -1,7 +1,7 @@
 #pragma once
 #include "Event.h"
-
 #include "Mission.h"
+
 
 class FormulationEvent :
     public Event
@@ -15,7 +15,7 @@ private:
 public:
     FormulationEvent();
     FormulationEvent(int r_eventD, int r_mID, char r_mType, int r_mTargetLocation, int r_mDuration, int r_mSignificance);
-    virtual void Execute();
+    virtual void Execute(MarsStation* pS);
 };
 
 
@@ -36,8 +36,11 @@ inline FormulationEvent::FormulationEvent(int r_eventD, int r_mID, char r_mType,
     mSignificance = r_mSignificance;
 }
 
-void FormulationEvent::Execute() {
+void FormulationEvent::Execute(MarsStation* pS) {
     // TODO: Create a new mission and add it to the appropriate list
+
+    pStation = pS;
+    
 
     Mission* pM = new Mission(mType, FormulationDay, mTargetLocation, mDuration, mSignificance, 'W');
     switch (mType) {
@@ -47,6 +50,7 @@ void FormulationEvent::Execute() {
         int priority = (mSignificance * 10) + mDuration + mTargetLocation - FormulationDay;
 
         // Add to priority queue of waiting Emergency mission using MarsStation
+        PriorityQueue<Mission>* = pStation->getWEM();
         // pStation->get(pMission);
 
         break;

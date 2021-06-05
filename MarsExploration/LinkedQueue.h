@@ -11,7 +11,7 @@ private:
 public:
 	LinkedQueue();
 	bool isEmpty() const;
-	bool enqueue(const T& newEntry);
+	bool enqueue(const T& newEntry, const int& priority = 0);
 	bool dequeue(T& frntEntry);
 	bool peek(T& frntEntry)  const;
 	void PrintList();
@@ -36,7 +36,7 @@ bool LinkedQueue<T>::isEmpty() const
 }
 
 template <typename T>
-bool LinkedQueue<T>::enqueue(const T& newEntry)
+bool LinkedQueue<T>::enqueue(const T& newEntry, const int& priority)
 {
 	Node<T>* newNodePtr = new Node<T>(newEntry);
 

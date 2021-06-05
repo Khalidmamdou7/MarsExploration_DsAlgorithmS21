@@ -155,7 +155,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
-    <ClCompile Include="MarsStation.cpp" />
+    <ClCompile Include="MarsStation.h" />
     <ClCompile Include="Mission.cpp" />
     <ClCompile Include="Rover.cpp" />
   </ItemGroup>
