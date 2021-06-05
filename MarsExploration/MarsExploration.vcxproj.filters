@@ -98,5 +98,8 @@
     <ClCompile Include="MountainuousMission.cpp">
       <Filter>Mission Classes</Filter>
     </ClCompile>
+    <ClCompile Include="Mission.cpp">
+      <Filter>Mission Classes</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
