@@ -1,25 +1,26 @@
 #include "Rover.h"
 
-Rover::Rover(int r_CheckupDuration, int r_rSpeed)
+Rover::Rover(char r_Type, int r_CheckupDuration, int r_Speed)
 {
+	Type = r_Type;
 	CheckupDuration = r_CheckupDuration;
-	rSpeed = r_rSpeed;
+	Speed = r_Speed;
 }
 int Rover::getCheckupDuration()
 {
 	return CheckupDuration;
 }
-int Rover::getrSpeed()
+int Rover::getSpeed()
 {
-	return rSpeed;
+	return Speed;
 }
 void Rover::setCheckupDuration(int D)
 {
 	this->CheckupDuration = D;
 }
-void Rover::setrSpeed(int S)
+void Rover::setSpeed(int S)
 {
-	this->rSpeed = S;
+	this->Speed = S;
 }
 
 

@@ -81,15 +81,6 @@
     <ClInclude Include="Rover.h">
       <Filter>Rover Classes</Filter>
     </ClInclude>
-    <ClInclude Include="EmergencyRover.h">
-      <Filter>Rover Classes</Filter>
-    </ClInclude>
-    <ClInclude Include="MountainousRover.h">
-      <Filter>Rover Classes</Filter>
-    </ClInclude>
-    <ClInclude Include="PolarRover.h">
-      <Filter>Rover Classes</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">

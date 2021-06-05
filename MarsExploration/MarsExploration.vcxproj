@@ -139,10 +139,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-
-    <ClInclude Include="EmergencyRover.h" />
-    <ClInclude Include="MountainousRover.h" />
-    <ClInclude Include="PolarRover.h" />
     <ClInclude Include="CancelEvent.h" />
     <ClInclude Include="EmergencyMission.h" />
     <ClInclude Include="Event.h" />
