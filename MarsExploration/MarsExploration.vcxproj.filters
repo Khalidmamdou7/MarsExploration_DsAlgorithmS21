@@ -72,6 +72,9 @@
     <ClInclude Include="Rover.h">
       <Filter>Rover Classes</Filter>
     </ClInclude>
+    <ClInclude Include="UI.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -82,6 +85,9 @@
     </ClCompile>
     <ClCompile Include="Mission.cpp">
       <Filter>Mission Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="UI.cpp">
+      <Filter>Header Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
