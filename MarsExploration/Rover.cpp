@@ -1,19 +1,19 @@
 #include "Rover.h"
 
-Rover::Rover(int r_CheckupDuration, int r_rSpeed, int n_no_Mission_before_checkUp)
+Rover::Rover(char r_Type, int r_CheckupDuration, int r_Speed)
 {
+	Type = r_Type;
 	CheckupDuration = r_CheckupDuration;
-	rSpeed = r_rSpeed;
-	noMissionsBeforeCheckUp = n_no_Mission_before_checkUp;
+	Speed = r_Speed;
 }
 
 int Rover::getCheckupDuration()
 {
 	return CheckupDuration;
 }
-int Rover::getrSpeed()
+int Rover::getSpeed()
 {
-	return rSpeed;
+	return Speed;
 }
 
 int Rover::getNoMissionsBeforeCheckUp() {
@@ -25,10 +25,9 @@ void Rover::setCheckupDuration(int D)
 {
 	this->CheckupDuration = D;
 }
-
-void Rover::setrSpeed(int S)
+void Rover::setSpeed(int S)
 {
-	this->rSpeed = S;
+	this->Speed = S;
 }
 
 void Rover::setNoMissionsBeforeCheckUp(int N) {
