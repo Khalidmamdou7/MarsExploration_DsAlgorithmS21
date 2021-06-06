@@ -41,16 +41,18 @@ void FormulationEvent::Execute(MarsStation* pS) {
 
         break;
     }
-    case 'P':
+    case 'P': {
         // Add to queue of waiting Polar missions using MarStation
         LinkedQueue<Mission>* pPL = pStation->getWPMList();
         pPL->enqueue(*pM);
         break;
-    case 'M':
+    }
+    case 'M': {
         // Add to queue of waiting Mountainuous missions using MarStation
-        LinkedQueue<Mission>*pML = pStation->getWMMList();
+        LinkedQueue<Mission>* pML = pStation->getWMMList();
         pML->enqueue(*pM);
         break;
+    }
     default:
         break;
     }
