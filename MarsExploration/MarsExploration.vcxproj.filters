@@ -54,9 +54,6 @@
     <ClInclude Include="Event.h">
       <Filter>Event Classes</Filter>
     </ClInclude>
-    <ClInclude Include="FormulationEvent.h">
-      <Filter>Event Classes</Filter>
-    </ClInclude>
     <ClInclude Include="CancelEvent.h">
       <Filter>Event Classes</Filter>
     </ClInclude>
@@ -75,6 +72,9 @@
     <ClInclude Include="Rover.h">
       <Filter>Rover Classes</Filter>
     </ClInclude>
+    <ClInclude Include="FormulationEvent.h">
+      <Filter>Event Classes</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -88,6 +88,15 @@
     </ClCompile>
     <ClCompile Include="MarsStation.h">
       <Filter>MarsStation</Filter>
+    </ClCompile>
+    <ClCompile Include="FormulationEvent.cpp">
+      <Filter>Event Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="PromoteEvent.cpp">
+      <Filter>Event Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="CancelEvent.cpp">
+      <Filter>Event Classes</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

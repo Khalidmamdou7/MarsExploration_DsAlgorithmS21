@@ -67,7 +67,7 @@ int main() {
 
 
 
-
+	MarsStation *k ;
 
 	return 0;
 }

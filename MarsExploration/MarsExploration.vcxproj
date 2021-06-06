@@ -154,9 +154,12 @@
     <ClInclude Include="Rover.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CancelEvent.cpp" />
+    <ClCompile Include="FormulationEvent.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MarsStation.h" />
     <ClCompile Include="Mission.cpp" />
+    <ClCompile Include="PromoteEvent.cpp" />
     <ClCompile Include="Rover.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
