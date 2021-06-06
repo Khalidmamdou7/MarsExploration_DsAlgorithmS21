@@ -2,6 +2,10 @@
 #include <string>
 
 MarsStation::MarsStation(){
+	WaitingEmergency = new PriorityQueue<Mission>();
+	WaitingPolar = new LinkedQueue<Mission>();
+	WaitingMount = new LinkedQueue<Mission>();
+
 	Events=NULL;
 	EmergencyRovers=NULL;
 	MountRovers=NULL;
@@ -30,6 +34,11 @@ MarsStation::MarsStation(){
 {
 	return WaitingPolar;
 }
+
+ LinkedQueue<Mission>* MarsStation::getWMMList()
+ {
+	 return WaitingMount;
+ }
 
 void MarsStation::load() {
 	ifstream inputfile("Input_File", ios::in);
