@@ -1,20 +1,14 @@
 #pragma once
 #include "Event.h"
+
 class CancelEvent :
     public Event
 {
 public:
+    CancelEvent(int r_eventD, int r_mID);
     CancelEvent();
-    virtual void Execute();
+    virtual void Execute(MarsStation* pS);
 };
 
-CancelEvent::CancelEvent() {
 
-}
-
-inline void CancelEvent::Execute()
-{
-    // TODO: should cancel the requested mountainous mission (if found and is waiting)
-
-}
 

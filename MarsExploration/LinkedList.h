@@ -32,12 +32,12 @@ LinkedList<T>::LinkedList()
 template <typename T>
 LinkedList<T>::~LinkedList()
 {
-		DeleteAll();
+	DeleteAll();
 }
 
 
 template <typename T>
-void LinkedList<T>:: PrintList() const
+void LinkedList<T>::PrintList() const
 {
 	Node<T>* p = Head;
 	while (p)
@@ -50,7 +50,7 @@ void LinkedList<T>:: PrintList() const
 
 
 template <typename T>
-void LinkedList<T>::ReadList()	 
+void LinkedList<T>::ReadList()
 {
 	int val;
 	cin >> val;
@@ -162,5 +162,3 @@ T& LinkedList<T>::traverselist_position(const T& pos)
 		}
 	}
 }
-
-
