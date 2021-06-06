@@ -26,7 +26,7 @@ public:
 	void setFormulationDay(const int& ED);
 	int getmID() const;
 	void setmID(const int& mID);
-	//virtual void Execute(MarsStation *pS) = 0;
+	virtual void Execute(MarsStation *pS) = 0;
 };
 
 

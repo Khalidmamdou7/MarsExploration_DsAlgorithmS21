@@ -7,7 +7,7 @@ class CancelEvent :
 public:
     CancelEvent(int r_eventD, int r_mID);
     CancelEvent();
-    virtual void Execute();
+    virtual void Execute(MarsStation* pS);
 };
 
 

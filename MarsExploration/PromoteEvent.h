@@ -6,7 +6,7 @@ class PromoteEvent :
 public:
     PromoteEvent(int r_eventD, int r_mID);
     PromoteEvent();
-    virtual void Execute();
+    virtual void Execute(MarsStation* pS);
 };
 
 
