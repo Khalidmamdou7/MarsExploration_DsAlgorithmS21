@@ -5,7 +5,7 @@
 using namespace std;
 
 
-class FormulationEvent :
+class FormulationEvent : public Event
 {
 private:
     char mType;             // mission Type (M: mountainous, P: polar, E: emergency, U: Unassigned)
