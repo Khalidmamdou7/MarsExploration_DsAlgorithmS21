@@ -34,6 +34,7 @@
     <ClInclude Include="PromoteEvent.h" />
     <ClInclude Include="QueueADT.h" />
     <ClInclude Include="Rover.h" />
+    <ClInclude Include="UI.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CancelEvent.cpp" />
@@ -44,6 +45,7 @@
     <ClCompile Include="Mission.cpp" />
     <ClCompile Include="PromoteEvent.cpp" />
     <ClCompile Include="Rover.cpp" />
+    <ClCompile Include="UI.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
@@ -166,28 +168,6 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClInclude Include="CancelEvent.h" />
-    <ClInclude Include="Event.h" />
-    <ClInclude Include="FormulationEvent.h" />
-    <ClInclude Include="LinkedList.h" />
-    <ClInclude Include="LinkedQueue.h" />
-    <ClInclude Include="ListADT.h" />
-    <ClInclude Include="Mission.h" />
-    <ClInclude Include="Node.h" />
-    <ClInclude Include="PNode.h" />
-    <ClInclude Include="PriorityQueue.h" />
-    <ClInclude Include="PromoteEvent.h" />
-    <ClInclude Include="QueueADT.h" />
-    <ClInclude Include="Rover.h" />
-    <ClInclude Include="UI.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="Main.cpp" />
-    <ClCompile Include="Mission.cpp" />
-    <ClCompile Include="Rover.cpp" />
-    <ClCompile Include="UI.cpp" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
