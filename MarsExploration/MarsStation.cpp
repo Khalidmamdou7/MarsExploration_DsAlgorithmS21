@@ -68,6 +68,7 @@ void MarsStation::load() {
 		for (int i = 0; i < num_events; i++) {
 			inputfile >> event_type;
 
+			Event* E1 = NULL;
 			if (event_type == 'F') {
 				//This is formulation event
 				inputfile >> misson_type;
@@ -76,24 +77,24 @@ void MarsStation::load() {
 				inputfile >> target_loc;
 				inputfile >> days_needed_for_mission;
 				inputfile >> misson_significance;
-				FormulationEvent* E1 = new FormulationEvent(event_day, misson_id, misson_type, target_loc, days_needed_for_mission, misson_significance, mount_rovers_autoP);
-				Events->enqueue(E1);
+				E1 = new FormulationEvent(event_day, misson_id, misson_type, target_loc, days_needed_for_mission, misson_significance, mount_rovers_autoP);
 			}
 			else if (event_type == 'P') {
 				//This is promotion event
 				inputfile >> event_day;
 				inputfile >> misson_id;
-				PromoteEvent* E1 = new PromoteEvent(event_day, misson_id);
+				E1 = new PromoteEvent(event_day, misson_id);
 			}
-
 			else if (event_type == 'X') {
 				//This is cancelltion event
 				inputfile >> event_day;
 				inputfile >> misson_id;
-				CancelEvent* E1 = new CancelEvent(event_day, misson_id);
+				E1 = new CancelEvent(event_day, misson_id);
 			}
-
+			if(E1)
+				Events->enqueue(E1);
 		}
+
 
 		//Adding MountRovers to MountRovers Queue
 		for (int i = 0; i < numof_mount_rovers; i++) {
