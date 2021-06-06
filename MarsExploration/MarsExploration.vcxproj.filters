@@ -14,66 +14,72 @@
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
     <Filter Include="DataStructures">
-      <UniqueIdentifier>{5ef11f3e-ddf2-489d-a9ab-258c4ae6166c}</UniqueIdentifier>
+      <UniqueIdentifier>{14b502a3-bf70-42c6-aa0e-2a3bfa6a0cf1}</UniqueIdentifier>
     </Filter>
-    <Filter Include="DataStructures\Interafces">
-      <UniqueIdentifier>{f3b07ffd-33f5-4faf-a7e8-f817055b413a}</UniqueIdentifier>
+    <Filter Include="DataStructures\Interfaces">
+      <UniqueIdentifier>{a919913e-ec9a-4457-a3ba-5234d0de695c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="DataStructures\Implementations">
-      <UniqueIdentifier>{a5ca1b9e-9084-4d65-bbce-499bb519fb13}</UniqueIdentifier>
+    <Filter Include="DataStructures\Implemention">
+      <UniqueIdentifier>{cf02ad01-0eab-4934-b2c4-2db5ecc6c459}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Rover Classes">
-      <UniqueIdentifier>{8141a797-53c8-4a71-9010-92adf644114b}</UniqueIdentifier>
+    <Filter Include="Rovers Classes">
+      <UniqueIdentifier>{458a120e-d58f-41ec-a7d6-00711a0e230f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Event Classes">
-      <UniqueIdentifier>{89e613fe-bb9d-4263-a3d9-9bf5880672b3}</UniqueIdentifier>
+    <Filter Include="Missions Classes">
+      <UniqueIdentifier>{091d00e5-6ac5-46a8-9301-980f32c4a1fd}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Mission Classes">
-      <UniqueIdentifier>{67fe3b8f-4004-4b03-b127-da2dd3541f09}</UniqueIdentifier>
+    <Filter Include="Events Classes">
+      <UniqueIdentifier>{18209718-3ca5-4741-8c5e-a0ee15c987d7}</UniqueIdentifier>
     </Filter>
     <Filter Include="MarsStation">
-      <UniqueIdentifier>{4612b8cb-b311-41b4-9783-4ce4b90098f7}</UniqueIdentifier>
+      <UniqueIdentifier>{490ab110-54d2-47f9-b4d4-8889961ad9cc}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="LinkedList.h">
-      <Filter>DataStructures\Implementations</Filter>
-    </ClInclude>
-    <ClInclude Include="LinkedQueue.h">
-      <Filter>DataStructures\Implementations</Filter>
-    </ClInclude>
-    <ClInclude Include="PriorityQueue.h">
-      <Filter>DataStructures\Implementations</Filter>
-    </ClInclude>
     <ClInclude Include="QueueADT.h">
-      <Filter>DataStructures\Interafces</Filter>
+      <Filter>DataStructures\Interfaces</Filter>
     </ClInclude>
     <ClInclude Include="ListADT.h">
-      <Filter>DataStructures\Interafces</Filter>
-    </ClInclude>
-    <ClInclude Include="Event.h">
-      <Filter>Event Classes</Filter>
-    </ClInclude>
-    <ClInclude Include="CancelEvent.h">
-      <Filter>Event Classes</Filter>
-    </ClInclude>
-    <ClInclude Include="PromoteEvent.h">
-      <Filter>Event Classes</Filter>
+      <Filter>DataStructures\Interfaces</Filter>
     </ClInclude>
     <ClInclude Include="Node.h">
-      <Filter>DataStructures\Implementations</Filter>
+      <Filter>DataStructures\Implemention</Filter>
     </ClInclude>
     <ClInclude Include="PNode.h">
-      <Filter>DataStructures\Implementations</Filter>
+      <Filter>DataStructures\Implemention</Filter>
     </ClInclude>
-    <ClInclude Include="Mission.h">
-      <Filter>Mission Classes</Filter>
+    <ClInclude Include="PriorityQueue.h">
+      <Filter>DataStructures\Implemention</Filter>
+    </ClInclude>
+    <ClInclude Include="LinkedQueue.h">
+      <Filter>DataStructures\Implemention</Filter>
+    </ClInclude>
+    <ClInclude Include="LinkedList.h">
+      <Filter>DataStructures\Implemention</Filter>
     </ClInclude>
     <ClInclude Include="Rover.h">
-      <Filter>Rover Classes</Filter>
+      <Filter>Rovers Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Mission.h">
+      <Filter>Missions Classes</Filter>
     </ClInclude>
     <ClInclude Include="FormulationEvent.h">
-      <Filter>Event Classes</Filter>
+      <Filter>Events Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Event.h">
+      <Filter>Events Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="PromoteEvent.h">
+      <Filter>Events Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="CancelEvent.h">
+      <Filter>Events Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="MarsStation.h">
+      <Filter>MarsStation</Filter>
+    </ClInclude>
+    <ClInclude Include="PrioQueueADT.h">
+      <Filter>DataStructures\Interfaces</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -81,22 +87,25 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Rover.cpp">
-      <Filter>Rover Classes</Filter>
+      <Filter>Rovers Classes</Filter>
     </ClCompile>
     <ClCompile Include="Mission.cpp">
-      <Filter>Mission Classes</Filter>
+      <Filter>Missions Classes</Filter>
     </ClCompile>
-    <ClCompile Include="MarsStation.h">
-      <Filter>MarsStation</Filter>
-    </ClCompile>
-    <ClCompile Include="FormulationEvent.cpp">
-      <Filter>Event Classes</Filter>
-    </ClCompile>
-    <ClCompile Include="PromoteEvent.cpp">
-      <Filter>Event Classes</Filter>
+    <ClCompile Include="Event.cpp">
+      <Filter>Events Classes</Filter>
     </ClCompile>
     <ClCompile Include="CancelEvent.cpp">
-      <Filter>Event Classes</Filter>
+      <Filter>Events Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="FormulationEvent.cpp">
+      <Filter>Events Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="PromoteEvent.cpp">
+      <Filter>Events Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="MarsStation.cpp">
+      <Filter>MarsStation</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

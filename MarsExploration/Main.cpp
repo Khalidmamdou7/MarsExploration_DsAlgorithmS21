@@ -10,10 +10,10 @@
 #include "Node.h"
 
 // Include Event Classes
-#include "FormulationEvent.h"
-#include "CancelEvent.h"
-#include "PromoteEvent.h"
-
+//#include "FormulationEvent.h"
+//#include "CancelEvent.h"
+//#include "PromoteEvent.h"
+#include "Event.h"
 // Include Mission Class
 #include "Mission.h"
 
@@ -52,12 +52,12 @@ int main() {
 	cout << "\n=================== Testing PNode ==================\n";
 	PNode<int>* node1 = new PNode<int>(1);
 	PNode<int>* node2 = new PNode<int>();
-	
+
 	cout << "Priority: " << node1->getPriority() << endl
 		<< "Item: " << node1->getItem() << endl
 		<< "Nextptr: " << node1->getNext() << endl;
 
-	node1->setItem(5);	
+	node1->setItem(5);
 	node1->setPriority(2);
 	node1->setNext(node2);
 
@@ -67,7 +67,7 @@ int main() {
 
 
 
-	MarsStation *k ;
+
 
 	return 0;
 }

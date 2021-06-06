@@ -1,5 +1,5 @@
-#pragma once
 #include "FormulationEvent.h"
+#include "MarsStation.h"
 
 FormulationEvent::FormulationEvent()
 {
@@ -7,23 +7,24 @@ FormulationEvent::FormulationEvent()
     mTargetLocation = -1;
     mDuration = -1;
     mSignificance = -1;
+    mAutoP = -1;
 }
 
-FormulationEvent::FormulationEvent(int r_eventD, int r_mID, char r_mType, int r_mTargetLocation, int r_mDuration, int r_mSignificance)
+FormulationEvent::FormulationEvent(int r_eventD, int r_mID, char r_mType, int r_mTargetLocation, int r_mDuration, int r_mSignificance, int r_mAutoP)
     :Event(r_eventD, r_mID)
 {
     mType = r_mType;
     mTargetLocation = r_mTargetLocation;
     mDuration = r_mDuration;
     mSignificance = r_mSignificance;
+    mAutoP = r_mAutoP;
 }
 
-void FormulationEvent::Execute (MarsStation* pS) {
+void FormulationEvent::Execute(MarsStation* pS) {
     // TODO: Create a new mission and add it to the appropriate list
 
    // pStation = pS;
-
-
+    
     Mission* pM = new Mission(mType, FormulationDay, mTargetLocation, mDuration, mSignificance, 'W');
     switch (mType) {
     case 'E': {
@@ -51,4 +52,3 @@ void FormulationEvent::Execute (MarsStation* pS) {
         break;
     }
 }
-

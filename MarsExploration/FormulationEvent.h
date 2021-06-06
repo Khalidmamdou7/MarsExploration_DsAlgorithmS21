@@ -1,6 +1,5 @@
 #pragma once
 #include "Mission.h"
-#include"MarsStation.h"
 #include "Event.h"
 using namespace std;
 
@@ -15,7 +14,8 @@ private:
     int mAutoP;
 public:
     FormulationEvent();
-    FormulationEvent(int r_eventD, int r_mID, char r_mType, int r_mTargetLocation, int r_mDuration, int r_mSignificance);
+    FormulationEvent(int r_eventD, int r_mID, char r_mType, int r_mTargetLocation, int r_mDuration, int r_mSignificance, int mAutoP);
     virtual void Execute(MarsStation* pS);
 };
+
 

@@ -1,12 +1,13 @@
 #pragma once
+#include <iostream>
 
-#include "QueueADT.h"
+#include"PrioQueueADT.h"
 #include "PNode.h"
 
 using namespace std;
 
 template <typename T>
-class PriorityQueue :public QueueADT<T>
+class PriorityQueue :public PrioQueueADT<T>
 {
 private:
 	PNode<T>* backPtr;
@@ -41,7 +42,7 @@ bool PriorityQueue<T>::isEmpty() const
 }
 
 template <typename T>
-bool PriorityQueue<T>::enqueue(const T& newEntry,const int& priority)
+bool PriorityQueue<T>::enqueue(const T& newEntry, const int& priority)
 {
 	count++;
 	PNode<T>* newPNptr = new PNode<T>(newEntry, priority);
@@ -119,11 +120,11 @@ inline void PriorityQueue<T>::PrintList()
 	PNode<T>* p = frontPtr;
 	while (p)
 	{
-		cout << p->getItem() << " ";
+		cout << p << " ";
 		p = p->getNext();
 	}
 	cout << endl;
-	
+
 }
 
 template <typename T>

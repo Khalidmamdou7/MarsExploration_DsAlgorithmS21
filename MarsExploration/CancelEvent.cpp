@@ -3,9 +3,8 @@ CancelEvent::CancelEvent() {}
 CancelEvent::CancelEvent(int r_eventD, int r_mID) : Event(r_eventD, r_mID) {
 }
 
-inline void CancelEvent::Execute()
+void CancelEvent::Execute()
 {
     // TODO: should cancel the requested mountainous mission (if found and is waiting)
 
 }
-

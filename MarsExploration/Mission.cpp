@@ -72,11 +72,11 @@ void Mission::setStatus(char r_Status)
 }
 
 Rover* Mission::getAssignedRover() const
- {
-	 return assignedRover;
- }
+{
+	return assignedRover;
+}
 
 void Mission::setAssignedRover(Rover* r)
- {
-	 assignedRover = r;
- }
+{
+	assignedRover = r;
+}

@@ -1,13 +1,13 @@
 #include "Rover.h"
 
-Rover::Rover(char r_Type, int r_CheckupDuration, int r_Speed, int N_NoOfMissionsBeforeCheckup)
+Rover::Rover(char r_Type, int r_CheckupDuration, int r_Speed, int n_noMissionsBeforeCheckUp)
 {
 	Type = r_Type;
 	CheckupDuration = r_CheckupDuration;
 	Speed = r_Speed;
-	NoOfMissionsBeforeCheckup = N_NoOfMissionsBeforeCheckup;
-
+	noMissionsBeforeCheckUp = n_noMissionsBeforeCheckUp;
 }
+
 int Rover::getCheckupDuration()
 {
 	return CheckupDuration;
@@ -17,9 +17,8 @@ int Rover::getSpeed()
 	return Speed;
 }
 
-int Rover::getNoOfMissionsBeforeCheckup()
-{
-	return NoOfMissionsBeforeCheckup;
+int Rover::getNoMissionsBeforeCheckUp() {
+	return noMissionsBeforeCheckUp;
 }
 
 
@@ -32,12 +31,10 @@ void Rover::setSpeed(int S)
 	this->Speed = S;
 }
 
-void Rover::setNoOfMissionsBeforeCheckup(int N) {
-	NoOfMissionsBeforeCheckup = N;
+void Rover::setNoMissionsBeforeCheckUp(int N) {
+	this->noMissionsBeforeCheckUp = N;
 }
 
 
 
-
-
-Rover::~Rover(){}
+Rover::~Rover() {}
