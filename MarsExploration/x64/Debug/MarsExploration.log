@@ -1,1 +1,65 @@
-﻿  MarsExploration.vcxproj -> C:\Users\amani\OneDrive\Documents\MarsExploration_DsAlgorithmS21\MarsExploration\x64\Debug\MarsExploration.exe
+﻿  MarsStation.h
+C:\Users\Marwan\Desktop\MarsExploration_DsAlgorithmS21\MarsExploration\FormulationEvent.h(9,1): error C2504: 'Event': base class undefined
+C:\Users\Marwan\Desktop\MarsExploration_DsAlgorithmS21\MarsExploration\FormulationEvent.h(19,26): error C2061: syntax error: identifier 'MarsStation'
+C:\Users\Marwan\Desktop\MarsExploration_DsAlgorithmS21\MarsExploration\CancelEvent.h(6,1): error C2504: 'Event': base class undefined
+C:\Users\Marwan\Desktop\MarsExploration_DsAlgorithmS21\MarsExploration\PromoteEvent.h(5,1): error C2504: 'Event': base class undefined
+C:\Users\Marwan\Desktop\MarsExploration_DsAlgorithmS21\MarsExploration\MarsStation.h(45,14): error C2065: 'Event': undeclared identifier
+C:\Users\Marwan\Desktop\MarsExploration_DsAlgorithmS21\MarsExploration\MarsStation.h(45,20): error C2059: syntax error: '>'
+C:\Users\Marwan\Desktop\MarsExploration_DsAlgorithmS21\MarsExploration\MarsStation.h(41,1): error C2011: 'MarsStation': 'class' type redefinition
+C:\Users\Marwan\Desktop\MarsExploration_DsAlgorithmS21\MarsExploration\MarsStation.h(40): message : see declaration of 'MarsStation'
+C:\Users\Marwan\Desktop\MarsExploration_DsAlgorithmS21\MarsExploration\MarsStation.h(95,15): error C2027: use of undefined type 'MarsStation'
+C:\Users\Marwan\Desktop\MarsExploration_DsAlgorithmS21\MarsExploration\MarsStation.h(40): message : see declaration of 'MarsStation'
+C:\Users\Marwan\Desktop\MarsExploration_DsAlgorithmS21\MarsExploration\MarsStation.h(96,1): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+C:\Users\Marwan\Desktop\MarsExploration_DsAlgorithmS21\MarsExploration\MarsStation.h(97,1): warning C4508: '{ctor}': function should return a value; 'void' return type assumed
+C:\Users\Marwan\Desktop\MarsExploration_DsAlgorithmS21\MarsExploration\MarsStation.h(99,39): error C2027: use of undefined type 'MarsStation'
+C:\Users\Marwan\Desktop\MarsExploration_DsAlgorithmS21\MarsExploration\MarsStation.h(40): message : see declaration of 'MarsStation'
+C:\Users\Marwan\Desktop\MarsExploration_DsAlgorithmS21\MarsExploration\MarsStation.h(101,9): error C2065: 'WaitingEmergency': undeclared identifier
+C:\Users\Marwan\Desktop\MarsExploration_DsAlgorithmS21\MarsExploration\MarsStation.h(104,37): error C2027: use of undefined type 'MarsStation'
+C:\Users\Marwan\Desktop\MarsExploration_DsAlgorithmS21\MarsExploration\MarsStation.h(40): message : see declaration of 'MarsStation'
+C:\Users\Marwan\Desktop\MarsExploration_DsAlgorithmS21\MarsExploration\MarsStation.h(106,9): error C2065: 'WaitingPolar': undeclared identifier
+C:\Users\Marwan\Desktop\MarsExploration_DsAlgorithmS21\MarsExploration\MarsStation.h(109,20): error C2027: use of undefined type 'MarsStation'
+C:\Users\Marwan\Desktop\MarsExploration_DsAlgorithmS21\MarsExploration\MarsStation.h(40): message : see declaration of 'MarsStation'
+C:\Users\Marwan\Desktop\MarsExploration_DsAlgorithmS21\MarsExploration\MarsStation.h(114,17): error C2065: 'numof_mount_rovers': undeclared identifier
+C:\Users\Marwan\Desktop\MarsExploration_DsAlgorithmS21\MarsExploration\MarsStation.h(115,17): error C2065: 'numof_polar_rovers': undeclared identifier
+C:\Users\Marwan\Desktop\MarsExploration_DsAlgorithmS21\MarsExploration\MarsStation.h(116,17): error C2065: 'numof_emer_rovers': undeclared identifier
+C:\Users\Marwan\Desktop\MarsExploration_DsAlgorithmS21\MarsExploration\MarsStation.h(118,17): error C2065: 'speed_mount_rovers': undeclared identifier
+C:\Users\Marwan\Desktop\MarsExploration_DsAlgorithmS21\MarsExploration\MarsStation.h(119,17): error C2065: 'speed_polar_rovers': undeclared identifier
+C:\Users\Marwan\Desktop\MarsExploration_DsAlgorithmS21\MarsExploration\MarsStation.h(120,17): error C2065: 'speed_emer_rovers': undeclared identifier
+C:\Users\Marwan\Desktop\MarsExploration_DsAlgorithmS21\MarsExploration\MarsStation.h(122,17): error C2065: 'numof_missions_before_checkup': undeclared identifier
+C:\Users\Marwan\Desktop\MarsExploration_DsAlgorithmS21\MarsExploration\MarsStation.h(123,17): error C2065: 'mount_rovers_checkup_duration': undeclared identifier
+C:\Users\Marwan\Desktop\MarsExploration_DsAlgorithmS21\MarsExploration\MarsStation.h(124,17): error C2065: 'polar_rovers_checkup_duration': undeclared identifier
+C:\Users\Marwan\Desktop\MarsExploration_DsAlgorithmS21\MarsExploration\MarsStation.h(125,17): error C2065: 'emer_rovers_checkup_duration': undeclared identifier
+C:\Users\Marwan\Desktop\MarsExploration_DsAlgorithmS21\MarsExploration\MarsStation.h(128,17): error C2065: 'mount_rovers_autoP': undeclared identifier
+C:\Users\Marwan\Desktop\MarsExploration_DsAlgorithmS21\MarsExploration\MarsStation.h(131,17): error C2065: 'num_events': undeclared identifier
+C:\Users\Marwan\Desktop\MarsExploration_DsAlgorithmS21\MarsExploration\MarsStation.h(134,24): error C2065: 'num_events': undeclared identifier
+C:\Users\Marwan\Desktop\MarsExploration_DsAlgorithmS21\MarsExploration\MarsStation.h(135,18): error C2065: 'event_type': undeclared identifier
+C:\Users\Marwan\Desktop\MarsExploration_DsAlgorithmS21\MarsExploration\MarsStation.h(137,9): error C2065: 'event_type': undeclared identifier
+C:\Users\Marwan\Desktop\MarsExploration_DsAlgorithmS21\MarsExploration\MarsStation.h(139,19): error C2065: 'misson_type': undeclared identifier
+C:\Users\Marwan\Desktop\MarsExploration_DsAlgorithmS21\MarsExploration\MarsStation.h(140,19): error C2065: 'event_day': undeclared identifier
+C:\Users\Marwan\Desktop\MarsExploration_DsAlgorithmS21\MarsExploration\MarsStation.h(141,19): error C2065: 'misson_id': undeclared identifier
+C:\Users\Marwan\Desktop\MarsExploration_DsAlgorithmS21\MarsExploration\MarsStation.h(142,19): error C2065: 'target_loc': undeclared identifier
+C:\Users\Marwan\Desktop\MarsExploration_DsAlgorithmS21\MarsExploration\MarsStation.h(143,19): error C2065: 'days_needed_for_mission': undeclared identifier
+C:\Users\Marwan\Desktop\MarsExploration_DsAlgorithmS21\MarsExploration\MarsStation.h(144,19): error C2065: 'misson_significance': undeclared identifier
+C:\Users\Marwan\Desktop\MarsExploration_DsAlgorithmS21\MarsExploration\MarsStation.h(148,14): error C2065: 'event_type': undeclared identifier
+C:\Users\Marwan\Desktop\MarsExploration_DsAlgorithmS21\MarsExploration\MarsStation.h(150,19): error C2065: 'event_day': undeclared identifier
+C:\Users\Marwan\Desktop\MarsExploration_DsAlgorithmS21\MarsExploration\MarsStation.h(151,19): error C2065: 'misson_id': undeclared identifier
+C:\Users\Marwan\Desktop\MarsExploration_DsAlgorithmS21\MarsExploration\MarsStation.h(155,14): error C2065: 'event_type': undeclared identifier
+C:\Users\Marwan\Desktop\MarsExploration_DsAlgorithmS21\MarsExploration\MarsStation.h(157,19): error C2065: 'event_day': undeclared identifier
+C:\Users\Marwan\Desktop\MarsExploration_DsAlgorithmS21\MarsExploration\MarsStation.h(158,19): error C2065: 'misson_id': undeclared identifier
+C:\Users\Marwan\Desktop\MarsExploration_DsAlgorithmS21\MarsExploration\MarsStation.h(165,24): error C2065: 'numof_mount_rovers': undeclared identifier
+C:\Users\Marwan\Desktop\MarsExploration_DsAlgorithmS21\MarsExploration\MarsStation.h(166,41): error C2065: 'mount_rovers_checkup_duration': undeclared identifier
+C:\Users\Marwan\Desktop\MarsExploration_DsAlgorithmS21\MarsExploration\MarsStation.h(166,72): error C2065: 'speed_mount_rovers': undeclared identifier
+C:\Users\Marwan\Desktop\MarsExploration_DsAlgorithmS21\MarsExploration\MarsStation.h(166,92): error C2065: 'numof_missions_before_checkup': undeclared identifier
+C:\Users\Marwan\Desktop\MarsExploration_DsAlgorithmS21\MarsExploration\MarsStation.h(167,5): error C2065: 'MountRovers': undeclared identifier
+C:\Users\Marwan\Desktop\MarsExploration_DsAlgorithmS21\MarsExploration\MarsStation.h(171,24): error C2065: 'numof_polar_rovers': undeclared identifier
+C:\Users\Marwan\Desktop\MarsExploration_DsAlgorithmS21\MarsExploration\MarsStation.h(172,41): error C2065: 'polar_rovers_checkup_duration': undeclared identifier
+C:\Users\Marwan\Desktop\MarsExploration_DsAlgorithmS21\MarsExploration\MarsStation.h(172,72): error C2065: 'speed_polar_rovers': undeclared identifier
+C:\Users\Marwan\Desktop\MarsExploration_DsAlgorithmS21\MarsExploration\MarsStation.h(172,92): error C2065: 'numof_missions_before_checkup': undeclared identifier
+C:\Users\Marwan\Desktop\MarsExploration_DsAlgorithmS21\MarsExploration\MarsStation.h(173,5): error C2065: 'PolarRovers': undeclared identifier
+C:\Users\Marwan\Desktop\MarsExploration_DsAlgorithmS21\MarsExploration\MarsStation.h(177,24): error C2065: 'numof_emer_rovers': undeclared identifier
+C:\Users\Marwan\Desktop\MarsExploration_DsAlgorithmS21\MarsExploration\MarsStation.h(178,41): error C2065: 'emer_rovers_checkup_duration': undeclared identifier
+C:\Users\Marwan\Desktop\MarsExploration_DsAlgorithmS21\MarsExploration\MarsStation.h(178,71): error C2065: 'speed_emer_rovers': undeclared identifier
+C:\Users\Marwan\Desktop\MarsExploration_DsAlgorithmS21\MarsExploration\MarsStation.h(178,90): error C2065: 'numof_missions_before_checkup': undeclared identifier
+C:\Users\Marwan\Desktop\MarsExploration_DsAlgorithmS21\MarsExploration\MarsStation.h(179,5): error C2065: 'EmergencyRovers': undeclared identifier
+C:\Users\Marwan\Desktop\MarsExploration_DsAlgorithmS21\MarsExploration\MarsStation.h(184,26): error C2027: use of undefined type 'MarsStation'
+C:\Users\Marwan\Desktop\MarsExploration_DsAlgorithmS21\MarsExploration\MarsStation.h(40): message : see declaration of 'MarsStation'

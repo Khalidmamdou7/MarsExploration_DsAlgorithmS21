@@ -13,6 +13,7 @@ public:
 	virtual void setNext(Node<T>* nextNodePtr);
 	T getItem() const;
 	virtual Node<T>* getNext() const;
+	friend std::ostream& operator<<(std::ostream&, const Node<T>&);
 }; // end Node
 
 
@@ -57,4 +58,9 @@ template < typename T>
 Node<T>* Node<T>::getNext() const
 {
 	return next;
+}
+
+template <typename T>
+std::ostream& operator<<(std::ostream& o, const Node<T>& myNode) {
+	0 << myNode.getItem();
 }

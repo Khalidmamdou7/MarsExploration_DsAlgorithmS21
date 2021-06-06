@@ -14,8 +14,8 @@ private:
 	Rover* assignedRover;
 	// int AutoP;			// the number of days after which a mountainous mission is automatically promoted to an emergency mission (Not sure if needed)
 public:
-	Mission(char r_Type = 'U', int r_FD = -1, int r_TargetLocation = -1 , int r_Duration = -1, int r_Significance = -1, char r_Status = 'U', Rover* r_ass = nullptr);
-	
+	Mission(char r_Type = 'U', int r_FD = -1, int r_TargetLocation = -1, int r_Duration = -1, int r_Significance = -1, char r_Status = 'U', Rover* r_ass = nullptr);
+
 	char getType() const;
 	void setType(char r_Type);
 

@@ -18,12 +18,40 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="CancelEvent.h" />
+    <ClInclude Include="Event.h" />
+    <ClInclude Include="FormulationEvent.h" />
+    <ClInclude Include="LinkedList.h" />
+    <ClInclude Include="LinkedQueue.h" />
+    <ClInclude Include="ListADT.h" />
+    <ClInclude Include="MarsStation.h" />
+    <ClInclude Include="Mission.h" />
+    <ClInclude Include="Node.h" />
+    <ClInclude Include="PNode.h" />
+    <ClInclude Include="PrioQueueADT.h" />
+    <ClInclude Include="PriorityQueue.h" />
+    <ClInclude Include="PromoteEvent.h" />
+    <ClInclude Include="QueueADT.h" />
+    <ClInclude Include="Rover.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="CancelEvent.cpp" />
+    <ClCompile Include="Event.cpp" />
+    <ClCompile Include="FormulationEvent.cpp" />
+    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="MarsStation.cpp" />
+    <ClCompile Include="Mission.cpp" />
+    <ClCompile Include="PromoteEvent.cpp" />
+    <ClCompile Include="Rover.cpp" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{dc6629d6-44b4-4750-aa0b-1a2081c97fc6}</ProjectGuid>
-    <RootNamespace>MarsExploration</RootNamespace>
+    <ProjectGuid>{9769FB8A-EC61-4358-8362-98CBB710ABC9}</ProjectGuid>
+    <RootNamespace>DSProject</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>MarsExploration</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -138,27 +166,6 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClInclude Include="CancelEvent.h" />
-    <ClInclude Include="Event.h" />
-    <ClInclude Include="FormulationEvent.h" />
-    <ClInclude Include="LinkedList.h" />
-    <ClInclude Include="LinkedQueue.h" />
-    <ClInclude Include="ListADT.h" />
-    <ClInclude Include="Mission.h" />
-    <ClInclude Include="Node.h" />
-    <ClInclude Include="PNode.h" />
-    <ClInclude Include="PriorityQueue.h" />
-    <ClInclude Include="PromoteEvent.h" />
-    <ClInclude Include="QueueADT.h" />
-    <ClInclude Include="Rover.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="Main.cpp" />
-    <ClCompile Include="MarsStation.cpp" />
-    <ClCompile Include="Mission.cpp" />
-    <ClCompile Include="Rover.cpp" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
