@@ -1,6 +1,9 @@
 #include "FormulationEvent.h"
 #include "MarsStation.h"
 
+#include "PriorityQueue.h"
+#include "LinkedQueue.h"
+
 FormulationEvent::FormulationEvent()
 {
     mType = 'U';    // UnAssigned
@@ -23,7 +26,7 @@ FormulationEvent::FormulationEvent(int r_eventD, int r_mID, char r_mType, int r_
 void FormulationEvent::Execute(MarsStation* pS) {
     // TODO: Create a new mission and add it to the appropriate list
 
-   // pStation = pS;
+   pStation = pS;
     
     Mission* pM = new Mission(mType, FormulationDay, mTargetLocation, mDuration, mSignificance, 'W');
     switch (mType) {
@@ -33,22 +36,22 @@ void FormulationEvent::Execute(MarsStation* pS) {
         int priority = (mSignificance * 10) + mDuration + mTargetLocation - FormulationDay;
 
         // Add to priority queue of waiting Emergency mission using MarsStation
-       // PriorityQueue<Mission>* = pStation->getWPMList();
-        // pStation->get(pMission);
+        PriorityQueue<Mission>* pML = pStation->getWEMList();
+        pML->enqueue(*pM, priority);
 
         break;
     }
     case 'P':
         // Add to queue of waiting Polar missions using MarStation
-        // pStation->AddMission(pMission)
-
+        LinkedQueue<Mission>* pPL = pStation->getWPMList();
+        pPL->enqueue(*pM);
         break;
     case 'M':
         // Add to queue of waiting Mountainuous missions using MarStation
-
+        LinkedQueue<Mission>*pML = pStation->getWMMList();
+        pML->enqueue(*pM);
         break;
     default:
-
         break;
     }
 }
