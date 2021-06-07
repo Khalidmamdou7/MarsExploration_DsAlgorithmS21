@@ -15,6 +15,7 @@ UI::UI()
 }
 void UI::ReadMode(MarsStation* pS)
 {
+	PriorityQueue<Mission*> WPM(*pS->getWMMList());
 	cout << "There's three modes: " << endl;
 	cout << "enter 1 for interactive Mode" << endl;
 	cout << " 2 for step-by-step mode" << endl;
@@ -26,16 +27,16 @@ void UI::ReadMode(MarsStation* pS)
 	{
 	case 1: {
 		cout << "Current Day :" << "" << endl;
-		cout << " " << "Waiting Missions :" << "[" << " " << h->getWEMList() << " " << "]" << "  " << "(" << h->getWPMList() << ")" << "{" << h->getWMMList() << "}" << endl;
+		cout << " " << "Waiting Missions :" << "[" << " " << pS->getWEMList() << " " << "]" << "  " << "(" << pS->getWPMList() << ")" << "{" << pS->getWMMList() << "}" << endl;
 		cout << "------------------------------------------------------" << endl;
 		cout << "" << "In-Execution Missions/Rovers:" << "[" << " " << "," << " " << "]" << "  " << "{" << " " << "}" << endl;;
 		cout << "------------------------------------------------------" << endl;
-		cout << " " << "Available Rovers :" << "[" << " " << h->getWEMList() << " " << "]" << "  " << "(" << h->getWPMList() << ")" << "{" << h->getWMMList() << "}" << endl;;
+		cout << " " << "Available Rovers :" << "[" << " " << pS->getWEMList() << " " << "]" << "  " << "(" << pS->getWPMList() << ")" << "{" << pS->getWMMList() << "}" << endl;;
 		cout << "------------------------------------------------------" << endl;
 		cout << " " << " In - Checkup Rovers :" << "[" << " " << "," << " " << "]" << "  " << "{" << " " << "}" << endl;;
 		cout << "------------------------------------------------------" << endl;
 		cout << " " << "Completed Missions:" << "[" << " " << "," << " " << "]" << "  " << "{" << " " << "}" << endl;
-		h->load();
+		pS->load();
 		break;
 	}
 	case 2: {
@@ -52,14 +53,14 @@ void UI::ReadMode(MarsStation* pS)
 		cout << " " << " In - Checkup Rovers :" << "[" << " " << "," << " " << "]" << "  " << "{" << " " << "}" << endl;;
 		cout << "------------------------------------------------------" << endl;
 		cout << " " << "Completed Missions:" << "[" << " " << "," << " " << "]" << "  " << "{" << " " << "}" << endl;
-		h->load();
+		pS->load();
 		break;
 	}
 	case 3: {
 		cout << "Silent Mode" << endl;
 		cout << "Simulation Starts..." << endl;
 		cout << "Simulation ends, Output file created" << endl;
-		h->load();
+		pS->load();
 		break;
 	}
 	case 4: {
