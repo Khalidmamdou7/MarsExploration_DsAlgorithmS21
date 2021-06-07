@@ -1,21 +1,27 @@
+#pragma once
+
+
+// Include Data structures
+#include "PriorityQueue.h"
+#include "LinkedList.h"
+#include "LinkedQueue.h"
+
+
+// Include Event Classes
+#include "Event.h"
+#include "FormulationEvent.h"
+#include "CancelEvent.h"
+#include "PromoteEvent.h"
+
+#include "Rover.h"
+#include "Mission.h"
+
+#include "UI.h"
 
 #include <iostream>
 #include <fstream>
 #include <string>
 using namespace std;
-
-#pragma once
-#include "QueueADT.h"
-#include "PNode.h"
-#include "Event.h"
-#include "FormulationEvent.h"
-#include "CancelEvent.h"
-#include "PromoteEvent.h"
-#include "LinkedList.h"
-#include "ListADT.h"
-#include "LinkedQueue.h"
-#include "Rover.h"
-
 
 /*
 MarsStation Class
@@ -40,6 +46,9 @@ class MarsStation
 private:
 	////////////////////////////////////////////// DECLERATION//////////////////////////////////////////
 	
+	UI* ui;
+
+
 	LinkedQueue<Event*>* Events;
 
 	// Missions Lists
@@ -91,12 +100,22 @@ public:
 	void ExecuteEvents();		// Execute the events that should be executed at that day
 	void FinishedExecution();	// Checks if missions finished execution
 	void FinishedCheckup();		// Checks if rovers finished checkup and move it to available rovers
-
+	int GetCurrentDay();
 	PriorityQueue<Mission*>* getWEMList();
 	LinkedQueue<Mission*>* getWPMList();
 	LinkedQueue<Mission*>* getWMMList();
+	PriorityQueue<Mission*>* getInEx();
+	LinkedQueue<Rover*>* getAvailableER();
+	LinkedQueue<Rover*>* getAvailableMR();
+	LinkedQueue<Rover*>* getAvailablePR();
+	LinkedQueue<Rover*>* getInCheckupER();
+	LinkedQueue<Rover*>* getInCheckupMR();
+	LinkedQueue<Rover*>* getInCheckupPR();
+	LinkedQueue<Mission*>* getCompletedMissions();
 	void assign();
 	void autoP();
+
+	void justfortest();
 	
 };
 

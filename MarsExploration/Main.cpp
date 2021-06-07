@@ -17,6 +17,7 @@
 // Include Mission Class
 #include "Mission.h"
 #include "MarsStation.h"
+#include"UI.h"
 using namespace std;
 
 int main() {
@@ -74,17 +75,21 @@ int main() {
 	FormulationEvent F3(7, 90, 'M', 222, 12, 5, 0);
 	FormulationEvent F4(8, 91, 'M', 223, 18, 5, 0);  //prio =323 
 	FormulationEvent F5(9, 92, 'E', 224, 13, 8, 0);  //prio= 308
+	FormulationEvent F6(14,95, 'P', 224, 17, 12, 0);
 	F1.Execute(&M1);
 	F2.Execute(&M1);
 	F3.Execute(&M1);
 	F4.Execute(&M1);
 	F5.Execute(&M1);
+	F6.Execute(&M1);
 	
 	CancelEvent C1(5, 91);
 	PromoteEvent P1(7, 91);
 	//C1.Execute(&M1);
 	P1.Execute(&M1);
-
+	M1.assign();
+	M1.justfortest();
+	/*
 	LinkedQueue<Mission*>* Q1 = M1.getWMMList();
 	PriorityQueue<Mission*>* Q2 = M1.getWEMList();
 	
@@ -99,5 +104,10 @@ int main() {
 		Q2->dequeue(toprint);
 		cout << toprint->getID() << endl;
 	}
+	*/
+
+	UI *Output= new UI();
+	
+	Output->ReadMode();
 	return 0;
 }

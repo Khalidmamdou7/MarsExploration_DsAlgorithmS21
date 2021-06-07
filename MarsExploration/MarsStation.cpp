@@ -2,6 +2,9 @@
 #include <string>
 
 MarsStation::MarsStation(){
+	ui = new UI();
+	ui->ReadMode();
+
 	WaitingEmergency = new PriorityQueue<Mission*>();
 	WaitingPolar = new LinkedQueue<Mission*>();
 	WaitingMount = new LinkedQueue<Mission*>();
@@ -35,6 +38,15 @@ MarsStation::MarsStation(){
 
 }
 
+void MarsStation::justfortest() {
+	Rover* r1 = new Rover('M', 3, 15, 7);
+	Rover* r2 = new Rover('P', 4, 25, 7);
+
+	AvailableMR->enqueue(r1);
+	AvailablePR->enqueue(r2);
+	r1->setID(1);
+	r2->setID(2);
+}
 
 void MarsStation::assign()
 {
@@ -127,6 +139,44 @@ void MarsStation::assign()
  {
 	 return WaitingMount;
  }
+ int MarsStation::GetCurrentDay()
+ {
+	 return current_day;
+ }
+
+ PriorityQueue<Mission*>* MarsStation::getInEx()
+ {
+	 return InEx;
+ }
+ LinkedQueue<Rover*>* MarsStation::getAvailableER()
+ {
+	 return AvailableER;
+ }
+ LinkedQueue<Rover*>* MarsStation::getAvailablePR()
+ {
+	 return AvailablePR;
+ }
+ LinkedQueue<Rover*>* MarsStation::getAvailableMR()
+ {
+	 return AvailableMR;
+ }
+ LinkedQueue<Rover*>* MarsStation::getInCheckupER()
+ {
+	 return InCheckupER;
+ }
+ LinkedQueue<Rover*>* MarsStation::getInCheckupPR()
+ {
+	 return InCheckupPR;
+ }
+ LinkedQueue<Rover*>* MarsStation::getInCheckupMR()
+ {
+	 return InCheckupMR;
+ }
+ LinkedQueue<Mission*>* MarsStation::getCompletedMissions()
+ {
+	 return CompletedMissions;
+ }
+ 
 
 void MarsStation::load() {
 	ifstream inputfile("Input_File", ios::in);
@@ -210,6 +260,9 @@ void MarsStation::Simulate() {
 	FinishedExecution();
 	FinishedCheckup();
 	assign();
+	// Collect Statistics
+	ui->Output(this);
+	// save
 
 }
 
