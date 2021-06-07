@@ -212,8 +212,6 @@ void MarsStation::Simulate() {
 void MarsStation::FinishExecution()
 {
 	PriorityQueue<Mission*> Q1;
-
-	// Peek Inexecution mission list
 	Mission* pM = NULL;
 
 	while (InEx->peek(pM) && pM->getCD() == current_day) {
