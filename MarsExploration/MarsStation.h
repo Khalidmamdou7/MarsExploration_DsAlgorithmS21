@@ -15,7 +15,7 @@ using namespace std;
 #include "ListADT.h"
 #include "LinkedQueue.h"
 #include "Rover.h"
-#include"UI.h"
+#include "UI.h"
 
 /*
 MarsStation Class
@@ -74,7 +74,7 @@ public:
 
 	void load();
 	void Simulate();
-
+	void assign();
 	void Interface();
 
 	PriorityQueue<Mission*>* getWEMList();

@@ -4,12 +4,16 @@
 #include<thread>
 #include"Mission.h"
 #include"Rover.h"
+
+#include "MarsStation.h"
+
 using namespace std;
-UI::UI(MarsStation* g)
+UI::UI()
 {
-	h = g;
+	pS = NULL;
+	Mode = 0;
 }
-void UI::ReadMode()
+void UI::ReadMode(MarsStation* pS)
 {
 	cout << "There's three modes: " << endl;
 	cout << "enter 1 for interactive Mode" << endl;
@@ -17,19 +21,20 @@ void UI::ReadMode()
 	cout << "3 for silent mode" << endl;
 	cout << "4 for Exit" << endl;
 	cin >> Mode;
+
 	switch (Mode)
 	{
 	case 1: {
 		cout << "Current Day :" << "" << endl;
-		cout << " " << "Waiting Missions :" << "["<<" " <<h->getWEMList()<<" "<<"]" <<"  "<<"(" << h->getWPMList() <<")"<<"{" << h->getWMMList()<<"}"<<endl;
+		cout << " " << "Waiting Missions :" << "[" << " " << h->getWEMList() << " " << "]" << "  " << "(" << h->getWPMList() << ")" << "{" << h->getWMMList() << "}" << endl;
 		cout << "------------------------------------------------------" << endl;
-		cout <<"" << "In-Execution Missions/Rovers:" << "[" << " " << "," << " " << "]" << "  " << "{" << " " << "}" << endl;;
+		cout << "" << "In-Execution Missions/Rovers:" << "[" << " " << "," << " " << "]" << "  " << "{" << " " << "}" << endl;;
 		cout << "------------------------------------------------------" << endl;
 		cout << " " << "Available Rovers :" << "[" << " " << h->getWEMList() << " " << "]" << "  " << "(" << h->getWPMList() << ")" << "{" << h->getWMMList() << "}" << endl;;
 		cout << "------------------------------------------------------" << endl;
 		cout << " " << " In - Checkup Rovers :" << "[" << " " << "," << " " << "]" << "  " << "{" << " " << "}" << endl;;
 		cout << "------------------------------------------------------" << endl;
-		cout << " " << "Completed Missions:" << "[" << " " << "," << " " << "]" << "  " << "{" << " " << "}" <<endl;
+		cout << " " << "Completed Missions:" << "[" << " " << "," << " " << "]" << "  " << "{" << " " << "}" << endl;
 		h->load();
 		break;
 	}
@@ -57,7 +62,7 @@ void UI::ReadMode()
 		h->load();
 		break;
 	}
-	case 4:{
+	case 4: {
 		exit(0);
 	}
 	}while (Mode != 4);
