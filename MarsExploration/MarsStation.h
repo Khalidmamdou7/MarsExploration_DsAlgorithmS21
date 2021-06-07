@@ -82,6 +82,7 @@ public:
 		//Import From File to Create a Rovers,Missions,Events lists (or queues)..
 		load();
 	}
+	void assign();
 };
 
 

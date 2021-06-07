@@ -27,6 +27,7 @@ public:
 	int getmID() const;
 	void setmID(const int& mID);
 	virtual void Execute(MarsStation *pS) = 0;
+
 };
 
 
