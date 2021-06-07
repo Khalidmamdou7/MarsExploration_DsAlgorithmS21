@@ -26,6 +26,7 @@ MarsStation::MarsStation(){
 }
 
 
+
 void MarsStation::assign()
 {
 	if (numof_mount_rovers==0 && numof_polar_rovers==0 && numof_emer_rovers==0)

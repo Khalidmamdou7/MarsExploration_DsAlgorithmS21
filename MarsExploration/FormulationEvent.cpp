@@ -31,26 +31,21 @@ void FormulationEvent::Execute(MarsStation* pS) {
     Mission* pM = new Mission(mType, FormulationDay, mTargetLocation, mDuration, mSignificance, 'W');
     switch (mType) {
     case 'E': {
-        // Calculates Priority equation
-        // Priority = (Mission's significance*10) + Mission's Duration + Target Location - Formulation Day
-        int priority = (mSignificance * 10) + mDuration + mTargetLocation - FormulationDay;
-
         // Add to priority queue of waiting Emergency mission using MarsStation
-        PriorityQueue<Mission>* pML = pStation->getWEMList();
-        pML->enqueue(*pM, priority);
-
+        PriorityQueue<Mission*>* pML = pStation->getWEMList();
+        pML->enqueue(pM, pM->getPriority());
         break;
     }
     case 'P': {
         // Add to queue of waiting Polar missions using MarStation
-        LinkedQueue<Mission>* pPL = pStation->getWPMList();
-        pPL->enqueue(*pM);
+        LinkedQueue<Mission*>* pPL = pStation->getWPMList();
+        pPL->enqueue(pM);
         break;
     }
     case 'M': {
         // Add to queue of waiting Mountainuous missions using MarStation
-        LinkedQueue<Mission>* pML = pStation->getWMMList();
-        pML->enqueue(*pM);
+        LinkedQueue<Mission*>* pML = pStation->getWMMList();
+        pML->enqueue(pM);
         break;
     }
     default:
