@@ -35,6 +35,15 @@ MarsStation::MarsStation(){
 
 }
 
+void MarsStation::justfortest() {
+	Rover* r1 = new Rover('M', 3, 15, 7);
+	Rover* r2 = new Rover('P', 4, 25, 7);
+
+	AvailableMR->enqueue(r1);
+	AvailablePR->enqueue(r2);
+	r1->setID(1);
+	r2->setID(2);
+}
 
 void MarsStation::assign()
 {

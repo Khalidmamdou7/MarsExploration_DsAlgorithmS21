@@ -18,6 +18,70 @@ void UI::ReadMode(MarsStation* pS)
 	//Emergency Missions are in PriorityQueue
 	//Other Missions are in LinkedQueue
 
+	PriorityQueue<Mission*> WEM_count(*(pS->getWEMList()));
+	LinkedQueue<Mission*>   WMM_count(*(pS->getWMMList()));
+	LinkedQueue<Mission*>   WPM_count(*(pS->getWPMList()));
+	PriorityQueue<Mission*> InEx_count(*(pS->getInEx()));
+	LinkedQueue<Rover*>   AvailableER_count(*(pS->getAvailableER()));
+	LinkedQueue<Rover*>   AvailableMR_count(*(pS->getAvailableMR()));
+	LinkedQueue<Rover*>   AvailablePR_count(*(pS->getAvailablePR()));
+	LinkedQueue<Rover*>  InCheckupER_count(*(pS->getInCheckupER()));
+	LinkedQueue<Rover*>   InCheckupMR_count(*(pS->getInCheckupMR()));
+	LinkedQueue<Rover*>   InCheckupPR_count(*(pS->getInCheckupPR()));
+	LinkedQueue<Mission*>   CompletedMissions_count(*(pS->getCompletedMissions()));
+	int wem = 0;
+	int inex = 0;
+	int avrovers = 0;
+	int incheck = 0;
+	int completedmissions = 0;
+	int z = 0;
+	Mission* M;
+	Rover* R;
+	while (WEM_count.dequeue(M))
+	{
+		wem++;
+	}
+	while (WMM_count.dequeue(M))
+	{
+		wem++;
+	}
+	while (WPM_count.dequeue(M))
+	{
+		wem++;
+	}
+	while (AvailableER_count.dequeue(R))
+	{
+		avrovers++;
+	}
+	while (AvailableMR_count.dequeue(R))
+	{
+		avrovers++;
+	}
+	while (AvailablePR_count.dequeue(R))
+	{
+		avrovers++;
+	}
+	while (InCheckupER_count.dequeue(R))
+	{
+		incheck++;
+	}
+	while (InCheckupMR_count.dequeue(R))
+	{
+		incheck++;
+	}
+	while (InCheckupPR_count.dequeue(R))
+	{
+		incheck++;
+	}
+	while (InEx_count.dequeue(M))
+	{
+		inex++;
+	}
+	while (CompletedMissions_count.dequeue(M))
+	{
+		completedmissions++;
+	}
+
 	PriorityQueue<Mission*> WEM(*(pS->getWEMList()));
 	LinkedQueue<Mission*>   WMM(*(pS->getWMMList()));
 	LinkedQueue<Mission*>   WPM(*(pS->getWPMList()));
@@ -29,58 +93,7 @@ void UI::ReadMode(MarsStation* pS)
 	LinkedQueue<Rover*>   InCheckupMR(*(pS->getInCheckupMR()));
 	LinkedQueue<Rover*>   InCheckupPR(*(pS->getInCheckupPR()));
 	LinkedQueue<Mission*>   CompletedMissions(*(pS->getCompletedMissions()));
-	int wem = 0;
-	int inex = 0;
-	int avrovers = 0;
-	int incheck = 0;
-	int completedmissions = 0;
-	int z = 0;
-	Mission* M;
-	Rover* R;
-	while (WEM.dequeue(M))
-	{
-		wem++;
-	}
-	while (WMM.dequeue(M))
-	{
-		wem++;
-	}
-	while (WPM.dequeue(M))
-	{
-		wem++;
-	}
-	while (AvailableER.dequeue(R))
-	{
-		avrovers++;
-	}
-	while (AvailableMR.dequeue(R))
-	{
-		avrovers++;
-	}
-	while (AvailablePR.dequeue(R))
-	{
-		avrovers++;
-	}
-	while (InCheckupER.dequeue(R))
-	{
-		incheck++;
-	}
-	while (InCheckupMR.dequeue(R))
-	{
-		incheck++;
-	}
-	while (InCheckupPR.dequeue(R))
-	{
-		incheck++;
-	}
-	while (InEx.dequeue(M))
-	{
-		inex++;
-	}
-	while (CompletedMissions.dequeue(M))
-	{
-		completedmissions++;
-	}
+
 	std::cout << "There's three modes: " << endl;
 	std::cout << "enter 1 for interactive Mode" << endl;
 	std::cout << " 2 for step-by-step mode" << endl;

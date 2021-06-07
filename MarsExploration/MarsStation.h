@@ -105,6 +105,8 @@ public:
 	LinkedQueue<Mission*>* getCompletedMissions();
 	void assign();
 	void autoP();
+
+	void justfortest();
 	
 };
 
