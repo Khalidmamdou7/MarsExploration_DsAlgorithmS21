@@ -6,6 +6,9 @@ private:
 	int CheckupDuration;
 	int Speed;
 	int noMissionsBeforeCheckUp;
+	////
+	bool isAssigned;
+	////
 public:
 	Rover(char r_Type, int r_CheckupDuration = 0, int r_Speed = 0, int noMissionsBeforeCheckUp = 0);
 	int getCheckupDuration();
@@ -17,6 +20,8 @@ public:
 	int getNoMissionsBeforeCheckUp();
 	void setNoMissionsBeforeCheckUp(int);
 
+	/////
+	bool isassigned();
 	~Rover();
 };
 

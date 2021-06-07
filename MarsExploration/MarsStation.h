@@ -40,9 +40,9 @@ class MarsStation
 private:
 	////////////////////////////////////////////// DECLERATION//////////////////////////////////////////
 	
-	PriorityQueue<Mission>* WaitingEmergency;
-	LinkedQueue<Mission>* WaitingPolar;
-	LinkedQueue<Mission>* WaitingMount;
+	PriorityQueue<Mission*>* WaitingEmergency;
+	LinkedQueue<Mission*>* WaitingPolar;
+	LinkedQueue<Mission*>* WaitingMount;
 
 	LinkedQueue<Event*>* Events;
 	LinkedQueue<Rover*>* EmergencyRovers;
@@ -73,15 +73,16 @@ public:
 	void load();
 	void Simulate();
 	
-	PriorityQueue<Mission>* getWEMList();
-	LinkedQueue<Mission>* getWPMList();
-	LinkedQueue<Mission>* getWMMList();
+	PriorityQueue<Mission*>* getWEMList();
+	LinkedQueue<Mission*>* getWPMList();
+	LinkedQueue<Mission*>* getWMMList();
 
 	MarsStation(string = "Input_File")
 	{
 		//Import From File to Create a Rovers,Missions,Events lists (or queues)..
 		load();
 	}
+	void assign();
 };
 
 

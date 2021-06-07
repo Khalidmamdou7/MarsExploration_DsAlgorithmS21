@@ -58,14 +58,18 @@ void MarsStation::assign()
 				M->setAssignedRover(R);
 			}
 		}
+		while (WaitingMount->dequeue(M))
+		{
+			if (numof_mount_rovers != 0)
+			{
+				MountRovers->dequeue(R);
+				M->setAssignedRover(R);
+			}
+		}
 
 	}
 
-	//WaitingPolar->dequeue(MP);
-	//WaitingMount->dequeue(MM);
-
 	
-
 }
 
  PriorityQueue<Mission*>* MarsStation::getWEMList()
