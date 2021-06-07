@@ -6,9 +6,22 @@ Rover::Rover(char r_Type, int r_CheckupDuration, int r_Speed, int n_noMissionsBe
 	CheckupDuration = r_CheckupDuration;
 	Speed = r_Speed;
 	noMissionsBeforeCheckUp = n_noMissionsBeforeCheckUp;
-
+	MissionsCount = 0;
+	AvailableDay = 0;
 	/////
 	isAssigned = false;
+}
+
+// Rover Type (E: Emergency, P: Polar, M: Mountainous)
+char Rover::getType() const
+{
+	return Type;
+}
+
+// Rover Type (E: Emergency, P: Polar, M: Mountainous)
+void Rover::setType(char r_t)
+{
+	Type = r_t;
 }
 
 int Rover::getCheckupDuration()
@@ -38,9 +51,42 @@ void Rover::setNoMissionsBeforeCheckUp(int N) {
 	this->noMissionsBeforeCheckUp = N;
 }
 
-bool Rover::isassigned()
+int Rover::getMissionsCount() const
 {
-	return isAssigned;
+	return MissionsCount;
 }
+
+// Increment MissionsCount
+void Rover::FinishedMission()
+{
+	MissionsCount++;
+}
+
+// Check if Rover finished Checkup
+// Reset MissionsCount to zero
+bool Rover::Checkuped(int currDay)
+{
+	if (AvailableDay == currDay) {
+		MissionsCount = 0;
+		AvailableDay = 0;
+		return true;
+	}
+	else
+		return false;
+}
+
+bool Rover::NeedsCheckup(int currDay)
+{	
+	if (MissionsCount >= noMissionsBeforeCheckUp) {
+		AvailableDay = currDay + CheckupDuration;
+		return true;
+	}
+	return false;
+}
+
+//bool Rover::isassigned()
+//{
+//	return isAssigned;
+//}
 
 Rover::~Rover() {}

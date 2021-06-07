@@ -40,16 +40,29 @@ class MarsStation
 private:
 	////////////////////////////////////////////// DECLERATION//////////////////////////////////////////
 	
+	LinkedQueue<Event*>* Events;
+
+	// Missions Lists
 	PriorityQueue<Mission*>* WaitingEmergency;
 	LinkedQueue<Mission*>* WaitingPolar;
 	LinkedQueue<Mission*>* WaitingMount;
 
-	LinkedQueue<Event*>* Events;
+
 
 	UI* pUI;
+
+	PriorityQueue<Mission*>* InEx;
+	LinkedQueue<Mission*>* CompletedMissions;
+
+	
+	// Rovers Lists
 	LinkedQueue<Rover*>* AvailableER;
 	LinkedQueue<Rover*>* AvailableMR;
 	LinkedQueue<Rover*>* AvailablePR;
+	LinkedQueue<Rover*>* InCheckupER;
+	LinkedQueue<Rover*>* InCheckupMR;
+	LinkedQueue<Rover*>* InCheckupPR;
+
 
 	int current_day = 1;
 
@@ -66,20 +79,32 @@ private:
 	char event_type = 0, misson_type = 0;
 	int event_day = 0, misson_id = 0, target_loc = 0, days_needed_for_mission = 0, misson_significance = 0;
 
+	// Used for Statistics
+	int sumED, sumWD;			// sum of the Execution and  the waiting days of the missions
+	int AutoPcount;				// numbers of mountainuous mission which has been auto promoted
+
 	////////////////////////////////////////////END DECLERATION//////////////////////////////////////////
 
 
 public:
 	MarsStation();
 
+	void AutoP();
 	void load();
 	void Simulate();
+
 	void assign();
 	void Interface();
+
+	void ExecuteEvents();		// Execute the events that should be executed at that day
+	void FinishedExecution();	// Checks if missions finished execution
+	void FinishedCheckup();		// Checks if rovers finished checkup and move it to available rovers
+
 
 	PriorityQueue<Mission*>* getWEMList();
 	LinkedQueue<Mission*>* getWPMList();
 	LinkedQueue<Mission*>* getWMMList();
+
 
 
 	MarsStation(string = "Input_File")
@@ -87,6 +112,8 @@ public:
 		//Import From File to Create a Rovers,Missions,Events lists (or queues)..
 		load();
 	}
+
+
 };
 
 

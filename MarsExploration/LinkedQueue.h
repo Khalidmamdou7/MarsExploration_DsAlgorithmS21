@@ -83,7 +83,7 @@ inline void LinkedQueue<T>::PrintList()
 	Node<T>* p = frontPtr;
 	while (p)
 	{
-		cout << p << " ";
+		cout << p->getItem() << " ";
 		p = p->getNext();
 	}
 	cout << endl;

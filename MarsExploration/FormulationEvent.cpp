@@ -28,12 +28,13 @@ void FormulationEvent::Execute(MarsStation* pS) {
 
    pStation = pS;
     
-    Mission* pM = new Mission(mType, FormulationDay, mTargetLocation, mDuration, mSignificance, 'W');
+    Mission* pM = new Mission(mID, mType, FormulationDay, mTargetLocation, mDuration, mSignificance, 'W');
+
     switch (mType) {
     case 'E': {
         // Add to priority queue of waiting Emergency mission using MarsStation
-        PriorityQueue<Mission*>* pML = pStation->getWEMList();
-        pML->enqueue(pM, pM->getPriority());
+        PriorityQueue<Mission*>* pEL = pStation->getWEMList();
+        pEL->enqueue(pM, pM->getPriority());
         break;
     }
     case 'P': {
