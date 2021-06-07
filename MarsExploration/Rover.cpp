@@ -38,9 +38,9 @@ void Rover::setNoMissionsBeforeCheckUp(int N) {
 	this->noMissionsBeforeCheckUp = N;
 }
 
-bool Rover::isassigned()
-{
-	return isAssigned;
-}
+//bool Rover::isassigned()
+//{
+//	return isAssigned;
+//}
 
 Rover::~Rover() {}

@@ -6,6 +6,8 @@ MarsStation::MarsStation(){
 	WaitingPolar = new LinkedQueue<Mission*>();
 	WaitingMount = new LinkedQueue<Mission*>();
 
+	INEx = new PriorityQueue<Mission*>();
+
 	Events=NULL;
 	AvailableER =NULL;
 	AvailableMR =NULL;
@@ -25,7 +27,11 @@ MarsStation::MarsStation(){
 
 }
 
-
+//utility fun 
+float MarsStation::calcpriority() 
+{
+	return 0;
+}
 
 void MarsStation::assign()
 {
@@ -40,16 +46,19 @@ void MarsStation::assign()
 		{
 			AvailableER->dequeue(R);
 			M->setAssignedRover(R);
+			M->setStatus('E');
 		}
 		else if(numof_mount_rovers!=0)
 		{
 			AvailableMR->dequeue(R);
 			M->setAssignedRover(R);
+			M->setStatus('E');
 		}
 		else if (numof_polar_rovers != 0)
 		{
 			AvailablePR->dequeue(R);
 			M->setAssignedRover(R);
+			M->setStatus('E');
 		}
 		while(WaitingPolar->dequeue(M))
 		{
@@ -57,6 +66,7 @@ void MarsStation::assign()
 			{
 				AvailablePR->dequeue(R);
 				M->setAssignedRover(R);
+				M->setStatus('E');
 			}
 		}
 		while (WaitingMount->dequeue(M))
@@ -65,6 +75,7 @@ void MarsStation::assign()
 			{
 				AvailableMR->dequeue(R);
 				M->setAssignedRover(R);
+				M->setStatus('E');
 			}
 		}
 
