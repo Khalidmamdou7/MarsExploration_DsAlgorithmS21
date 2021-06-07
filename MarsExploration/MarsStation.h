@@ -51,6 +51,7 @@ private:
 	LinkedQueue<Rover*>* AvailableMR;
 	LinkedQueue<Rover*>* AvailablePR;
 
+
 	int current_day = 1;
 
 	int numof_mount_rovers=0, numof_emer_rovers = 0, numof_polar_rovers = 0;
@@ -65,6 +66,10 @@ private:
 
 	char event_type = 0, misson_type = 0;
 	int event_day = 0, misson_id = 0, target_loc = 0, days_needed_for_mission = 0, misson_significance = 0;
+
+	// Used for Statistics
+	int sumED, sumWD;			// sum of the Execution and  the waiting days of the missions
+	int AutoPcount;				// numbers of mountainuous mission which has been auto promoted
 
 	////////////////////////////////////////////END DECLERATION//////////////////////////////////////////
 

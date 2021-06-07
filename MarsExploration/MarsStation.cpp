@@ -25,6 +25,9 @@ MarsStation::MarsStation(){
 	event_type = 0, misson_type = 0;
 	event_day = 0, misson_id = 0, target_loc = 0, days_needed_for_mission = 0, misson_significance = 0;
 
+	// Data Statistics
+	sumED = 0, sumWD = 0, AutoPcount = 0;
+
 }
 
 //utility fun 
@@ -40,7 +43,7 @@ void MarsStation::assign()
 
 	Mission* M;
 	Rover* R;
-	int WD; // Working Days
+	int ED; // Execution Days
 	while (!WaitingEmergency->isEmpty())
 	{
 		if (AvailableER->dequeue(R))
@@ -58,11 +61,12 @@ void MarsStation::assign()
 		else
 			break;
 
-		WD = ceil(M->getTargetLocation() / (R->getSpeed() * 25)) + M->getDuration();
+		ED = ceil(M->getTargetLocation() / (R->getSpeed() * 25)) + M->getDuration();
 		M->setAssignedRover(R);
 		M->setStatus('E');
-		InEx->enqueue(M, current_day+ WD);
-
+		InEx->enqueue(M, current_day+ ED);
+		sumED += ED;
+		sumWD += (current_day - M->getFD());
 	}
 
 	while (!WaitingPolar->isEmpty())
@@ -72,8 +76,10 @@ void MarsStation::assign()
 			WaitingPolar->dequeue(M);
 			M->setAssignedRover(R);
 			M->setStatus('E');
-			WD = ceil(M->getTargetLocation() / (R->getSpeed() * 25)) + M->getDuration();
-			InEx->enqueue(M, current_day + WD);
+			ED = ceil(M->getTargetLocation() / (R->getSpeed() * 25)) + M->getDuration();
+			InEx->enqueue(M, current_day + ED);
+			sumED += ED;
+			sumWD += (current_day - M->getFD());
 		}
 		else
 			break;
@@ -93,11 +99,12 @@ void MarsStation::assign()
 		else
 			break;
 
-		WD = ceil(M->getTargetLocation() / (R->getSpeed() * 25)) + M->getDuration();
+		ED = ceil(M->getTargetLocation() / (R->getSpeed() * 25)) + M->getDuration();
 		M->setAssignedRover(R);
 		M->setStatus('E');
-		InEx->enqueue(M, current_day + WD);
-
+		InEx->enqueue(M, current_day + ED);
+		sumED += ED;
+		sumWD += (current_day - M->getFD());
 	}
 
 }
