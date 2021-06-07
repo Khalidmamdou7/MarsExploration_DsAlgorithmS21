@@ -31,8 +31,14 @@ void UI::ReadMode(MarsStation* pS)
 	LinkedQueue<Mission*>   CompletedMissions_count(*(pS->getCompletedMissions()));
 	int wem = 0;
 	int inex = 0;
+	int inexE = 0;
+	int inexP = 0;
+	int inexM = 0;
 	int avrovers = 0;
 	int incheck = 0;
+	int compE = 0;
+	int compM = 0;
+	int compP = 0;
 	int completedmissions = 0;
 	int z = 0;
 	Mission* M;
@@ -76,10 +82,34 @@ void UI::ReadMode(MarsStation* pS)
 	while (InEx_count.dequeue(M))
 	{
 		inex++;
+		if (M->getType() == 'E')
+		{
+			inexE++;
+		}
+		if (M->getType() == 'P')
+		{
+			inexP++;
+		}
+		if (M->getType() == 'M')
+		{
+			inexM++;
+		}
 	}
 	while (CompletedMissions_count.dequeue(M))
 	{
 		completedmissions++;
+		if (M->getType() == 'E')
+		{
+			compE++;
+		}
+		if (M->getType() == 'P')
+		{
+			compP++;
+		}
+		if (M->getType() == 'M')
+		{
+			compM++;
+		}
 	}
 
 	PriorityQueue<Mission*> WEM(*(pS->getWEMList()));
@@ -105,123 +135,202 @@ void UI::ReadMode(MarsStation* pS)
 	{
 	case 1: {
 		std::cout << "Current Day : " << pS->GetCurrentDay() << endl;
-		std::cout << wem << "  Waiting Missions :" << "[" << "";
-		while (WEM.dequeue(M))
+		std::cout << wem << "  Waiting Missions :" << " ";
+		if (!WEM.isEmpty())
 		{
-			std::cout << M->getID();
-			if (WEM.peek(M))
-				std::cout << " , ";
+			std::cout << "[" << " ";
+			while (WEM.dequeue(M))
+			{
+				std::cout << M->getID();
+				if (WEM.peek(M))
+					std::cout << " , ";
+			}
+			std::cout << "]" << " ";
 		}
-		std::cout << "]" << " " << "(" << " ";
-		while (WPM.dequeue(M))
+		if (!WPM.isEmpty())
 		{
-			std::cout << M->getID();
-			if (WPM.peek(M))
-				std::cout << " , ";
+			std::cout << "(" << " ";
+			while (WPM.dequeue(M))
+			{
+				std::cout << M->getID();
+				if (WPM.peek(M))
+					std::cout << " , ";
+			}
+			std::cout << ")" << " ";
 		}
-		std::cout << ")" << " " << "{" << " ";
-		while (WMM.dequeue(M))
+		if (!WMM.isEmpty())
 		{
-			std::cout << M->getID();
-			if (WMM.peek(M))
-				std::cout << " , ";
+			cout << "{" << " ";
+			while (WMM.dequeue(M))
+			{
+				std::cout << M->getID();
+				if (WMM.peek(M))
+					std::cout << " , ";
+			}
+			std::cout << "}" << endl;
 		}
-		std::cout << "}" << endl;
+		if (wem==0)
+		{
+			std::cout << endl;
+		}
 		std::cout << "------------------------------------------------------" << endl;
-		std::cout << inex << "  In-Execution Missions/Rovers:" << "[" << " ";
-		while (InEx.dequeue(M))
+		std::cout << inex << "  In-Execution Missions/Rovers:" << " ";
+		if (inexE != 0)
 		{
-			if (M->getType() == 'E')
-				std::cout << M->getID() << "/" << (M->getAssignedRover())->getID();
-			if (InEx.peek(M))
-				std::cout << " , ";
+			std::cout << "[" << " ";
+			while (InEx.dequeue(M))
+			{
+				if (M->getType() == 'E')
+					std::cout << M->getID() << "/" << (M->getAssignedRover())->getID();
+				if (InEx.peek(M))
+					std::cout << " , ";
+			}
+			std::cout << "]" << " ";
 		}
-		std::cout << "]" << " " << "(";
-		while (InEx.dequeue(M))
+		if (inexP != 0)
 		{
-			if (M->getType() == 'P')
-				std::cout << M->getID() << "/" << (M->getAssignedRover())->getID();
-			if (InEx.peek(M))
-				std::cout << " , ";
+			std::cout << "(";
+			while (InEx.dequeue(M))
+			{
+				if (M->getType() == 'P')
+					std::cout << M->getID() << "/" << (M->getAssignedRover())->getID();
+				if (InEx.peek(M))
+					std::cout << " , ";
+			}
+			std::cout << ")" << " ";
 		}
-		std::cout << ")" << " " << "{";
-		while (InEx.dequeue(M))
+		if (inexM != 0)
 		{
-			if (M->getType() == 'M')
-				std::cout << M->getID() << "/" << (M->getAssignedRover())->getID();
-			if (InEx.peek(M))
-				std::cout << " , ";
+			std::cout << "{";
+			while (InEx.dequeue(M))
+			{
+				if (M->getType() == 'M')
+					std::cout << M->getID() << "/" << (M->getAssignedRover())->getID();
+				if (InEx.peek(M))
+					std::cout << " , ";
+			}
+			std::cout << "}" << " " << endl;;
 		}
-		std::cout << "}" << " " << endl;
+		if (inex == 0)
+		{
+			std::cout << endl;
+		}
 		std::cout << "------------------------------------------------------" << endl;
-		std::cout << avrovers << "  Available Rovers :" << "[" << " ";
-		while (AvailableER.dequeue(R))
+		std::cout << avrovers << "  Available Rovers :" << "";
+		if (!AvailableER.isEmpty())
 		{
-			std::cout << R->getID();
-			if (AvailableER.peek(R))
-				std::cout << " , ";
+			std::cout << "[" << " ";
+			while (AvailableER.dequeue(R))
+			{
+				std::cout << R->getID();
+				if (AvailableER.peek(R))
+					std::cout << " , ";
+			}
+			std::cout << "]" << " ";
 		}
-		std::cout << "]" << " " << "(" << " ";
-		while (AvailablePR.dequeue(R))
+		if (!AvailablePR.isEmpty())
 		{
-			std::cout << R->getID();
-			if (AvailablePR.peek(R))
-				std::cout << " , ";
+			std::cout << "(" << " ";
+			while (AvailablePR.dequeue(R))
+			{
+				std::cout << R->getID();
+				if (AvailablePR.peek(R))
+					std::cout << " , ";
+			}
+			std::cout << ")" << " ";
 		}
-		std::cout << ")" << " " << "{" << " ";
-		while (AvailableMR.dequeue(R))
+		if (!AvailableMR.isEmpty())
 		{
-			std::cout << R->getID();
-			if (AvailableMR.peek(R))
-				std::cout << " , ";
+			std::cout << "{" << " ";
+			while (AvailableMR.dequeue(R))
+			{
+				std::cout << R->getID();
+				if (AvailableMR.peek(R))
+					std::cout << " , ";
+			}
+			std::cout << "}" << " " << endl;
 		}
-		std::cout << "}" << " " << endl;
+		if (avrovers==0)
+		{
+			std::cout << endl;
+		}
 		std::cout << "------------------------------------------------------" << endl;
-		std::cout << incheck << " In - Checkup Rovers :" << "[" << " ";
-		while (InCheckupER.dequeue(R))
+		std::cout << incheck << " In - Checkup Rovers :" << " ";
+		if (!InCheckupER.isEmpty())
 		{
-			std::cout << R->getID();
-			if (InCheckupER.peek(R))
-				std::cout << " , ";
+			std::cout << "[" << " ";
+			while (InCheckupER.dequeue(R))
+			{
+				std::cout << R->getID();
+				if (InCheckupER.peek(R))
+					std::cout << " , ";
+			}
+			std::cout << "]" << " ";
 		}
-		std::cout << "]" << " " << "(";
-		while (InCheckupPR.dequeue(R))
+		if (!InCheckupPR.isEmpty())
 		{
-			std::cout << R->getID();
-			if (InCheckupPR.peek(R))
-				std::cout << " , ";
+			std::cout << "(";
+			while (InCheckupPR.dequeue(R))
+			{
+				std::cout << R->getID();
+				if (InCheckupPR.peek(R))
+					std::cout << " , ";
+			}
+			std::cout << ")" << " ";
 		}
-		std::cout << ")" << " " << "{";
-		while (InCheckupMR.dequeue(R))
+		if (!InCheckupMR.isEmpty())
 		{
-			std::cout << R->getID();
-			if (InCheckupMR.peek(R))
-				std::cout << " , ";
+			std::cout << "{";
+			while (InCheckupMR.dequeue(R))
+			{
+				std::cout << R->getID();
+				if (InCheckupMR.peek(R))
+					std::cout << " , ";
+			}
+			std::cout << "}" << " " << endl;
 		}
-		std::cout << "}" << " " << endl;
+		if (incheck==0)
+		{
+			std::cout << endl;
+		}
 		std::cout << "------------------------------------------------------" << endl;
-		std::cout << completedmissions << " Completed Missions:" << "[" << " ";
-		while (CompletedMissions.dequeue(M))
+		std::cout << completedmissions << " Completed Missions:" << " ";
+		if (compE != 0)
 		{
-			std::cout << M->getID();
-			if (CompletedMissions.peek(M))
-				std::cout << " , ";
+			std::cout << "[" << " ";
+			while (CompletedMissions.dequeue(M))
+			{
+				if (M->getType() == 'E')
+					std::cout << M->getID() << "/" << (M->getAssignedRover())->getID();
+				if (CompletedMissions.peek(M))
+					std::cout << " , ";
+			}
+			std::cout << "]" << " ";
 		}
-		std::cout << "]" << " " << "(" << " ";
-		while (CompletedMissions.dequeue(M))
+		if (compP != 0)
 		{
-			std::cout << M->getID();
-			if (CompletedMissions.peek(M))
-				std::cout << " , ";
+			std::cout << "(";
+			while (CompletedMissions.dequeue(M))
+			{
+				if (M->getType() == 'P')
+					std::cout << M->getID() << "/" << (M->getAssignedRover())->getID();
+				if (CompletedMissions.peek(M))
+					std::cout << " , ";
+			}
+			std::cout << ")" << " ";
 		}
-		std::cout << ")" << " " << "{" << " ";
-		while (CompletedMissions.dequeue(M))
+		if (compM != 0)
 		{
-			std::cout << M->getID();
-			if (CompletedMissions.peek(M))
-				std::cout << " , ";
+			std::cout << "{";
+			while (CompletedMissions.dequeue(M))
+			{
+				if (M->getType() == 'M')
+					std::cout << M->getID() << "/" << (M->getAssignedRover())->getID();
+				if (CompletedMissions.peek(M))
+					std::cout << " , ";
+			}
+			std::cout << "}" << " " << endl;
 		}
-		std::cout << "}";
 		pS->load();
 		cout << " Enter any thing to continue: " << " " << endl;
 		cin >> z;
@@ -229,123 +338,202 @@ void UI::ReadMode(MarsStation* pS)
 	}
 	case 2: {
 		std::cout << "Current Day : " << pS->GetCurrentDay() << endl;
-		std::cout << wem << "  Waiting Missions :" << "[" << "";
-		while (WEM.dequeue(M))
+		std::cout << wem << "  Waiting Missions :" << " ";
+		if (!WEM.isEmpty())
 		{
-			std::cout << M->getID();
-			if (WEM.peek(M))
-				std::cout << " , ";
+			std::cout << "[" << " ";
+			while (WEM.dequeue(M))
+			{
+				std::cout << M->getID();
+				if (WEM.peek(M))
+					std::cout << " , ";
+			}
+			std::cout << "]" << " ";
 		}
-		std::cout << "]" << " " << "(" << " ";
-		while (WPM.dequeue(M))
+		if (!WPM.isEmpty())
 		{
-			std::cout << M->getID();
-			if (WPM.peek(M))
-				std::cout << " , ";
+			std::cout << "(" << " ";
+			while (WPM.dequeue(M))
+			{
+				std::cout << M->getID();
+				if (WPM.peek(M))
+					std::cout << " , ";
+			}
+			std::cout << ")" << " ";
 		}
-		std::cout << ")" << " " << "{" << " ";
-		while (WMM.dequeue(M))
+		if (!WMM.isEmpty())
 		{
-			std::cout << M->getID();
-			if (WMM.peek(M))
-				std::cout << " , ";
+			cout << "{" << " ";
+			while (WMM.dequeue(M))
+			{
+				std::cout << M->getID();
+				if (WMM.peek(M))
+					std::cout << " , ";
+			}
+			std::cout << "}" << endl;
 		}
-		std::cout << "}" << endl;
+		if (wem == 0)
+		{
+			std::cout << endl;
+		}
 		std::cout << "------------------------------------------------------" << endl;
-		std::cout << inex << "  In-Execution Missions/Rovers:" << "[" << " ";
-		while (InEx.dequeue(M))
+		std::cout << inex << "  In-Execution Missions/Rovers:" << " ";
+		if (inexE != 0)
 		{
-			if (M->getType() == 'E')
-				std::cout << M->getID() << "/" << (M->getAssignedRover())->getID();
-			if (InEx.peek(M))
-				std::cout << " , ";
+			std::cout << "[" << " ";
+			while (InEx.dequeue(M))
+			{
+				if (M->getType() == 'E')
+					std::cout << M->getID() << "/" << (M->getAssignedRover())->getID();
+				if (InEx.peek(M))
+					std::cout << " , ";
+			}
+			std::cout << "]" << " ";
 		}
-		std::cout << "]" << " " << "(";
-		while (InEx.dequeue(M))
+		if (inexP != 0)
 		{
-			if (M->getType() == 'P')
-				std::cout << M->getID() << "/" << (M->getAssignedRover())->getID();
-			if (InEx.peek(M))
-				std::cout << " , ";
+			std::cout << "(";
+			while (InEx.dequeue(M))
+			{
+				if (M->getType() == 'P')
+					std::cout << M->getID() << "/" << (M->getAssignedRover())->getID();
+				if (InEx.peek(M))
+					std::cout << " , ";
+			}
+			std::cout << ")" << " ";
 		}
-		std::cout << ")" << " " << "{";
-		while (InEx.dequeue(M))
+		if (inexM != 0)
 		{
-			if (M->getType() == 'M')
-				std::cout << M->getID() << "/" << (M->getAssignedRover())->getID();
-			if (InEx.peek(M))
-				std::cout << " , ";
+			std::cout << "{";
+			while (InEx.dequeue(M))
+			{
+				if (M->getType() == 'M')
+					std::cout << M->getID() << "/" << (M->getAssignedRover())->getID();
+				if (InEx.peek(M))
+					std::cout << " , ";
+			}
+			std::cout << "}" << " " << endl;;
 		}
-		std::cout << "}" << " " << endl;
+		if (inex == 0)
+		{
+			std::cout << endl;
+		}
 		std::cout << "------------------------------------------------------" << endl;
-		std::cout << avrovers << "  Available Rovers :" << "[" << " ";
-		while (AvailableER.dequeue(R))
+		std::cout << avrovers << "  Available Rovers :" << "";
+		if (!AvailableER.isEmpty())
 		{
-			std::cout << R->getID();
-			if (AvailableER.peek(R))
-				std::cout << " , ";
+			std::cout << "[" << " ";
+			while (AvailableER.dequeue(R))
+			{
+				std::cout << R->getID();
+				if (AvailableER.peek(R))
+					std::cout << " , ";
+			}
+			std::cout << "]" << " ";
 		}
-		std::cout << "]" << " " << "(" << " ";
-		while (AvailablePR.dequeue(R))
+		if (!AvailablePR.isEmpty())
 		{
-			std::cout << R->getID();
-			if (AvailablePR.peek(R))
-				std::cout << " , ";
+			std::cout << "(" << " ";
+			while (AvailablePR.dequeue(R))
+			{
+				std::cout << R->getID();
+				if (AvailablePR.peek(R))
+					std::cout << " , ";
+			}
+			std::cout << ")" << " ";
 		}
-		std::cout << ")" << " " << "{" << " ";
-		while (AvailableMR.dequeue(R))
+		if (!AvailableMR.isEmpty())
 		{
-			std::cout << R->getID();
-			if (AvailableMR.peek(R))
-				std::cout << " , ";
+			std::cout << "{" << " ";
+			while (AvailableMR.dequeue(R))
+			{
+				std::cout << R->getID();
+				if (AvailableMR.peek(R))
+					std::cout << " , ";
+			}
+			std::cout << "}" << " " << endl;
 		}
-		std::cout << "}" << " " << endl;
+		if (avrovers == 0)
+		{
+			std::cout << endl;
+		}
 		std::cout << "------------------------------------------------------" << endl;
-		std::cout << incheck << " In - Checkup Rovers :" << "[" << " ";
-		while (InCheckupER.dequeue(R))
+		std::cout << incheck << " In - Checkup Rovers :" << " ";
+		if (!InCheckupER.isEmpty())
 		{
-			std::cout << R->getID();
-			if (InCheckupER.peek(R))
-				std::cout << " , ";
+			std::cout << "[" << " ";
+			while (InCheckupER.dequeue(R))
+			{
+				std::cout << R->getID();
+				if (InCheckupER.peek(R))
+					std::cout << " , ";
+			}
+			std::cout << "]" << " ";
 		}
-		std::cout << "]" << " " << "(";
-		while (InCheckupPR.dequeue(R))
+		if (!InCheckupPR.isEmpty())
 		{
-			std::cout << R->getID();
-			if (InCheckupPR.peek(R))
-				std::cout << " , ";
+			std::cout << "(";
+			while (InCheckupPR.dequeue(R))
+			{
+				std::cout << R->getID();
+				if (InCheckupPR.peek(R))
+					std::cout << " , ";
+			}
+			std::cout << ")" << " ";
 		}
-		std::cout << ")" << " " << "{";
-		while (InCheckupMR.dequeue(R))
+		if (!InCheckupMR.isEmpty())
 		{
-			std::cout << R->getID();
-			if (InCheckupMR.peek(R))
-				std::cout << " , ";
+			std::cout << "{";
+			while (InCheckupMR.dequeue(R))
+			{
+				std::cout << R->getID();
+				if (InCheckupMR.peek(R))
+					std::cout << " , ";
+			}
+			std::cout << "}" << " " << endl;
 		}
-		std::cout << "}" << " " << endl;
+		if (incheck == 0)
+		{
+			std::cout << endl;
+		}
 		std::cout << "------------------------------------------------------" << endl;
-		std::cout << completedmissions << " Completed Missions:" << "[" << " ";
-		while (CompletedMissions.dequeue(M))
+		std::cout << completedmissions << " Completed Missions:" << " ";
+		if (compE != 0)
 		{
-			std::cout << M->getID();
-			if (CompletedMissions.peek(M))
-				std::cout << " , ";
+			std::cout << "[" << " ";
+			while (CompletedMissions.dequeue(M))
+			{
+				if (M->getType() == 'E')
+					std::cout << M->getID() << "/" << (M->getAssignedRover())->getID();
+				if (CompletedMissions.peek(M))
+					std::cout << " , ";
+			}
+			std::cout << "]" << " ";
 		}
-		std::cout << "]" << " " << "(" << " ";
-		while (CompletedMissions.dequeue(M))
+		if (compP != 0)
 		{
-			std::cout << M->getID();
-			if (CompletedMissions.peek(M))
-				std::cout << " , ";
+			std::cout << "(";
+			while (CompletedMissions.dequeue(M))
+			{
+				if (M->getType() == 'P')
+					std::cout << M->getID() << "/" << (M->getAssignedRover())->getID();
+				if (CompletedMissions.peek(M))
+					std::cout << " , ";
+			}
+			std::cout << ")" << " ";
 		}
-		std::cout << ")" << " " << "{" << " ";
-		while (CompletedMissions.dequeue(M))
+		if (compM != 0)
 		{
-			std::cout << M->getID();
-			if (CompletedMissions.peek(M))
-				std::cout << " , ";
+			std::cout << "{";
+			while (CompletedMissions.dequeue(M))
+			{
+				if (M->getType() == 'M')
+					std::cout << M->getID() << "/" << (M->getAssignedRover())->getID();
+				if (CompletedMissions.peek(M))
+					std::cout << " , ";
+			}
+			std::cout << "}" << " " << endl;
 		}
-		std::cout << "}";
 		std::cout.flush();
 		this_thread::sleep_for(chrono::milliseconds(10000));
 		pS->load();
