@@ -37,7 +37,14 @@ int Rover::getNoMissionsBeforeCheckUp() {
 	return noMissionsBeforeCheckUp;
 }
 
-
+void Rover::setID(int id)
+{
+	this->ID = id;
+}
+int Rover::getID()
+{
+	return ID;
+}
 void Rover::setCheckupDuration(int D)
 {
 	this->CheckupDuration = D;

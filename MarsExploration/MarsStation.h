@@ -91,10 +91,18 @@ public:
 	void ExecuteEvents();		// Execute the events that should be executed at that day
 	void FinishedExecution();	// Checks if missions finished execution
 	void FinishedCheckup();		// Checks if rovers finished checkup and move it to available rovers
-
+	int GetCurrentDay();
 	PriorityQueue<Mission*>* getWEMList();
 	LinkedQueue<Mission*>* getWPMList();
 	LinkedQueue<Mission*>* getWMMList();
+	PriorityQueue<Mission*>* getInEx();
+	LinkedQueue<Rover*>* getAvailableER();
+	LinkedQueue<Rover*>* getAvailableMR();
+	LinkedQueue<Rover*>* getAvailablePR();
+	LinkedQueue<Rover*>* getInCheckupER();
+	LinkedQueue<Rover*>* getInCheckupMR();
+	LinkedQueue<Rover*>* getInCheckupPR();
+	LinkedQueue<Mission*>* getCompletedMissions();
 	void assign();
 	void autoP();
 	

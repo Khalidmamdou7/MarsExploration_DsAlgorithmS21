@@ -10,6 +10,7 @@ private:
 	int AvailableDay;		// The Day which the rover will finish checkup
 	////
 	bool isAssigned;
+	int ID;
 	////
 public:
 	Rover(char r_Type, int r_CheckupDuration = 0, int r_Speed = 0, int noMissionsBeforeCheckUp = 0);
@@ -22,7 +23,8 @@ public:
 
 	int getSpeed();
 	void setSpeed(int S);
-
+	int getID();
+	void setID(int id);
 	int getNoMissionsBeforeCheckUp();
 	void setNoMissionsBeforeCheckUp(int);
 

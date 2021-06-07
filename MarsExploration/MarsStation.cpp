@@ -127,6 +127,44 @@ void MarsStation::assign()
  {
 	 return WaitingMount;
  }
+ int MarsStation::GetCurrentDay()
+ {
+	 return current_day;
+ }
+
+ PriorityQueue<Mission*>* MarsStation::getInEx()
+ {
+	 return InEx;
+ }
+ LinkedQueue<Rover*>* MarsStation::getAvailableER()
+ {
+	 return AvailableER;
+ }
+ LinkedQueue<Rover*>* MarsStation::getAvailablePR()
+ {
+	 return AvailablePR;
+ }
+ LinkedQueue<Rover*>* MarsStation::getAvailableMR()
+ {
+	 return AvailableMR;
+ }
+ LinkedQueue<Rover*>* MarsStation::getInCheckupER()
+ {
+	 return InCheckupER;
+ }
+ LinkedQueue<Rover*>* MarsStation::getInCheckupPR()
+ {
+	 return InCheckupPR;
+ }
+ LinkedQueue<Rover*>* MarsStation::getInCheckupMR()
+ {
+	 return InCheckupMR;
+ }
+ LinkedQueue<Mission*>* MarsStation::getCompletedMissions()
+ {
+	 return CompletedMissions;
+ }
+ 
 
 void MarsStation::load() {
 	ifstream inputfile("Input_File", ios::in);
