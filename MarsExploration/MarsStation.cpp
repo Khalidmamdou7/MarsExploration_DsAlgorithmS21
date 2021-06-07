@@ -6,7 +6,7 @@ MarsStation::MarsStation(){
 	WaitingPolar = new LinkedQueue<Mission*>();
 	WaitingMount = new LinkedQueue<Mission*>();
 
-	INEx = new PriorityQueue<Mission*>();
+	InEx = new PriorityQueue<Mission*>();
 
 	Events=NULL;
 	AvailableER =NULL;
@@ -35,53 +35,60 @@ float MarsStation::calcpriority()
 
 void MarsStation::assign()
 {
-	if (numof_mount_rovers==0 && numof_polar_rovers==0 && numof_emer_rovers==0)
+	if (AvailableER->isEmpty() && AvailableMR->isEmpty() && AvailablePR->isEmpty())
 		return;
 
-	Mission *M;
+	Mission* M;
 	Rover* R;
-	while(WaitingEmergency->dequeue(M))
+	while (!WaitingEmergency->isEmpty())
 	{
-		if (numof_emer_rovers != 0) 
+		if (AvailableER->dequeue(R))
 		{
-			AvailableER->dequeue(R);
+			WaitingEmergency->dequeue(M);
 			M->setAssignedRover(R);
 			M->setStatus('E');
 		}
-		else if(numof_mount_rovers!=0)
+		else if (AvailableMR->dequeue(R))
 		{
-			AvailableMR->dequeue(R);
+			WaitingEmergency->dequeue(M);
 			M->setAssignedRover(R);
 			M->setStatus('E');
 		}
-		else if (numof_polar_rovers != 0)
+		else if (AvailablePR->dequeue(R))
 		{
-			AvailablePR->dequeue(R);
+			WaitingEmergency->dequeue(M);
 			M->setAssignedRover(R);
 			M->setStatus('E');
 		}
-		while(WaitingPolar->dequeue(M))
-		{
-			if (numof_polar_rovers != 0)
-			{
-				AvailablePR->dequeue(R);
-				M->setAssignedRover(R);
-				M->setStatus('E');
-			}
-		}
-		while (WaitingMount->dequeue(M))
-		{
-			if (numof_mount_rovers != 0)
-			{
-				AvailableMR->dequeue(R);
-				M->setAssignedRover(R);
-				M->setStatus('E');
-			}
-		}
-
 	}
 
-	
+	while (!WaitingPolar->isEmpty())
+	{
+		if (AvailablePR->dequeue(R))
+		{
+			WaitingPolar->dequeue(M);
+			M->setAssignedRover(R);
+			M->setStatus('E');
+		}
+	}
+
+	while (!WaitingMount->isEmpty())
+	{
+		if (AvailableMR->dequeue(R))
+			{
+				WaitingMount->dequeue(M);
+				M->setAssignedRover(R);
+				M->setStatus('E');
+			}
+		
+		else if (AvailableER->dequeue(R))
+			{
+			    WaitingMount->dequeue(M);
+				M->setAssignedRover(R);
+				M->setStatus('E');
+			}
+	}
+
 }
 
  PriorityQueue<Mission*>* MarsStation::getWEMList()
