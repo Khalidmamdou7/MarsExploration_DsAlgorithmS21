@@ -44,7 +44,7 @@ private:
 	LinkedQueue<Mission*>* WaitingPolar;
 	LinkedQueue<Mission*>* WaitingMount;
 
-	PriorityQueue<Mission*>* INEx;
+	PriorityQueue<Mission*>* InEx;
 
 	LinkedQueue<Event*>* Events;
 	LinkedQueue<Rover*>* AvailableER;

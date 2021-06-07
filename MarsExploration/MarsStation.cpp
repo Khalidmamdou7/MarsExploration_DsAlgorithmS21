@@ -58,9 +58,10 @@ void MarsStation::assign()
 		else
 			break;
 
-		WD = ceil(R->getSpeed() / 25) + M->getDuration();
+		WD = ceil(M->getTargetLocation() / (R->getSpeed() * 25)) + M->getDuration();
 		M->setAssignedRover(R);
 		M->setStatus('E');
+		InEx->enqueue(M, current_day+ WD);
 
 	}
 
@@ -71,9 +72,8 @@ void MarsStation::assign()
 			WaitingPolar->dequeue(M);
 			M->setAssignedRover(R);
 			M->setStatus('E');
-			WD = ceil(R->getSpeed() / 25) + M->getDuration();
-
-
+			WD = ceil(M->getTargetLocation() / (R->getSpeed() * 25)) + M->getDuration();
+			InEx->enqueue(M, current_day + WD);
 		}
 		else
 			break;
@@ -93,10 +93,10 @@ void MarsStation::assign()
 		else
 			break;
 
-		WD = ceil(R->getSpeed() / 25) + M->getDuration();
+		WD = ceil(M->getTargetLocation() / (R->getSpeed() * 25)) + M->getDuration();
 		M->setAssignedRover(R);
 		M->setStatus('E');
-
+		InEx->enqueue(M, current_day + WD);
 
 	}
 
