@@ -35,11 +35,6 @@ MarsStation::MarsStation(){
 
 }
 
-//utility fun 
-float MarsStation::calcpriority() 
-{
-	return 0;
-}
 
 void MarsStation::assign()
 {

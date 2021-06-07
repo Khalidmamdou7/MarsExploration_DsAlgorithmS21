@@ -96,8 +96,7 @@ public:
 	LinkedQueue<Mission*>* getWPMList();
 	LinkedQueue<Mission*>* getWMMList();
 	void assign();
-	//utility
-	float calcpriority();
+	
 };
 
 
