@@ -84,6 +84,36 @@ void Mission::setPriority(int p)
 	priority = p;
 }
 
+int Mission::getWD() const
+{
+	return WD;
+}
+
+void Mission::setWD(int r_WD)
+{
+	WD = r_WD;
+}
+
+int Mission::getED() const
+{
+	return ED;
+}
+
+void Mission::setED(int r_ED)
+{
+	ED = r_ED;
+}
+
+int Mission::getCD() const
+{
+	return CD;
+}
+
+void Mission::setCD(int r_CD)
+{
+	CD = r_CD;
+}
+
 Rover* Mission::getAssignedRover() const
 {
 	return assignedRover;

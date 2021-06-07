@@ -15,6 +15,9 @@ private:
 	Rover* assignedRover;
 	int priority;
 	// int AutoP;			// the number of days after which a mountainous mission is automatically promoted to an emergency mission (Not sure if needed)
+	int WD;					// Waiting Days
+	int ED;					// Execution Days
+	int CD;					// Completion Day
 public:
 	Mission(int r_ID =0, char r_Type = 'U', int r_FD = -1, int r_TargetLocation = -1, int r_Duration = -1, int r_Significance = -1, char r_Status = 'U', Rover* r_ass = nullptr);
 
@@ -41,6 +44,15 @@ public:
 
 	int getPriority() const;
 	void setPriority(int p);
+
+	int getWD() const;
+	void setWD(int r_WD);
+	
+	int getED() const;
+	void setED(int r_ED);
+
+	int getCD() const;
+	void setCD(int r_CD);
 
 	Rover* getAssignedRover() const;
 	void setAssignedRover(Rover* r);

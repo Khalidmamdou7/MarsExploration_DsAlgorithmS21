@@ -7,11 +7,16 @@ MarsStation::MarsStation(){
 	WaitingMount = new LinkedQueue<Mission*>();
 
 	InEx = new PriorityQueue<Mission*>();
+	CompletedMissions = new LinkedQueue<Mission*>();
 
 	Events=NULL;
 	AvailableER =NULL;
 	AvailableMR =NULL;
 	AvailablePR = NULL;
+	InCheckupER = NULL;
+	InCheckupMR = NULL;
+	InCheckupPR = NULL;
+
 	numof_mount_rovers = 0, numof_emer_rovers = 0, numof_polar_rovers = 0;
 	speed_mount_rovers = 0, speed_emer_rovers = 0, speed_polar_rovers = 0;
 
@@ -24,6 +29,9 @@ MarsStation::MarsStation(){
 
 	event_type = 0, misson_type = 0;
 	event_day = 0, misson_id = 0, target_loc = 0, days_needed_for_mission = 0, misson_significance = 0;
+
+	// Data Statistics
+	sumED = 0, sumWD = 0, AutoPcount = 0;
 
 }
 
@@ -40,7 +48,7 @@ void MarsStation::assign()
 
 	Mission* M;
 	Rover* R;
-	int WD; // Working Days
+	int ED; // Execution Days
 	while (!WaitingEmergency->isEmpty())
 	{
 		if (AvailableER->dequeue(R))
@@ -58,11 +66,13 @@ void MarsStation::assign()
 		else
 			break;
 
-		WD = ceil(M->getTargetLocation() / (R->getSpeed() * 25)) + M->getDuration();
+		ED = ceil(M->getTargetLocation() / (R->getSpeed() * 25)) + M->getDuration();
 		M->setAssignedRover(R);
 		M->setStatus('E');
-		InEx->enqueue(M, current_day+ WD);
-
+		M->setWD(current_day - M->getFD());
+		M->setED(ED);
+		M->setCD(current_day + ED);
+		InEx->enqueue(M, current_day+ ED);
 	}
 
 	while (!WaitingPolar->isEmpty())
@@ -72,8 +82,12 @@ void MarsStation::assign()
 			WaitingPolar->dequeue(M);
 			M->setAssignedRover(R);
 			M->setStatus('E');
-			WD = ceil(M->getTargetLocation() / (R->getSpeed() * 25)) + M->getDuration();
-			InEx->enqueue(M, current_day + WD);
+			ED = ceil(M->getTargetLocation() / (R->getSpeed() * 25)) + M->getDuration();
+			InEx->enqueue(M, current_day + ED);
+			M->setWD(current_day - M->getFD());
+			M->setED(ED);
+			M->setCD(current_day + ED);
+
 		}
 		else
 			break;
@@ -93,11 +107,13 @@ void MarsStation::assign()
 		else
 			break;
 
-		WD = ceil(M->getTargetLocation() / (R->getSpeed() * 25)) + M->getDuration();
+		ED = ceil(M->getTargetLocation() / (R->getSpeed() * 25)) + M->getDuration();
 		M->setAssignedRover(R);
 		M->setStatus('E');
-		InEx->enqueue(M, current_day + WD);
-
+		InEx->enqueue(M, current_day + ED);
+		M->setWD(current_day - M->getFD());
+		M->setED(ED);
+		M->setCD(current_day + ED);
 	}
 
 }
@@ -201,3 +217,89 @@ void MarsStaion : AutoP{
 
 
 }
+// Check every day if missions finished Execution
+void MarsStation::FinishExecution()
+{
+	PriorityQueue<Mission*> Q1;
+	Mission* pM = NULL;
+
+	while (InEx->peek(pM) && pM->getCD() == current_day) {
+
+		InEx->dequeue(pM);
+		pM->setStatus('C');
+		Q1.enqueue(pM, pM->getED());
+
+		Rover* rover = pM->getAssignedRover();
+		pM->setAssignedRover(NULL);
+		rover->FinishedMission();
+		if (rover->NeedsCheckup(current_day)) {
+			// Enqueue Rover to inCheckup
+			switch (rover->getType()) {
+			case 'E':
+				InCheckupER->enqueue(rover);
+				break;
+			case 'M':
+				InCheckupMR->enqueue(rover);
+				break;
+			case 'P':
+				InCheckupPR->enqueue(rover);
+				break;
+			default:
+				break;
+			}
+		}
+		else {
+			switch (rover->getType()) {
+			case 'E':
+				AvailableER->enqueue(rover);
+				break;
+			case 'M':
+				AvailableMR->enqueue(rover);
+				break;
+			case 'P':
+				AvailablePR->enqueue(rover);
+				break;
+			default:
+				break;
+			}
+		}
+	}
+
+	while (Q1.dequeue(pM)) {
+		CompletedMissions->enqueue(pM);
+	}
+
+}
+
+// Check every day if rovers finished in checkup
+void MarsStation::FinishedCheckup()
+{
+	Rover* pR = NULL;
+	while (InCheckupER->peek(pR)) {
+		if (pR->Checkuped(current_day)) {
+			InCheckupER->dequeue(pR);
+			AvailableER->enqueue(pR);
+		}
+		else
+			break;
+	}
+	
+	while (InCheckupPR->peek(pR)) {
+		if (pR->Checkuped(current_day)) {
+			InCheckupPR->dequeue(pR);
+			AvailablePR->enqueue(pR);
+		}
+		else
+			break;
+	}
+
+	while (InCheckupMR->peek(pR)) {
+		if (pR->Checkuped(current_day)) {
+			InCheckupMR->dequeue(pR);
+			AvailableMR->enqueue(pR);
+		}
+		else
+			break;
+	}
+}
+
