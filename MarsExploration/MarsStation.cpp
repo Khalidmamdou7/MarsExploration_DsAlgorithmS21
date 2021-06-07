@@ -2,9 +2,9 @@
 #include <string>
 
 MarsStation::MarsStation(){
-	WaitingEmergency = new PriorityQueue<Mission>();
-	WaitingPolar = new LinkedQueue<Mission>();
-	WaitingMount = new LinkedQueue<Mission>();
+	WaitingEmergency = new PriorityQueue<Mission*>();
+	WaitingPolar = new LinkedQueue<Mission*>();
+	WaitingMount = new LinkedQueue<Mission*>();
 
 	Events=NULL;
 	EmergencyRovers=NULL;
@@ -25,17 +25,60 @@ MarsStation::MarsStation(){
 
 }
 
- PriorityQueue<Mission>* MarsStation::getWEMList()
+
+void MarsStation::assign()
+{
+	if (numof_mount_rovers==0 && numof_polar_rovers==0 && numof_emer_rovers==0)
+		return;
+
+	Mission *M;
+	Rover* R;
+	while(WaitingEmergency->dequeue(M))
+	{
+		if (numof_emer_rovers != 0) 
+		{
+			EmergencyRovers->dequeue(R);
+			M->setAssignedRover(R);
+		}
+		else if(numof_mount_rovers!=0)
+		{
+			MountRovers->dequeue(R);
+			M->setAssignedRover(R);
+		}
+		else if (numof_polar_rovers != 0)
+		{
+			PolarRovers->dequeue(R);
+			M->setAssignedRover(R);
+		}
+		while(WaitingPolar->dequeue(M))
+		{
+			if (numof_polar_rovers != 0)
+			{
+				PolarRovers->dequeue(R);
+				M->setAssignedRover(R);
+			}
+		}
+
+	}
+
+	//WaitingPolar->dequeue(MP);
+	//WaitingMount->dequeue(MM);
+
+	
+
+}
+
+ PriorityQueue<Mission*>* MarsStation::getWEMList()
 {
 	return WaitingEmergency;
 }
 
- LinkedQueue<Mission>* MarsStation::getWPMList()
+ LinkedQueue<Mission*>* MarsStation::getWPMList()
 {
 	return WaitingPolar;
 }
 
- LinkedQueue<Mission>* MarsStation::getWMMList()
+ LinkedQueue<Mission*>* MarsStation::getWMMList()
  {
 	 return WaitingMount;
  }
@@ -119,3 +162,4 @@ void MarsStation::load() {
 void MarsStation::Simulate() {
 
 }
+
