@@ -34,6 +34,7 @@
     <ClInclude Include="PromoteEvent.h" />
     <ClInclude Include="QueueADT.h" />
     <ClInclude Include="Rover.h" />
+    <ClInclude Include="UI.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CancelEvent.cpp" />
@@ -44,6 +45,7 @@
     <ClCompile Include="Mission.cpp" />
     <ClCompile Include="PromoteEvent.cpp" />
     <ClCompile Include="Rover.cpp" />
+    <ClCompile Include="UI.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
