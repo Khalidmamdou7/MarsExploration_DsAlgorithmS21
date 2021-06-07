@@ -15,7 +15,7 @@ UI::UI()
 }
 void UI::ReadMode(MarsStation* pS)
 {
-	PriorityQueue<Mission*> WPM(*pS->getWMMList());
+	PriorityQueue<Mission*> WEM(*pS->getWEMList());
 	cout << "There's three modes: " << endl;
 	cout << "enter 1 for interactive Mode" << endl;
 	cout << " 2 for step-by-step mode" << endl;
