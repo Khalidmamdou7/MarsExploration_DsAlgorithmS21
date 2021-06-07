@@ -7,9 +7,9 @@ MarsStation::MarsStation(){
 	WaitingMount = new LinkedQueue<Mission*>();
 
 	Events=NULL;
-	AvailableER =NULL;
-	AvailableMR =NULL;
-	AvailablePR = NULL;
+	EmergencyRovers=NULL;
+	MountRovers=NULL;
+	PolarRovers = NULL;
 	numof_mount_rovers = 0, numof_emer_rovers = 0, numof_polar_rovers = 0;
 	speed_mount_rovers = 0, speed_emer_rovers = 0, speed_polar_rovers = 0;
 
@@ -38,39 +38,35 @@ void MarsStation::assign()
 	{
 		if (numof_emer_rovers != 0) 
 		{
-			AvailableER->dequeue(R);
+			EmergencyRovers->dequeue(R);
 			M->setAssignedRover(R);
 		}
 		else if(numof_mount_rovers!=0)
 		{
-			AvailableMR->dequeue(R);
+			MountRovers->dequeue(R);
 			M->setAssignedRover(R);
 		}
 		else if (numof_polar_rovers != 0)
 		{
-			AvailablePR->dequeue(R);
+			PolarRovers->dequeue(R);
 			M->setAssignedRover(R);
 		}
 		while(WaitingPolar->dequeue(M))
 		{
 			if (numof_polar_rovers != 0)
 			{
-				AvailablePR->dequeue(R);
-				M->setAssignedRover(R);
-			}
-		}
-		while (WaitingMount->dequeue(M))
-		{
-			if (numof_mount_rovers != 0)
-			{
-				AvailableMR->dequeue(R);
+				PolarRovers->dequeue(R);
 				M->setAssignedRover(R);
 			}
 		}
 
 	}
 
+	//WaitingPolar->dequeue(MP);
+	//WaitingMount->dequeue(MM);
+
 	
+
 }
 
  PriorityQueue<Mission*>* MarsStation::getWEMList()
@@ -147,19 +143,19 @@ void MarsStation::load() {
 		//Adding MountRovers to MountRovers Queue
 		for (int i = 0; i < numof_mount_rovers; i++) {
 			Rover* rover_To_add = new Rover('M', mount_rovers_checkup_duration, speed_mount_rovers, numof_missions_before_checkup);
-			AvailableMR->enqueue(rover_To_add);
+			MountRovers->enqueue(rover_To_add);
 		}
 
 		//Adding PolarRovers to PolarRovers Queue
 		for (int i = 0; i < numof_polar_rovers; i++) {
 			Rover* rover_To_add = new Rover('P', polar_rovers_checkup_duration, speed_polar_rovers, numof_missions_before_checkup);
-			AvailablePR->enqueue(rover_To_add);
+			PolarRovers->enqueue(rover_To_add);
 		}
 
 		//Adding EmergencyRovers to EmergencyRovers Queue
 		for (int i = 0; i < numof_emer_rovers; i++) {
 			Rover* rover_To_add = new Rover('E', emer_rovers_checkup_duration, speed_emer_rovers, numof_missions_before_checkup);
-			AvailableER->enqueue(rover_To_add);
+			EmergencyRovers->enqueue(rover_To_add);
 		}
 	}
 }
