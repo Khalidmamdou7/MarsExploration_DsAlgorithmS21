@@ -8,7 +8,6 @@ class PNode :
 	public Node<T>
 {
 private:
-	T item;
 	int priority;
 	PNode<T>* next;
 public:
@@ -20,8 +19,7 @@ public:
 	void setPriority(int r_priority);
 	int getPriority();
 
-	T getItem() const;
-	void setItem(T in);
+	
 	friend std::ostream& operator<<(std::ostream&, const PNode<T>&);
 
 };
@@ -69,21 +67,4 @@ template<typename T>
 inline PNode<T>* PNode<T>::getNext() const
 {
 	return next;
-}
-
-template<typename T>
-inline void PNode<T>::setItem(T input)
-{
-	item = input;
-}
-
-template<typename T>
-inline T PNode<T>::getItem() const
-{
-	return item;
-}
-
-template <typename T>
-std::ostream& operator<<(std::ostream& o, const PNode<T>& myNode) {
-	0 << myNode.getItem();
 }

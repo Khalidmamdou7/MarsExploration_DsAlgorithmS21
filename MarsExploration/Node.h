@@ -59,8 +59,3 @@ Node<T>* Node<T>::getNext() const
 {
 	return next;
 }
-
-template <typename T>
-std::ostream& operator<<(std::ostream& o, const Node<T>& myNode) {
-	0 << myNode.getItem();
-}
