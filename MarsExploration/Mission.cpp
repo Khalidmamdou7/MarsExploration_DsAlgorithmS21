@@ -102,6 +102,16 @@ void Mission::setED(int r_ED)
 	ED = r_ED;
 }
 
+int Mission::getCD() const
+{
+	return CD;
+}
+
+void Mission::setCD(int r_CD)
+{
+	CD = r_CD;
+}
+
 Rover* Mission::getAssignedRover() const
 {
 	return assignedRover;

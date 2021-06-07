@@ -40,11 +40,13 @@ class MarsStation
 private:
 	////////////////////////////////////////////// DECLERATION//////////////////////////////////////////
 	
+	// Missions Lists
 	PriorityQueue<Mission*>* WaitingEmergency;
 	LinkedQueue<Mission*>* WaitingPolar;
 	LinkedQueue<Mission*>* WaitingMount;
 
 	PriorityQueue<Mission*>* InEx;
+	LinkedQueue<Mission*>* CompletedMissions;
 
 	LinkedQueue<Event*>* Events;
 	LinkedQueue<Rover*>* AvailableER;
@@ -79,7 +81,9 @@ public:
 
 	void load();
 	void Simulate();
-	
+	void FinishExecution(); // A function deals with finished missions
+
+
 	PriorityQueue<Mission*>* getWEMList();
 	LinkedQueue<Mission*>* getWPMList();
 	LinkedQueue<Mission*>* getWMMList();
