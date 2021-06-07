@@ -2,6 +2,9 @@
 #include <string>
 
 MarsStation::MarsStation(){
+	ui = new UI();
+	ui->ReadMode();
+
 	WaitingEmergency = new PriorityQueue<Mission*>();
 	WaitingPolar = new LinkedQueue<Mission*>();
 	WaitingMount = new LinkedQueue<Mission*>();
@@ -257,6 +260,9 @@ void MarsStation::Simulate() {
 	FinishedExecution();
 	FinishedCheckup();
 	assign();
+	// Collect Statistics
+	ui->Output(this);
+	// save
 
 }
 

@@ -1,21 +1,27 @@
+#pragma once
+
+
+// Include Data structures
+#include "PriorityQueue.h"
+#include "LinkedList.h"
+#include "LinkedQueue.h"
+
+
+// Include Event Classes
+#include "Event.h"
+#include "FormulationEvent.h"
+#include "CancelEvent.h"
+#include "PromoteEvent.h"
+
+#include "Rover.h"
+#include "Mission.h"
+
+#include "UI.h"
 
 #include <iostream>
 #include <fstream>
 #include <string>
 using namespace std;
-
-#pragma once
-#include "QueueADT.h"
-#include "PNode.h"
-#include "Event.h"
-#include "FormulationEvent.h"
-#include "CancelEvent.h"
-#include "PromoteEvent.h"
-#include "LinkedList.h"
-#include "ListADT.h"
-#include "LinkedQueue.h"
-#include "Rover.h"
-
 
 /*
 MarsStation Class
@@ -40,6 +46,9 @@ class MarsStation
 private:
 	////////////////////////////////////////////// DECLERATION//////////////////////////////////////////
 	
+	UI* ui;
+
+
 	LinkedQueue<Event*>* Events;
 
 	// Missions Lists
