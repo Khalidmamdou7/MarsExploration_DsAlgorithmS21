@@ -96,6 +96,7 @@ public:
 	LinkedQueue<Mission*>* getWPMList();
 	LinkedQueue<Mission*>* getWMMList();
 	void assign();
+	void autoP();
 	
 };
 

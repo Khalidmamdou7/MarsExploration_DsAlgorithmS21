@@ -318,3 +318,13 @@ void MarsStation::FinishedCheckup()
 	}
 }
 
+
+void MarsStation::autoP() {
+Mission* pM = NULL;
+	while (WaitingMount->peek(pM)) {
+		if ((current_day - pM->getFD()) == mount_rovers_autoP) {
+			WaitingMount->dequeue(pM);
+			WaitingEmergency->enqueue(pM,pM->getPriority());
+		}
+	}
+}
