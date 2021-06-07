@@ -25,17 +25,17 @@ MarsStation::MarsStation(){
 
 }
 
- PriorityQueue<Mission>* MarsStation::getWEMList()
+ PriorityQueue<Mission*>* MarsStation::getWEMList()
 {
 	return WaitingEmergency;
 }
 
- LinkedQueue<Mission>* MarsStation::getWPMList()
+ LinkedQueue<Mission*>* MarsStation::getWPMList()
 {
 	return WaitingPolar;
 }
 
- LinkedQueue<Mission>* MarsStation::getWMMList()
+ LinkedQueue<Mission*>* MarsStation::getWMMList()
  {
 	 return WaitingMount;
  }
