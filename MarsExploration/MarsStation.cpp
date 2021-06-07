@@ -9,13 +9,13 @@ MarsStation::MarsStation(){
 	InEx = new PriorityQueue<Mission*>();
 	CompletedMissions = new LinkedQueue<Mission*>();
 
-	Events=NULL;
-	AvailableER =NULL;
-	AvailableMR =NULL;
-	AvailablePR = NULL;
-	InCheckupER = NULL;
-	InCheckupMR = NULL;
-	InCheckupPR = NULL;
+	Events = new LinkedQueue<Event*>;
+	AvailableER = new LinkedQueue<Rover*>();
+	AvailableMR = new LinkedQueue<Rover*>();
+	AvailablePR = new LinkedQueue<Rover*>();
+	InCheckupER = new LinkedQueue<Rover*>();
+	InCheckupMR = new LinkedQueue<Rover*>();
+	InCheckupPR = new LinkedQueue<Rover*>();
 
 	numof_mount_rovers = 0, numof_emer_rovers = 0, numof_polar_rovers = 0;
 	speed_mount_rovers = 0, speed_emer_rovers = 0, speed_polar_rovers = 0;
@@ -213,10 +213,11 @@ void MarsStation::Simulate() {
 
 }
 
-void MarsStaion : AutoP{
+void MarsStation::AutoP(){
 
 
 }
+
 // Check every day if missions finished Execution
 void MarsStation::FinishExecution()
 {

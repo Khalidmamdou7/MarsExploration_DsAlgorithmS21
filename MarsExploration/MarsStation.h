@@ -85,6 +85,7 @@ private:
 public:
 	MarsStation();
 
+	void AutoP();
 	void load();
 	void Simulate();
 	void FinishExecution(); // Checks if missions finished execution
