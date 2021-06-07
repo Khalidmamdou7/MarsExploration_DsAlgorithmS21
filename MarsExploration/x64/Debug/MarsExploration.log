@@ -1,14 +1,2 @@
-﻿  CancelEvent.cpp
-  Event.cpp
-  FormulationEvent.cpp
-  Main.cpp
-  MarsStation.cpp
-D:\Study\College\2. Sophomore\Courses\Second Semester\CMPN102\Git Hub Repository\MarsExploration_DsAlgorithmS21\MarsExploration\MarsStation.cpp(76,60): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-D:\Study\College\2. Sophomore\Courses\Second Semester\CMPN102\Git Hub Repository\MarsExploration_DsAlgorithmS21\MarsExploration\MarsStation.cpp(92,61): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-D:\Study\College\2. Sophomore\Courses\Second Semester\CMPN102\Git Hub Repository\MarsExploration_DsAlgorithmS21\MarsExploration\MarsStation.cpp(117,60): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-  Mission.cpp
-  PromoteEvent.cpp
-  Rover.cpp
-  UI.cpp
-  Generating Code...
-  MarsExploration.vcxproj -> D:\Study\College\2. Sophomore\Courses\Second Semester\CMPN102\Git Hub Repository\MarsExploration_DsAlgorithmS21\MarsExploration\x64\Debug\MarsExploration.exe
+﻿  Main.cpp
+  MarsExploration.vcxproj -> C:\Users\Marwan\Desktop\MarsExploration_DsAlgorithmS21\MarsExploration\x64\Debug\MarsExploration.exe

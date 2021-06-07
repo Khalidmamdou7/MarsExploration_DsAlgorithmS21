@@ -108,6 +108,5 @@ int main() {
 
 	UI *Output= new UI();
 	
-	Output->ReadMode();
 	return 0;
 }

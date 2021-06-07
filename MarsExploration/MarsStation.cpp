@@ -1,4 +1,5 @@
 #include "MarsStation.h"
+#include "UI.h"
 #include <string>
 
 MarsStation::MarsStation(){
