@@ -13,6 +13,10 @@ MarsStation::MarsStation(){
 	AvailableER =NULL;
 	AvailableMR =NULL;
 	AvailablePR = NULL;
+	InCheckupER = NULL;
+	InCheckupMR = NULL;
+	InCheckupPR = NULL;
+
 	numof_mount_rovers = 0, numof_emer_rovers = 0, numof_polar_rovers = 0;
 	speed_mount_rovers = 0, speed_emer_rovers = 0, speed_polar_rovers = 0;
 
@@ -209,6 +213,7 @@ void MarsStation::Simulate() {
 
 }
 
+// Check every day if missions finished Execution
 void MarsStation::FinishExecution()
 {
 	PriorityQueue<Mission*> Q1;
@@ -223,9 +228,21 @@ void MarsStation::FinishExecution()
 		Rover* rover = pM->getAssignedRover();
 		pM->setAssignedRover(NULL);
 		rover->FinishedMission();
-		if (rover->NeedsCheckup()) {
+		if (rover->NeedsCheckup(current_day)) {
 			// Enqueue Rover to inCheckup
-
+			switch (rover->getType()) {
+			case 'E':
+				InCheckupER->enqueue(rover);
+				break;
+			case 'M':
+				InCheckupMR->enqueue(rover);
+				break;
+			case 'P':
+				InCheckupPR->enqueue(rover);
+				break;
+			default:
+				break;
+			}
 		}
 		else {
 			switch (rover->getType()) {
@@ -248,5 +265,37 @@ void MarsStation::FinishExecution()
 		CompletedMissions->enqueue(pM);
 	}
 
+}
+
+// Check every day if rovers finished in checkup
+void MarsStation::FinishedCheckup()
+{
+	Rover* pR = NULL;
+	while (InCheckupER->peek(pR)) {
+		if (pR->Checkuped(current_day)) {
+			InCheckupER->dequeue(pR);
+			AvailableER->enqueue(pR);
+		}
+		else
+			break;
+	}
+	
+	while (InCheckupPR->peek(pR)) {
+		if (pR->Checkuped(current_day)) {
+			InCheckupPR->dequeue(pR);
+			AvailablePR->enqueue(pR);
+		}
+		else
+			break;
+	}
+
+	while (InCheckupMR->peek(pR)) {
+		if (pR->Checkuped(current_day)) {
+			InCheckupMR->dequeue(pR);
+			AvailableMR->enqueue(pR);
+		}
+		else
+			break;
+	}
 }
 

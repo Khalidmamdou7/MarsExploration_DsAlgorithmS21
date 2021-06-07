@@ -40,6 +40,8 @@ class MarsStation
 private:
 	////////////////////////////////////////////// DECLERATION//////////////////////////////////////////
 	
+	LinkedQueue<Event*>* Events;
+
 	// Missions Lists
 	PriorityQueue<Mission*>* WaitingEmergency;
 	LinkedQueue<Mission*>* WaitingPolar;
@@ -48,10 +50,14 @@ private:
 	PriorityQueue<Mission*>* InEx;
 	LinkedQueue<Mission*>* CompletedMissions;
 
-	LinkedQueue<Event*>* Events;
+	
+	// Rovers Lists
 	LinkedQueue<Rover*>* AvailableER;
 	LinkedQueue<Rover*>* AvailableMR;
 	LinkedQueue<Rover*>* AvailablePR;
+	LinkedQueue<Rover*>* InCheckupER;
+	LinkedQueue<Rover*>* InCheckupMR;
+	LinkedQueue<Rover*>* InCheckupPR;
 
 
 	int current_day = 1;
@@ -81,8 +87,8 @@ public:
 
 	void load();
 	void Simulate();
-	void FinishExecution(); // A function deals with finished missions
-
+	void FinishExecution(); // Checks if missions finished execution
+	void FinishedCheckup(); // Checks if rovers finished checkup and move it to available rovers
 
 	PriorityQueue<Mission*>* getWEMList();
 	LinkedQueue<Mission*>* getWPMList();

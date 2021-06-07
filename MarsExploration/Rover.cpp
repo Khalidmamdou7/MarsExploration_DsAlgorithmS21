@@ -7,6 +7,7 @@ Rover::Rover(char r_Type, int r_CheckupDuration, int r_Speed, int n_noMissionsBe
 	Speed = r_Speed;
 	noMissionsBeforeCheckUp = n_noMissionsBeforeCheckUp;
 	MissionsCount = 0;
+	AvailableDay = 0;
 	/////
 	isAssigned = false;
 }
@@ -61,15 +62,26 @@ void Rover::FinishedMission()
 	MissionsCount++;
 }
 
+// Check if Rover finished Checkup
 // Reset MissionsCount to zero
-void Rover::Checkuped()
+bool Rover::Checkuped(int currDay)
 {
-	MissionsCount = 0;
+	if (AvailableDay == currDay) {
+		MissionsCount = 0;
+		AvailableDay = 0;
+		return true;
+	}
+	else
+		return false;
 }
 
-bool Rover::NeedsCheckup()
-{
-	return MissionsCount >= noMissionsBeforeCheckUp;
+bool Rover::NeedsCheckup(int currDay)
+{	
+	if (MissionsCount >= noMissionsBeforeCheckUp) {
+		AvailableDay = currDay + CheckupDuration;
+		return true;
+	}
+	return false;
 }
 
 //bool Rover::isassigned()
