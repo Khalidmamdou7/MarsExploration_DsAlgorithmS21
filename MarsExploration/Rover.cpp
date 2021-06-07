@@ -6,6 +6,9 @@ Rover::Rover(char r_Type, int r_CheckupDuration, int r_Speed, int n_noMissionsBe
 	CheckupDuration = r_CheckupDuration;
 	Speed = r_Speed;
 	noMissionsBeforeCheckUp = n_noMissionsBeforeCheckUp;
+
+	/////
+	isAssigned = false;
 }
 
 int Rover::getCheckupDuration()
@@ -35,6 +38,9 @@ void Rover::setNoMissionsBeforeCheckUp(int N) {
 	this->noMissionsBeforeCheckUp = N;
 }
 
-
+bool Rover::isassigned()
+{
+	return isAssigned;
+}
 
 Rover::~Rover() {}

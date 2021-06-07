@@ -9,6 +9,7 @@ Mission::Mission(char r_Type, int r_FD, int r_TargetLocation, int r_Duration, in
 	Significance = r_Significance;
 	Status = r_Status;
 	assignedRover = r_assignedRover;
+	priority = (Significance * 10) + Duration + TargetLocation - FD;
 }
 
 char Mission::getType() const
@@ -69,6 +70,16 @@ void Mission::setSignificance(int r_Significance)
 void Mission::setStatus(char r_Status)
 {
 	Status = r_Status;
+}
+
+int Mission::getPriority() const
+{
+	return priority;
+}
+
+void Mission::setPriority(int p)
+{
+	priority = p;
 }
 
 Rover* Mission::getAssignedRover() const

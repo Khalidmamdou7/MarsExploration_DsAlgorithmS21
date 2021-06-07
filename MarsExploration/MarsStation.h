@@ -40,15 +40,17 @@ class MarsStation
 private:
 	////////////////////////////////////////////// DECLERATION//////////////////////////////////////////
 	
-	PriorityQueue<Mission>* WaitingEmergency;
-	LinkedQueue<Mission>* WaitingPolar;
-	LinkedQueue<Mission>* WaitingMount;
+	PriorityQueue<Mission*>* WaitingEmergency;
+	LinkedQueue<Mission*>* WaitingPolar;
+	LinkedQueue<Mission*>* WaitingMount;
 
 	LinkedQueue<Event*>* Events;
-	LinkedQueue<Rover*>* EmergencyRovers;
-	LinkedQueue<Rover*>* MountRovers;
-	LinkedQueue<Rover*>* PolarRovers;
+
 	UI* pUI;
+	LinkedQueue<Rover*>* AvailableER;
+	LinkedQueue<Rover*>* AvailableMR;
+	LinkedQueue<Rover*>* AvailablePR;
+
 	int current_day = 1;
 
 	int numof_mount_rovers=0, numof_emer_rovers = 0, numof_polar_rovers = 0;
@@ -72,10 +74,13 @@ public:
 
 	void load();
 	void Simulate();
+
 	void Interface();
-	PriorityQueue<Mission>* getWEMList();
-	LinkedQueue<Mission>* getWPMList();
-	LinkedQueue<Mission>* getWMMList();
+
+	PriorityQueue<Mission*>* getWEMList();
+	LinkedQueue<Mission*>* getWPMList();
+	LinkedQueue<Mission*>* getWMMList();
+
 
 	MarsStation(string = "Input_File")
 	{
