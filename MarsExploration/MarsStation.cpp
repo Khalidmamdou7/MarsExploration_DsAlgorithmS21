@@ -40,26 +40,28 @@ void MarsStation::assign()
 
 	Mission* M;
 	Rover* R;
+	int WD; // Working Days
 	while (!WaitingEmergency->isEmpty())
 	{
 		if (AvailableER->dequeue(R))
 		{
 			WaitingEmergency->dequeue(M);
-			M->setAssignedRover(R);
-			M->setStatus('E');
 		}
 		else if (AvailableMR->dequeue(R))
 		{
 			WaitingEmergency->dequeue(M);
-			M->setAssignedRover(R);
-			M->setStatus('E');
 		}
 		else if (AvailablePR->dequeue(R))
 		{
 			WaitingEmergency->dequeue(M);
-			M->setAssignedRover(R);
-			M->setStatus('E');
 		}
+		else
+			break;
+
+		WD = ceil(R->getSpeed() / 25) + M->getDuration();
+		M->setAssignedRover(R);
+		M->setStatus('E');
+
 	}
 
 	while (!WaitingPolar->isEmpty())
@@ -69,24 +71,33 @@ void MarsStation::assign()
 			WaitingPolar->dequeue(M);
 			M->setAssignedRover(R);
 			M->setStatus('E');
+			WD = ceil(R->getSpeed() / 25) + M->getDuration();
+
+
 		}
+		else
+			break;
+
 	}
 
 	while (!WaitingMount->isEmpty())
 	{
 		if (AvailableMR->dequeue(R))
-			{
-				WaitingMount->dequeue(M);
-				M->setAssignedRover(R);
-				M->setStatus('E');
-			}
-		
+		{
+			WaitingMount->dequeue(M);
+		}
 		else if (AvailableER->dequeue(R))
-			{
-			    WaitingMount->dequeue(M);
-				M->setAssignedRover(R);
-				M->setStatus('E');
-			}
+		{
+			WaitingMount->dequeue(M);
+		}
+		else
+			break;
+
+		WD = ceil(R->getSpeed() / 25) + M->getDuration();
+		M->setAssignedRover(R);
+		M->setStatus('E');
+
+
 	}
 
 }
