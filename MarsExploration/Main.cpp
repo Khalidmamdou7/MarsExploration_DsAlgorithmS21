@@ -10,13 +10,13 @@
 #include "Node.h"
 
 // Include Event Classes
-//#include "FormulationEvent.h"
-//#include "CancelEvent.h"
-//#include "PromoteEvent.h"
+#include "FormulationEvent.h"
+#include "CancelEvent.h"
+#include "PromoteEvent.h"
 #include "Event.h"
 // Include Mission Class
 #include "Mission.h"
-
+#include "MarsStation.h"
 using namespace std;
 
 int main() {
@@ -65,9 +65,39 @@ int main() {
 		<< "Item: " << node1->getItem() << endl
 		<< "Nextptr: " << node1->getNext() << endl;
 
+	//Testing Event
+	cout << "=============================================================================" << endl;
+	MarsStation M1;
+	//                 FD, ID Type  Loc Dur.Sig.AutoP
+	FormulationEvent F1(5, 88, 'M', 200, 8 , 7, 0);
+	FormulationEvent F2(6, 89, 'M', 210, 11, 3, 0);
+	FormulationEvent F3(7, 90, 'M', 222, 12, 5, 0);
+	FormulationEvent F4(8, 91, 'M', 223, 18, 5, 0);  //prio =323 
+	FormulationEvent F5(9, 92, 'E', 224, 13, 8, 0);  //prio= 308
+	F1.Execute(&M1);
+	F2.Execute(&M1);
+	F3.Execute(&M1);
+	F4.Execute(&M1);
+	F5.Execute(&M1);
+	
+	CancelEvent C1(5, 91);
+	PromoteEvent P1(7, 91);
+	//C1.Execute(&M1);
+	P1.Execute(&M1);
 
-
-
-
+	LinkedQueue<Mission*>* Q1 = M1.getWMMList();
+	PriorityQueue<Mission*>* Q2 = M1.getWEMList();
+	
+	while (!Q1->isEmpty()) {
+		Mission* toprint;
+		Q1->dequeue(toprint);
+		cout << toprint->getID() << endl;
+	}
+	cout << "==Emergency==" << endl;
+	while (!Q2->isEmpty()) {
+		Mission* toprint;
+		Q2->dequeue(toprint);
+		cout << toprint->getID() << endl;
+	}
 	return 0;
 }

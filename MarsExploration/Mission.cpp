@@ -1,8 +1,10 @@
 #include "Mission.h"
 
 
-Mission::Mission(char r_Type, int r_FD, int r_TargetLocation, int r_Duration, int r_Significance, char r_Status, Rover* r_assignedRover) {
+Mission::Mission(int r_ID,char r_Type, int r_FD, int r_TargetLocation, int r_Duration, int r_Significance, char r_Status, Rover* r_assignedRover) {
+	ID = r_ID;
 	FD = r_FD;
+	
 	Type = r_Type;
 	TargetLocation = r_TargetLocation;
 	Duration = r_Duration;
@@ -90,4 +92,14 @@ Rover* Mission::getAssignedRover() const
 void Mission::setAssignedRover(Rover* r)
 {
 	assignedRover = r;
+}
+
+int Mission::getID() const
+{
+	return ID;
+}
+
+void Mission::setID(int Id_input)
+{
+	ID = Id_input;
 }

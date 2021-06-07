@@ -197,3 +197,7 @@ void MarsStation::Simulate() {
 
 }
 
+void MarsStaion : AutoP{
+
+
+}

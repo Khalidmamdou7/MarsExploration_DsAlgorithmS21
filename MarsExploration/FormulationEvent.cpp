@@ -28,7 +28,7 @@ void FormulationEvent::Execute(MarsStation* pS) {
 
    pStation = pS;
     
-    Mission* pM = new Mission(mType, FormulationDay, mTargetLocation, mDuration, mSignificance, 'W');
+    Mission* pM = new Mission(mID, mType, FormulationDay, mTargetLocation, mDuration, mSignificance, 'W');
 
     switch (mType) {
     case 'E': {

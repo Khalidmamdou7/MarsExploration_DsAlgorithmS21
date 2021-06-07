@@ -5,6 +5,7 @@
 class Mission
 {
 private:
+	int ID;
 	char Type;			// Mission types (E: Emergency, M: Mountainuous, P: Polar, U: Unassigned (just for check))
 	int FD;				// Formulation Day: the day when the mission formulation is finalized and the mission becomes ready to be assigned to a rover.
 	int TargetLocation; // The distance (in kilometers) from the base station to the target location of the mission.
@@ -15,7 +16,10 @@ private:
 	int priority;
 	// int AutoP;			// the number of days after which a mountainous mission is automatically promoted to an emergency mission (Not sure if needed)
 public:
-	Mission(char r_Type = 'U', int r_FD = -1, int r_TargetLocation = -1, int r_Duration = -1, int r_Significance = -1, char r_Status = 'U', Rover* r_ass = nullptr);
+	Mission(int r_ID =0, char r_Type = 'U', int r_FD = -1, int r_TargetLocation = -1, int r_Duration = -1, int r_Significance = -1, char r_Status = 'U', Rover* r_ass = nullptr);
+
+	int getID() const;
+	void setID(int Id_input);
 
 	char getType() const;
 	void setType(char r_Type);

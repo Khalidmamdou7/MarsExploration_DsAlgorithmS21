@@ -78,12 +78,6 @@ public:
 	PriorityQueue<Mission*>* getWEMList();
 	LinkedQueue<Mission*>* getWPMList();
 	LinkedQueue<Mission*>* getWMMList();
-
-	MarsStation(string = "Input_File")
-	{
-		//Import From File to Create a Rovers,Missions,Events lists (or queues)..
-		load();
-	}
 	void assign();
 	//utility
 	float calcpriority();
