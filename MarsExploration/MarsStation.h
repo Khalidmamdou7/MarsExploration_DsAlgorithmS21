@@ -107,13 +107,6 @@ public:
 
 
 
-	MarsStation(string = "Input_File")
-	{
-		//Import From File to Create a Rovers,Missions,Events lists (or queues)..
-		load();
-	}
-
-
 };
 
 
