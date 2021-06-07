@@ -211,6 +211,25 @@ void MarsStation::load() {
 
 void MarsStation::Simulate() {
 
+	ExecuteEvents();
+	FinishedExecution();
+	FinishedCheckup();
+	assign();
+
+}
+
+// Execute the events that should be executed at that day
+void MarsStation::ExecuteEvents()
+{
+	Event* pE = NULL;
+	while (Events->peek(pE)) {
+		if (pE->getFormulationDay() == current_day) {
+			Events->dequeue(pE);
+			pE->Execute(this);
+		}
+		else
+			break;
+	}
 }
 
 void MarsStation::AutoP(){
@@ -219,7 +238,7 @@ void MarsStation::AutoP(){
 }
 
 // Check every day if missions finished Execution
-void MarsStation::FinishExecution()
+void MarsStation::FinishedExecution()
 {
 	PriorityQueue<Mission*> Q1;
 	Mission* pM = NULL;

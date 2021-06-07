@@ -88,8 +88,9 @@ public:
 	void AutoP();
 	void load();
 	void Simulate();
-	void FinishExecution(); // Checks if missions finished execution
-	void FinishedCheckup(); // Checks if rovers finished checkup and move it to available rovers
+	void ExecuteEvents();		// Execute the events that should be executed at that day
+	void FinishedExecution();	// Checks if missions finished execution
+	void FinishedCheckup();		// Checks if rovers finished checkup and move it to available rovers
 
 	PriorityQueue<Mission*>* getWEMList();
 	LinkedQueue<Mission*>* getWPMList();
