@@ -45,9 +45,9 @@ private:
 	LinkedQueue<Mission*>* WaitingMount;
 
 	LinkedQueue<Event*>* Events;
-	LinkedQueue<Rover*>* EmergencyRovers;
-	LinkedQueue<Rover*>* MountRovers;
-	LinkedQueue<Rover*>* PolarRovers;
+	LinkedQueue<Rover*>* AvailableER;
+	LinkedQueue<Rover*>* AvailableMR;
+	LinkedQueue<Rover*>* AvailablePR;
 
 	int current_day = 1;
 
