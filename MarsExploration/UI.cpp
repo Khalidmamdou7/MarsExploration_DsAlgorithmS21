@@ -1,10 +1,14 @@
 #include "UI.h"
-#include <iostream>;
-#include<chrono>;
-#include<thread>;
-#include"Mission.h";
-#include"Rover.h";
+#include <iostream>
+#include<chrono>
+#include<thread>
+#include"Mission.h"
+#include"Rover.h"
 using namespace std;
+UI::UI(MarsStation* g)
+{
+	h = g;
+}
 void UI::ReadMode()
 {
 	cout << "There's three modes: " << endl;
@@ -15,20 +19,21 @@ void UI::ReadMode()
 	cin >> Mode;
 	switch (Mode)
 	{
-	case 1:
-		Mission g;
-		cout << "Current Day :" << g.getFD() << endl;
-		cout << " " << "Waiting Missions :" << "["<<" " <<","<<" "<<"]" <<"  "<<"{" <<" "<<"}"<<endl;
+	case 1: {
+		cout << "Current Day :" << "" << endl;
+		cout << " " << "Waiting Missions :" << "["<<" " <<h->getWEMList()<<" "<<"]" <<"  "<<"(" << h->getWPMList() <<")"<<"{" << h->getWMMList()<<"}"<<endl;
 		cout << "------------------------------------------------------" << endl;
-		cout << "" << "ahmed" << "In-Execution Missions/Rovers:" << "[" << " " << "," << " " << "]" << "  " << "{" << " " << "}" << endl;;
+		cout <<"" << "In-Execution Missions/Rovers:" << "[" << " " << "," << " " << "]" << "  " << "{" << " " << "}" << endl;;
 		cout << "------------------------------------------------------" << endl;
-		cout << " " << "Available Rovers :" << "[" << " " << "," << " " << "]" << "  " << "{" << " " << "}" << endl;;
+		cout << " " << "Available Rovers :" << "[" << " " << h->getWEMList() << " " << "]" << "  " << "(" << h->getWPMList() << ")" << "{" << h->getWMMList() << "}" << endl;;
 		cout << "------------------------------------------------------" << endl;
 		cout << " " << " In - Checkup Rovers :" << "[" << " " << "," << " " << "]" << "  " << "{" << " " << "}" << endl;;
 		cout << "------------------------------------------------------" << endl;
 		cout << " " << "Completed Missions:" << "[" << " " << "," << " " << "]" << "  " << "{" << " " << "}" <<endl;
+		h->load();
 		break;
-	case 2:
+	}
+	case 2: {
 		cout.flush();
 		this_thread::sleep_for(chrono::milliseconds(10000));
 		Mission g;
@@ -42,13 +47,18 @@ void UI::ReadMode()
 		cout << " " << " In - Checkup Rovers :" << "[" << " " << "," << " " << "]" << "  " << "{" << " " << "}" << endl;;
 		cout << "------------------------------------------------------" << endl;
 		cout << " " << "Completed Missions:" << "[" << " " << "," << " " << "]" << "  " << "{" << " " << "}" << endl;
+		h->load();
 		break;
-	case 3:
+	}
+	case 3: {
 		cout << "Silent Mode" << endl;
 		cout << "Simulation Starts..." << endl;
 		cout << "Simulation ends, Output file created" << endl;
+		h->load();
 		break;
-	case 4:
+	}
+	case 4:{
 		exit(0);
+	}
 	}while (Mode != 4);
 }

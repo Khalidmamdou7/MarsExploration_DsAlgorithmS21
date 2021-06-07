@@ -1,11 +1,10 @@
 #include "MarsStation.h"
 #include <string>
-
+#include"UI.h"
 MarsStation::MarsStation(){
 	WaitingEmergency = new PriorityQueue<Mission>();
 	WaitingPolar = new LinkedQueue<Mission>();
 	WaitingMount = new LinkedQueue<Mission>();
-
 	Events=NULL;
 	EmergencyRovers=NULL;
 	MountRovers=NULL;
@@ -119,3 +118,6 @@ void MarsStation::load() {
 void MarsStation::Simulate() {
 
 }
+void MarsStation::Interface() {
+	pUI->ReadMode();
+ }

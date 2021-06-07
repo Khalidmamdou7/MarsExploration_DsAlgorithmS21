@@ -15,7 +15,7 @@ using namespace std;
 #include "ListADT.h"
 #include "LinkedQueue.h"
 #include "Rover.h"
-
+#include"UI.h"
 
 /*
 MarsStation Class
@@ -48,7 +48,7 @@ private:
 	LinkedQueue<Rover*>* EmergencyRovers;
 	LinkedQueue<Rover*>* MountRovers;
 	LinkedQueue<Rover*>* PolarRovers;
-
+	UI* pUI;
 	int current_day = 1;
 
 	int numof_mount_rovers=0, numof_emer_rovers = 0, numof_polar_rovers = 0;
@@ -72,7 +72,7 @@ public:
 
 	void load();
 	void Simulate();
-	
+	void Interface();
 	PriorityQueue<Mission>* getWEMList();
 	LinkedQueue<Mission>* getWPMList();
 	LinkedQueue<Mission>* getWMMList();

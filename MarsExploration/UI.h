@@ -1,11 +1,13 @@
 #pragma once
+#include"MarsStation.h"
 class UI
 {
 private:
 	int Mode;
-public:
-	UI();
-	void ReadMode();
+	MarsStation* h;
 
+public:
+	UI(MarsStation* g);
+	void ReadMode();
 };
 
