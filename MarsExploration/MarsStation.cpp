@@ -6,6 +6,8 @@ MarsStation::MarsStation(){
 	WaitingPolar = new LinkedQueue<Mission*>();
 	WaitingMount = new LinkedQueue<Mission*>();
 
+	InEx = new PriorityQueue<Mission*>();
+
 	Events=NULL;
 	AvailableER =NULL;
 	AvailableMR =NULL;
@@ -25,52 +27,79 @@ MarsStation::MarsStation(){
 
 }
 
-
+//utility fun 
+float MarsStation::calcpriority() 
+{
+	return 0;
+}
 
 void MarsStation::assign()
 {
-	if (numof_mount_rovers==0 && numof_polar_rovers==0 && numof_emer_rovers==0)
+	if (AvailableER->isEmpty() && AvailableMR->isEmpty() && AvailablePR->isEmpty())
 		return;
 
-	Mission *M;
+	Mission* M;
 	Rover* R;
-	while(WaitingEmergency->dequeue(M))
+	int WD; // Working Days
+	while (!WaitingEmergency->isEmpty())
 	{
-		if (numof_emer_rovers != 0) 
+		if (AvailableER->dequeue(R))
 		{
-			AvailableER->dequeue(R);
-			M->setAssignedRover(R);
+			WaitingEmergency->dequeue(M);
 		}
-		else if(numof_mount_rovers!=0)
+		else if (AvailableMR->dequeue(R))
 		{
-			AvailableMR->dequeue(R);
-			M->setAssignedRover(R);
+			WaitingEmergency->dequeue(M);
 		}
-		else if (numof_polar_rovers != 0)
+		else if (AvailablePR->dequeue(R))
 		{
-			AvailablePR->dequeue(R);
-			M->setAssignedRover(R);
+			WaitingEmergency->dequeue(M);
 		}
-		while(WaitingPolar->dequeue(M))
-		{
-			if (numof_polar_rovers != 0)
-			{
-				AvailablePR->dequeue(R);
-				M->setAssignedRover(R);
-			}
-		}
-		while (WaitingMount->dequeue(M))
-		{
-			if (numof_mount_rovers != 0)
-			{
-				AvailableMR->dequeue(R);
-				M->setAssignedRover(R);
-			}
-		}
+		else
+			break;
+
+		WD = ceil(M->getTargetLocation() / (R->getSpeed() * 25)) + M->getDuration();
+		M->setAssignedRover(R);
+		M->setStatus('E');
+		InEx->enqueue(M, current_day+ WD);
 
 	}
 
-	
+	while (!WaitingPolar->isEmpty())
+	{
+		if (AvailablePR->dequeue(R))
+		{
+			WaitingPolar->dequeue(M);
+			M->setAssignedRover(R);
+			M->setStatus('E');
+			WD = ceil(M->getTargetLocation() / (R->getSpeed() * 25)) + M->getDuration();
+			InEx->enqueue(M, current_day + WD);
+		}
+		else
+			break;
+
+	}
+
+	while (!WaitingMount->isEmpty())
+	{
+		if (AvailableMR->dequeue(R))
+		{
+			WaitingMount->dequeue(M);
+		}
+		else if (AvailableER->dequeue(R))
+		{
+			WaitingMount->dequeue(M);
+		}
+		else
+			break;
+
+		WD = ceil(M->getTargetLocation() / (R->getSpeed() * 25)) + M->getDuration();
+		M->setAssignedRover(R);
+		M->setStatus('E');
+		InEx->enqueue(M, current_day + WD);
+
+	}
+
 }
 
  PriorityQueue<Mission*>* MarsStation::getWEMList()

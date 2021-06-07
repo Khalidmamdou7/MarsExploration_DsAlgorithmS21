@@ -44,6 +44,8 @@ private:
 	LinkedQueue<Mission*>* WaitingPolar;
 	LinkedQueue<Mission*>* WaitingMount;
 
+	PriorityQueue<Mission*>* InEx;
+
 	LinkedQueue<Event*>* Events;
 	LinkedQueue<Rover*>* AvailableER;
 	LinkedQueue<Rover*>* AvailableMR;
@@ -83,6 +85,8 @@ public:
 		load();
 	}
 	void assign();
+	//utility
+	float calcpriority();
 };
 
 

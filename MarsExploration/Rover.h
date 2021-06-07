@@ -21,7 +21,7 @@ public:
 	void setNoMissionsBeforeCheckUp(int);
 
 	/////
-	bool isassigned();
+	//bool isassigned();
 	~Rover();
 };
 
