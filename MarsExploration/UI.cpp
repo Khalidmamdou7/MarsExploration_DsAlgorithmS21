@@ -94,11 +94,11 @@ void UI::ReadMode(MarsStation* pS)
 	LinkedQueue<Rover*>   InCheckupPR(*(pS->getInCheckupPR()));
 	LinkedQueue<Mission*>   CompletedMissions(*(pS->getCompletedMissions()));
 
-	std::cout << "There's three modes: " << endl;
-	std::cout << "enter 1 for interactive Mode" << endl;
-	std::cout << " 2 for step-by-step mode" << endl;
-	std::cout << "3 for silent mode" << endl;
-	std::cout << "4 for Exit" << endl;
+	std::cout << "There's Three Modes: " << endl;
+	std::cout << "Enter 1 For Interactive Mode" << endl;
+	std::cout << "Enter 2 For Step-by-step mode" << endl;
+	std::cout << "Enter 3 For Silent mode" << endl;
+	std::cout << "Enter 4 For Exit" << endl;
 	cin >> Mode;
 
 	switch (Mode)
@@ -126,13 +126,13 @@ void UI::ReadMode(MarsStation* pS)
 			if (WMM.peek(M))
 				std::cout << " , ";
 		}
-		std::cout << "}";
+		std::cout << "}" << endl;
 		std::cout << "------------------------------------------------------" << endl;
 		std::cout << inex << "  In-Execution Missions/Rovers:" << "[" << " ";
 		while (InEx.dequeue(M))
 		{
-			if(M->getType()=='E')
-			std::cout << M->getID() << "/" << (M->getAssignedRover())->getID();
+			if (M->getType() == 'E')
+				std::cout << M->getID() << "/" << (M->getAssignedRover())->getID();
 			if (InEx.peek(M))
 				std::cout << " , ";
 		}
@@ -152,7 +152,7 @@ void UI::ReadMode(MarsStation* pS)
 			if (InEx.peek(M))
 				std::cout << " , ";
 		}
-		std::cout << "}" << " ";
+		std::cout << "}" << " " << endl;
 		std::cout << "------------------------------------------------------" << endl;
 		std::cout << avrovers << "  Available Rovers :" << "[" << " ";
 		while (AvailableER.dequeue(R))
@@ -175,7 +175,7 @@ void UI::ReadMode(MarsStation* pS)
 			if (AvailableMR.peek(R))
 				std::cout << " , ";
 		}
-		std::cout << "}" << " ";
+		std::cout << "}" << " " << endl;
 		std::cout << "------------------------------------------------------" << endl;
 		std::cout << incheck << " In - Checkup Rovers :" << "[" << " ";
 		while (InCheckupER.dequeue(R))
@@ -198,7 +198,7 @@ void UI::ReadMode(MarsStation* pS)
 			if (InCheckupMR.peek(R))
 				std::cout << " , ";
 		}
-		std::cout << "}" << " ";
+		std::cout << "}" << " " << endl;
 		std::cout << "------------------------------------------------------" << endl;
 		std::cout << completedmissions << " Completed Missions:" << "[" << " ";
 		while (CompletedMissions.dequeue(M))
@@ -223,7 +223,7 @@ void UI::ReadMode(MarsStation* pS)
 		}
 		std::cout << "}";
 		pS->load();
-		cout << " Enter any thing to continue: " << " ";
+		cout << " Enter any thing to continue: " << " " << endl;
 		cin >> z;
 		break;
 	}
@@ -250,7 +250,7 @@ void UI::ReadMode(MarsStation* pS)
 			if (WMM.peek(M))
 				std::cout << " , ";
 		}
-		std::cout << "}";
+		std::cout << "}" << endl;
 		std::cout << "------------------------------------------------------" << endl;
 		std::cout << inex << "  In-Execution Missions/Rovers:" << "[" << " ";
 		while (InEx.dequeue(M))
@@ -276,7 +276,7 @@ void UI::ReadMode(MarsStation* pS)
 			if (InEx.peek(M))
 				std::cout << " , ";
 		}
-		std::cout << "}" << " ";
+		std::cout << "}" << " " << endl;
 		std::cout << "------------------------------------------------------" << endl;
 		std::cout << avrovers << "  Available Rovers :" << "[" << " ";
 		while (AvailableER.dequeue(R))
@@ -299,7 +299,7 @@ void UI::ReadMode(MarsStation* pS)
 			if (AvailableMR.peek(R))
 				std::cout << " , ";
 		}
-		std::cout << "}" << " ";
+		std::cout << "}" << " " << endl;
 		std::cout << "------------------------------------------------------" << endl;
 		std::cout << incheck << " In - Checkup Rovers :" << "[" << " ";
 		while (InCheckupER.dequeue(R))
@@ -322,7 +322,7 @@ void UI::ReadMode(MarsStation* pS)
 			if (InCheckupMR.peek(R))
 				std::cout << " , ";
 		}
-		std::cout << "}" << " ";
+		std::cout << "}" << " " << endl;
 		std::cout << "------------------------------------------------------" << endl;
 		std::cout << completedmissions << " Completed Missions:" << "[" << " ";
 		while (CompletedMissions.dequeue(M))
@@ -362,5 +362,4 @@ void UI::ReadMode(MarsStation* pS)
 		exit(0);
 	}
 	}while (Mode != 4);
-
 }
