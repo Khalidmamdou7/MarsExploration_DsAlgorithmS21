@@ -194,14 +194,14 @@ void MarsStation::load() {
 		inputfile >> numof_polar_rovers;
 		inputfile >> numof_emer_rovers;
 
-<<<<<<< HEAD
+
 		if (numof_mount_rovers>0)
 		inputfile >> speed_mount_rovers;
 		if (numof_polar_rovers > 0)
 		inputfile >> speed_polar_rovers;
 		if (numof_emer_rovers > 0)
 		inputfile >> speed_emer_rovers;
-=======
+
 		//Adding MountRovers to MountRovers Queue
 		for (int i = 0; i < numof_mount_rovers; i++) {
 			inputfile >> speed_mount_rovers;
@@ -215,7 +215,6 @@ void MarsStation::load() {
 			Rover* rover_To_add = new Rover('P', polar_rovers_checkup_duration, speed_polar_rovers, numof_missions_before_checkup);
 			AvailablePR->enqueue(rover_To_add, speed_polar_rovers);
 		}
->>>>>>> rovers-speed
 
 		//Adding EmergencyRovers to EmergencyRovers Queue
 		for (int i = 0; i < numof_emer_rovers; i++) {
@@ -267,29 +266,27 @@ void MarsStation::load() {
 		}
 
 
-<<<<<<< HEAD
+
 		//Adding MountRovers to MountRovers Queue
 		for (int i = 0; i < numof_mount_rovers; i++) {
-			Rover* rover_To_add = new Rover('M', mount_rovers_checkup_duration, speed_mount_rovers, numof_missions_before_checkup);
-			AvailableMR->enqueue(rover_To_add);
 		}
 
 		//Adding PolarRovers to PolarRovers Queue
 		for (int i = 0; i < numof_polar_rovers; i++) {
 			Rover* rover_To_add = new Rover('P', polar_rovers_checkup_duration, speed_polar_rovers, numof_missions_before_checkup);
-			AvailablePR->enqueue(rover_To_add);
+			AvailablePR->enqueue(rover_To_add,rover_To_add->getSpeed());
 		}
 
 		//Adding EmergencyRovers to EmergencyRovers Queue
 		for (int i = 0; i < numof_emer_rovers; i++) {
 			Rover* rover_To_add = new Rover('E', emer_rovers_checkup_duration, speed_emer_rovers, numof_missions_before_checkup);
-			AvailableER->enqueue(rover_To_add);
+			AvailableER->enqueue(rover_To_add, rover_To_add->getSpeed());
 		}
 		 end = true;
 		 counter_of_all_rovers = numof_emer_rovers + numof_mount_rovers + numof_polar_rovers;
-=======
+
 		
->>>>>>> rovers-speed
+
 	}
 }
 
