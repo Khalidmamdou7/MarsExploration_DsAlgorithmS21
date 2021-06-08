@@ -64,15 +64,15 @@ void MarsStation::assign()
 	int ED; // Execution Days
 	while (!WaitingEmergency->isEmpty())
 	{
-		if (AvailableER->dequeue(R))
+		if (AvailableER->dequeue(R) && R->getSpeed() != 0)
 		{
 			WaitingEmergency->dequeue(M);
 		}
-		else if (AvailableMR->dequeue(R))
+		else if (AvailableMR->dequeue(R) && R->getSpeed() != 0)
 		{
 			WaitingEmergency->dequeue(M);
 		}
-		else if (AvailablePR->dequeue(R))
+		else if (AvailablePR->dequeue(R) && R->getSpeed() != 0)
 		{
 			WaitingEmergency->dequeue(M);
 		}
@@ -90,7 +90,7 @@ void MarsStation::assign()
 
 	while (!WaitingPolar->isEmpty())
 	{
-		if (AvailablePR->dequeue(R))
+		if (AvailablePR->dequeue(R) && R->getSpeed() != 0)
 		{
 			WaitingPolar->dequeue(M);
 			M->setAssignedRover(R);
@@ -109,11 +109,11 @@ void MarsStation::assign()
 
 	while (!WaitingMount->isEmpty())
 	{
-		if (AvailableMR->dequeue(R))
+		if (AvailableMR->dequeue(R) && R->getSpeed() != 0)
 		{
 			WaitingMount->dequeue(M);
 		}
-		else if (AvailableER->dequeue(R))
+		else if (AvailableER->dequeue(R) && R->getSpeed() != 0)
 		{
 			WaitingMount->dequeue(M);
 		}
@@ -271,10 +271,10 @@ void MarsStation::Simulate() {
 		ExecuteEvents();
 		FinishedExecution();
 		FinishedCheckup();
+		autoP();
 		assign();
-		// Collect Statistics
 		ui->Output(this);
-		// save
+		Save();
 	}
 	
 
@@ -389,7 +389,7 @@ void MarsStation::FinishedCheckup()
 
 
 void MarsStation::autoP() {
-Mission* pM = NULL;
+	Mission* pM = NULL;
 	while (WaitingMount->peek(pM)) {
 		if ((current_day - pM->getFD()) == mount_rovers_autoP) {
 			WaitingMount->dequeue(pM);
@@ -418,8 +418,8 @@ void MarsStation::Save() {
 	outputfile << "Rovers : " << counter_of_all_rovers << "[M:" << counter_of_mount_rovers << "," <<
 		"P:" << counter_of_polar_rovers << "," << "E:" << counter_of_emergency_rovers << "]" << endl;
 
-	outputfile << "Avg Wait :" << (sumWD/ counter_of_all_comp_missons)*100;
-	outputfile << "Avg Exec :" << (sumWD / counter_of_all_comp_missons)*100 <<endl;
-	outputfile << "Auto-promoted" << (AutoPcount / counter_of_mount_comp_missons) * 100;
+	outputfile << "Avg Wait :" << (counter_of_all_comp_missons == 0) ? 0 : (sumWD / counter_of_all_comp_missons)*100;
+	outputfile << "Avg Exec :" << (counter_of_all_comp_missons == 0) ? 0 : (sumED / counter_of_all_comp_missons)*100;
+	outputfile << "Auto-promoted" << (counter_of_mount_comp_missons == 0) ? 0 : (AutoPcount / counter_of_mount_comp_missons) * 100;
 	outputfile.close();
 }

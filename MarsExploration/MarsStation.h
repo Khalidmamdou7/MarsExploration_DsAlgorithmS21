@@ -99,7 +99,6 @@ private:
 public:
 	MarsStation();
 
-	void AutoP();
 	void load();
 	void Simulate();
 	bool FinishedSimulation();
@@ -107,6 +106,12 @@ public:
 	void FinishedExecution();	// Checks if missions finished execution
 	void FinishedCheckup();		// Checks if rovers finished checkup and move it to available rovers
 	int GetCurrentDay();
+	void assign();
+	void autoP();
+	void Save();
+	void justfortest();
+
+
 	PriorityQueue<Mission*>* getWEMList();
 	LinkedQueue<Mission*>* getWPMList();
 	LinkedQueue<Mission*>* getWMMList();
@@ -118,10 +123,6 @@ public:
 	LinkedQueue<Rover*>* getInCheckupMR();
 	LinkedQueue<Rover*>* getInCheckupPR();
 	LinkedQueue<Mission*>* getCompletedMissions();
-	void assign();
-	void autoP();
-	void Save();
-	void justfortest();
 	
 };
 

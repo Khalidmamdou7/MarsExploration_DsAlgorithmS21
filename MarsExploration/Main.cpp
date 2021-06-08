@@ -72,7 +72,7 @@ int main() {
 	MarsStation M;
 	M.load();
 	M.Simulate();
-	
+	M.Save();
 	return 0;
 
 
