@@ -79,7 +79,7 @@ void MarsStation::assign()
 		M->setWD(current_day - M->getFD());
 		M->setED(ED);
 		M->setCD(current_day + ED);
-		InEx->enqueue(M, current_day+ ED);
+		InEx->enqueue(M, -1 *(current_day + ED));
 	}
 
 	while (!WaitingPolar->isEmpty())
@@ -90,7 +90,7 @@ void MarsStation::assign()
 			M->setAssignedRover(R);
 			M->setStatus('E');
 			ED = ceil(M->getTargetLocation() / (R->getSpeed() * 25)) + M->getDuration();
-			InEx->enqueue(M, current_day + ED);
+			InEx->enqueue(M, -1 * (current_day + ED));
 			M->setWD(current_day - M->getFD());
 			M->setED(ED);
 			M->setCD(current_day + ED);
@@ -117,7 +117,7 @@ void MarsStation::assign()
 		ED = ceil(M->getTargetLocation() / (R->getSpeed() * 25)) + M->getDuration();
 		M->setAssignedRover(R);
 		M->setStatus('E');
-		InEx->enqueue(M, current_day + ED);
+		InEx->enqueue(M, -1 *(current_day + ED));
 		M->setWD(current_day - M->getFD());
 		M->setED(ED);
 		M->setCD(current_day + ED);
