@@ -24,9 +24,9 @@ private:
 	LinkedQueue<Mission*>*   WMM;
 	LinkedQueue<Mission*>*   WPM;
 	PriorityQueue<Mission*>* InEx;
-	LinkedQueue<Rover*>*   AvailableER;
-	LinkedQueue<Rover*>*   AvailableMR;
-	LinkedQueue<Rover*>*   AvailablePR;
+	PriorityQueue<Rover*>*   AvailableER;
+	PriorityQueue<Rover*>*   AvailableMR;
+	PriorityQueue<Rover*>*   AvailablePR;
 	LinkedQueue<Rover*>*  InCheckupER;
 	LinkedQueue<Rover*>*   InCheckupMR;
 	LinkedQueue<Rover*>*   InCheckupPR;
