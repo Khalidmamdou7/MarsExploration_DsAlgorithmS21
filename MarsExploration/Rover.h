@@ -2,6 +2,7 @@
 class Rover
 {
 private:
+	static int RoverCount;
 	char Type;				// Rover Type (E: Emergency, P: Polar, M: Mountainous)
 	int CheckupDuration;	// The duration (in days) of checkups that a rover needs to perform after completing N missions.
 	int Speed;
@@ -10,6 +11,7 @@ private:
 	int AvailableDay;		// The Day which the rover will finish checkup
 	////
 	bool isAssigned;
+	int ID;
 	////
 public:
 	Rover(char r_Type, int r_CheckupDuration = 0, int r_Speed = 0, int noMissionsBeforeCheckUp = 0);
@@ -22,7 +24,8 @@ public:
 
 	int getSpeed();
 	void setSpeed(int S);
-
+	int getID();
+	void setID(int id);
 	int getNoMissionsBeforeCheckUp();
 	void setNoMissionsBeforeCheckUp(int);
 

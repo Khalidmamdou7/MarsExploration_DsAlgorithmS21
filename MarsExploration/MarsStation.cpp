@@ -1,7 +1,11 @@
 #include "MarsStation.h"
+#include "UI.h"
 #include <string>
 
 MarsStation::MarsStation(){
+	ui = new UI();
+	ui->ReadMode();
+
 	WaitingEmergency = new PriorityQueue<Mission*>();
 	WaitingPolar = new LinkedQueue<Mission*>();
 	WaitingMount = new LinkedQueue<Mission*>();
@@ -32,9 +36,23 @@ MarsStation::MarsStation(){
 
 	// Data Statistics
 	sumED = 0, sumWD = 0, AutoPcount = 0;
+	counter_of_all_comp_missons = 0 , counter_of_all_rovers=0;
+	counter_of_mount_comp_missons = 0 , counter_of_mount_rovers =0;
+	counter_of_emergency_comp_missons = 0 , counter_of_emergency_rovers;
+	counter_of_polar_comp_missons = 0 , counter_of_polar_rovers =0;
+	sum_of_all_wating_days=0;
 
 }
 
+void MarsStation::justfortest() {
+	Rover* r1 = new Rover('M', 3, 15, 7);
+	Rover* r2 = new Rover('P', 4, 25, 7);
+
+	AvailableMR->enqueue(r1);
+	AvailablePR->enqueue(r2);
+	r1->setID(1);
+	r2->setID(2);
+}
 
 void MarsStation::assign()
 {
@@ -61,13 +79,13 @@ void MarsStation::assign()
 		else
 			break;
 
-		ED = ceil(M->getTargetLocation() / (R->getSpeed() * 25)) + M->getDuration();
+		ED = ceil((M->getTargetLocation()*2) / (R->getSpeed() * 25)) + M->getDuration();
 		M->setAssignedRover(R);
 		M->setStatus('E');
 		M->setWD(current_day - M->getFD());
 		M->setED(ED);
 		M->setCD(current_day + ED);
-		InEx->enqueue(M, current_day+ ED);
+		InEx->enqueue(M, -1 *(current_day + ED));
 	}
 
 	while (!WaitingPolar->isEmpty())
@@ -77,8 +95,8 @@ void MarsStation::assign()
 			WaitingPolar->dequeue(M);
 			M->setAssignedRover(R);
 			M->setStatus('E');
-			ED = ceil(M->getTargetLocation() / (R->getSpeed() * 25)) + M->getDuration();
-			InEx->enqueue(M, current_day + ED);
+			ED = ceil((M->getTargetLocation() * 2) / (R->getSpeed() * 25)) + M->getDuration();
+			InEx->enqueue(M, -1 * (current_day + ED));
 			M->setWD(current_day - M->getFD());
 			M->setED(ED);
 			M->setCD(current_day + ED);
@@ -102,10 +120,10 @@ void MarsStation::assign()
 		else
 			break;
 
-		ED = ceil(M->getTargetLocation() / (R->getSpeed() * 25)) + M->getDuration();
+		ED = ceil((M->getTargetLocation() * 2) / (R->getSpeed() * 25)) + M->getDuration();
 		M->setAssignedRover(R);
 		M->setStatus('E');
-		InEx->enqueue(M, current_day + ED);
+		InEx->enqueue(M, -1 *(current_day + ED));
 		M->setWD(current_day - M->getFD());
 		M->setED(ED);
 		M->setCD(current_day + ED);
@@ -127,9 +145,47 @@ void MarsStation::assign()
  {
 	 return WaitingMount;
  }
+ int MarsStation::GetCurrentDay()
+ {
+	 return current_day;
+ }
+
+ PriorityQueue<Mission*>* MarsStation::getInEx()
+ {
+	 return InEx;
+ }
+ LinkedQueue<Rover*>* MarsStation::getAvailableER()
+ {
+	 return AvailableER;
+ }
+ LinkedQueue<Rover*>* MarsStation::getAvailablePR()
+ {
+	 return AvailablePR;
+ }
+ LinkedQueue<Rover*>* MarsStation::getAvailableMR()
+ {
+	 return AvailableMR;
+ }
+ LinkedQueue<Rover*>* MarsStation::getInCheckupER()
+ {
+	 return InCheckupER;
+ }
+ LinkedQueue<Rover*>* MarsStation::getInCheckupPR()
+ {
+	 return InCheckupPR;
+ }
+ LinkedQueue<Rover*>* MarsStation::getInCheckupMR()
+ {
+	 return InCheckupMR;
+ }
+ LinkedQueue<Mission*>* MarsStation::getCompletedMissions()
+ {
+	 return CompletedMissions;
+ }
+ 
 
 void MarsStation::load() {
-	ifstream inputfile("Input_File", ios::in);
+	ifstream inputfile("Input_File.txt", ios::in);
 	while (!inputfile.eof())
 	{
 		//Reading rovers and their properties to add them to the rovers queue
@@ -205,12 +261,24 @@ void MarsStation::load() {
 	}
 }
 
+bool MarsStation::FinishedSimulation() {
+	return (Events->isEmpty() && WaitingEmergency->isEmpty() && WaitingMount->isEmpty() && WaitingPolar->isEmpty() && InEx->isEmpty() && InCheckupER->isEmpty() && InCheckupMR->isEmpty() && InCheckupPR->isEmpty());
+}
+
 void MarsStation::Simulate() {
 
-	ExecuteEvents();
-	FinishedExecution();
-	FinishedCheckup();
-	assign();
+	while (!FinishedSimulation()) {
+		current_day++;
+		ExecuteEvents();
+		FinishedExecution();
+		FinishedCheckup();
+		assign();
+		// Collect Statistics
+		ui->Output(this);
+		// save
+	}
+	
+
 
 }
 
@@ -226,11 +294,6 @@ void MarsStation::ExecuteEvents()
 		else
 			break;
 	}
-}
-
-void MarsStation::AutoP(){
-
-
 }
 
 // Check every day if missions finished Execution
@@ -283,6 +346,13 @@ void MarsStation::FinishedExecution()
 
 	while (Q1.dequeue(pM)) {
 		CompletedMissions->enqueue(pM);
+		counter_of_all_comp_missons++;
+		sumWD = sumWD + pM->getWD();
+		sumED = sumED + pM->getED();
+
+		if (pM->getType() == 'M') counter_of_mount_comp_missons++;
+		if (pM->getType() == 'E') counter_of_emergency_comp_missons++;
+		if (pM->getType() == 'P') counter_of_polar_comp_missons++;
 	}
 
 }
@@ -308,7 +378,6 @@ void MarsStation::FinishedCheckup()
 		else
 			break;
 	}
-
 	while (InCheckupMR->peek(pR)) {
 		if (pR->Checkuped(current_day)) {
 			InCheckupMR->dequeue(pR);
@@ -319,3 +388,39 @@ void MarsStation::FinishedCheckup()
 	}
 }
 
+
+void MarsStation::autoP() {
+Mission* pM = NULL;
+	while (WaitingMount->peek(pM)) {
+		if ((current_day - pM->getFD()) == mount_rovers_autoP) {
+			WaitingMount->dequeue(pM);
+			WaitingEmergency->enqueue(pM,pM->getPriority());
+			AutoPcount++;
+		}
+	}
+}
+
+
+void MarsStation::Save() {
+	ofstream outputfile("Output_File.txt", ios::out);
+	LinkedQueue<Mission*>* ptr_completed = CompletedMissions;
+	Mission* ptr_hold = NULL;
+	outputfile << "CD" << '\t' << "ID" << '\t' << "FD" << '\t' << "WD" << '\t' << "ED";
+	for (int i = 0; i < counter_of_all_comp_missons; i++) {
+		ptr_completed->dequeue(ptr_hold);
+		outputfile << ptr_hold->getCD() << '\t' << ptr_hold->getID() << '\t' << ptr_hold->getFD() << '\t' << ptr_hold->getWD() << '\t' << ptr_hold->getED();
+	}
+	outputfile << "............................................................................";
+	outputfile << "............................................................................";
+
+	outputfile << "Missions : " << counter_of_all_comp_missons << "[M:" << counter_of_mount_comp_missons << "," <<
+		"P:" << counter_of_polar_comp_missons << "," << "E:" << counter_of_emergency_comp_missons << "]" << endl;
+
+	outputfile << "Rovers : " << counter_of_all_rovers << "[M:" << counter_of_mount_rovers << "," <<
+		"P:" << counter_of_polar_rovers << "," << "E:" << counter_of_emergency_rovers << "]" << endl;
+
+	outputfile << "Avg Wait :" << (sumWD/ counter_of_all_comp_missons)*100;
+	outputfile << "Avg Exec :" << (sumWD / counter_of_all_comp_missons)*100 <<endl;
+	outputfile << "Auto-promoted" << (AutoPcount / counter_of_mount_comp_missons) * 100;
+	outputfile.close();
+}

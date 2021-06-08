@@ -1,7 +1,10 @@
 #include "Rover.h"
 
+int Rover::RoverCount = 0;
+
 Rover::Rover(char r_Type, int r_CheckupDuration, int r_Speed, int n_noMissionsBeforeCheckUp)
 {
+	ID = ++RoverCount;
 	Type = r_Type;
 	CheckupDuration = r_CheckupDuration;
 	Speed = r_Speed;
@@ -37,7 +40,14 @@ int Rover::getNoMissionsBeforeCheckUp() {
 	return noMissionsBeforeCheckUp;
 }
 
-
+void Rover::setID(int id)
+{
+	this->ID = id;
+}
+int Rover::getID()
+{
+	return ID;
+}
 void Rover::setCheckupDuration(int D)
 {
 	this->CheckupDuration = D;

@@ -34,6 +34,9 @@
     <Filter Include="MarsStation">
       <UniqueIdentifier>{490ab110-54d2-47f9-b4d4-8889961ad9cc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="UI Class">
+      <UniqueIdentifier>{79e97b6d-525f-4079-b7aa-48467b8120e6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="QueueADT.h">
@@ -81,6 +84,9 @@
     <ClInclude Include="PrioQueueADT.h">
       <Filter>DataStructures\Interfaces</Filter>
     </ClInclude>
+    <ClInclude Include="UI.h">
+      <Filter>UI Class</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -106,6 +112,9 @@
     </ClCompile>
     <ClCompile Include="MarsStation.cpp">
       <Filter>MarsStation</Filter>
+    </ClCompile>
+    <ClCompile Include="UI.cpp">
+      <Filter>UI Class</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
