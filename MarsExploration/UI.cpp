@@ -60,9 +60,9 @@ void UI::ReadData(MarsStation* pS)
 
 	InEx = new PriorityQueue<Mission*>(*(pS->getInEx()));
 
-	AvailableER = new LinkedQueue<Rover*>(*(pS->getAvailableER()));
-	AvailableMR = new LinkedQueue<Rover*>(*(pS->getAvailableMR()));
-	AvailablePR = new LinkedQueue<Rover*>(*(pS->getAvailablePR()));
+	AvailableER = new PriorityQueue<Rover*> (*(pS->getAvailableER()));
+	AvailableMR = new PriorityQueue<Rover*> (*(pS->getAvailableMR()));
+	AvailablePR = new PriorityQueue<Rover*> (*(pS->getAvailablePR()) );
 
 	InCheckupER = new LinkedQueue<Rover*>(*(pS->getInCheckupER()));
 	InCheckupMR = new LinkedQueue<Rover*>(*(pS->getInCheckupMR()));
@@ -162,9 +162,9 @@ void UI::ReadData(MarsStation* pS)
 
 	InEx = new PriorityQueue<Mission*>(*(pS->getInEx()));
 
-	AvailableER = new LinkedQueue<Rover*>(*(pS->getAvailableER()));
-	AvailableMR = new LinkedQueue<Rover*>(*(pS->getAvailableMR()));
-	AvailablePR = new LinkedQueue<Rover*>(*(pS->getAvailablePR()));
+	AvailableER = new PriorityQueue<Rover*>(*(pS->getAvailableER()));
+	AvailableMR = new PriorityQueue<Rover*>(*(pS->getAvailableMR()));
+	AvailablePR = new PriorityQueue<Rover*>(*(pS->getAvailablePR()));
 
 	InCheckupER = new LinkedQueue<Rover*>(*(pS->getInCheckupER()));
 	InCheckupMR = new LinkedQueue<Rover*>(*(pS->getInCheckupMR()));

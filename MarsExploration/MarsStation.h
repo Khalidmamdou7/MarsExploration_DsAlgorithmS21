@@ -111,9 +111,9 @@ public:
 	LinkedQueue<Mission*>* getWPMList();
 	LinkedQueue<Mission*>* getWMMList();
 	PriorityQueue<Mission*>* getInEx();
-	LinkedQueue<Rover*>* getAvailableER();
-	LinkedQueue<Rover*>* getAvailableMR();
-	LinkedQueue<Rover*>* getAvailablePR();
+	PriorityQueue<Rover*>* getAvailableER();
+	PriorityQueue<Rover*>* getAvailableMR();
+	PriorityQueue<Rover*>* getAvailablePR();
 	LinkedQueue<Rover*>* getInCheckupER();
 	LinkedQueue<Rover*>* getInCheckupMR();
 	LinkedQueue<Rover*>* getInCheckupPR();

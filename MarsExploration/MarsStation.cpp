@@ -17,6 +17,7 @@ MarsStation::MarsStation(){
 	AvailableER = new PriorityQueue<Rover*>();
 	AvailableMR = new PriorityQueue<Rover*>();
 	AvailablePR = new PriorityQueue<Rover*>();
+
 	InCheckupER = new LinkedQueue<Rover*>();
 	InCheckupMR = new LinkedQueue<Rover*>();
 	InCheckupPR = new LinkedQueue<Rover*>();
@@ -48,8 +49,8 @@ void MarsStation::justfortest() {
 	Rover* r1 = new Rover('M', 3, 15, 7);
 	Rover* r2 = new Rover('P', 4, 25, 7);
 
-	AvailableMR->enqueue(r1);
-	AvailablePR->enqueue(r2);
+	AvailableMR->enqueue(r1,r1->getSpeed());
+	AvailablePR->enqueue(r2, r2->getSpeed());
 	r1->setID(1);
 	r2->setID(2);
 }
@@ -154,15 +155,15 @@ void MarsStation::assign()
  {
 	 return InEx;
  }
- LinkedQueue<Rover*>* MarsStation::getAvailableER()
+ PriorityQueue<Rover*>* MarsStation::getAvailableER()
  {
 	 return AvailableER;
  }
- LinkedQueue<Rover*>* MarsStation::getAvailablePR()
+ PriorityQueue<Rover*>* MarsStation::getAvailablePR()
  {
 	 return AvailablePR;
  }
- LinkedQueue<Rover*>* MarsStation::getAvailableMR()
+ PriorityQueue<Rover*>* MarsStation::getAvailableMR()
  {
 	 return AvailableMR;
  }
