@@ -68,12 +68,12 @@ private:
 	LinkedQueue<Rover*>* InCheckupMR;
 	LinkedQueue<Rover*>* InCheckupPR;
 
-
+	bool end;
 	int current_day = 0;
 
 	int numof_mount_rovers=0, numof_emer_rovers = 0, numof_polar_rovers = 0;
 	int speed_mount_rovers=0, speed_emer_rovers = 0, speed_polar_rovers = 0;
-
+	int num_of_mount_missons;
 	int  numof_missions_before_checkup = 0;
 	int  mount_rovers_checkup_duration = 0, polar_rovers_checkup_duration = 0, emer_rovers_checkup_duration = 0;
 
@@ -85,10 +85,10 @@ private:
 	int event_day = 0, misson_id = 0, target_loc = 0, days_needed_for_mission = 0, misson_significance = 0;
 
 	// Used for Statistics
-	int sumED, sumWD;			// sum of the Execution and  the waiting days of the missions
+	float sumED, sumWD;			// sum of the Execution and  the waiting days of the missions
 	int AutoPcount;				// numbers of mountainuous mission which has been auto promoted
 
-	int counter_of_all_comp_missons, counter_of_all_rovers;
+	float counter_of_all_comp_missons, counter_of_all_rovers;
 	int counter_of_mount_comp_missons, counter_of_mount_rovers;
 	int counter_of_emergency_comp_missons , counter_of_emergency_rovers;
 	int counter_of_polar_comp_missons , counter_of_polar_rovers;

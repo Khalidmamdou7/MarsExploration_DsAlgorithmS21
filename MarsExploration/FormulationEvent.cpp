@@ -25,11 +25,11 @@ FormulationEvent::FormulationEvent(int r_eventD, int r_mID, char r_mType, int r_
 
 void FormulationEvent::Execute(MarsStation* pS) {
     // TODO: Create a new mission and add it to the appropriate list
-
+    
    pStation = pS;
     
     Mission* pM = new Mission(mID, mType, FormulationDay, mTargetLocation, mDuration, mSignificance, 'W');
-
+    pM->setWD(pS->GetCurrentDay());
     switch (mType) {
     case 'E': {
         // Add to priority queue of waiting Emergency mission using MarsStation

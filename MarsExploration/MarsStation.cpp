@@ -30,16 +30,16 @@ MarsStation::MarsStation(){
 	mount_rovers_autoP = 0;
 
 	num_events = 0;
-
+	num_of_mount_missons = 0;
 	event_type = 0, misson_type = 0;
 	event_day = 0, misson_id = 0, target_loc = 0, days_needed_for_mission = 0, misson_significance = 0;
 
 	// Data Statistics
 	sumED = 0, sumWD = 0, AutoPcount = 0;
 	counter_of_all_comp_missons = 0 , counter_of_all_rovers=0;
-	counter_of_mount_comp_missons = 0 , counter_of_mount_rovers =0;
-	counter_of_emergency_comp_missons = 0 , counter_of_emergency_rovers;
-	counter_of_polar_comp_missons = 0 , counter_of_polar_rovers =0;
+	counter_of_mount_comp_missons = 0;
+	counter_of_emergency_comp_missons = 0;
+	counter_of_polar_comp_missons = 0;
 	sum_of_all_wating_days=0;
 
 }
@@ -186,15 +186,18 @@ void MarsStation::assign()
 
 void MarsStation::load() {
 	ifstream inputfile("Input_File.txt", ios::in);
-	while (!inputfile.eof())
+	while (!end)
 	{
 		//Reading rovers and their properties to add them to the rovers queue
 		inputfile >> numof_mount_rovers;
 		inputfile >> numof_polar_rovers;
 		inputfile >> numof_emer_rovers;
 
+		if (numof_mount_rovers>0)
 		inputfile >> speed_mount_rovers;
+		if (numof_polar_rovers > 0)
 		inputfile >> speed_polar_rovers;
+		if (numof_emer_rovers > 0)
 		inputfile >> speed_emer_rovers;
 
 		inputfile >> numof_missions_before_checkup;
@@ -215,7 +218,7 @@ void MarsStation::load() {
 			Event* E1 = NULL;
 			if (event_type == 'F') {
 				//This is formulation event
-				inputfile >> misson_type;
+				inputfile >> misson_type; if (misson_type == 'M')  num_of_mount_missons++;
 				inputfile >> event_day;
 				inputfile >> misson_id;
 				inputfile >> target_loc;
@@ -257,6 +260,8 @@ void MarsStation::load() {
 			Rover* rover_To_add = new Rover('E', emer_rovers_checkup_duration, speed_emer_rovers, numof_missions_before_checkup);
 			AvailableER->enqueue(rover_To_add);
 		}
+		 end = true;
+		 counter_of_all_rovers = numof_emer_rovers + numof_mount_rovers + numof_polar_rovers;
 	}
 }
 
@@ -266,7 +271,7 @@ bool MarsStation::FinishedSimulation() {
 
 void MarsStation::Simulate() {
 
-	while (!FinishedSimulation()) {
+	while (!FinishedSimulation()  && counter_of_all_rovers!=0) {
 		current_day++;
 		ExecuteEvents();
 		FinishedExecution();
@@ -274,9 +279,10 @@ void MarsStation::Simulate() {
 		autoP();
 		assign();
 		ui->Output(this);
-		//Save();
+
+
 	}
-	
+	Save();
 
 
 }
@@ -290,6 +296,11 @@ void MarsStation::ExecuteEvents()
 			Events->dequeue(pE);
 			pE->Execute(this);
 		}
+		
+		else if (pE->getFormulationDay() < current_day) {
+		Events->dequeue(pE);
+		}
+		
 		else
 			break;
 	}
@@ -404,22 +415,40 @@ void MarsStation::Save() {
 	ofstream outputfile("Output_File.txt", ios::out);
 	LinkedQueue<Mission*>* ptr_completed = CompletedMissions;
 	Mission* ptr_hold = NULL;
-	outputfile << "CD" << '\t' << "ID" << '\t' << "FD" << '\t' << "WD" << '\t' << "ED";
+	outputfile << "CD" << '\t' << "ID" << '\t' << "FD" << '\t' << "WD" << '\t' << "ED" << endl;
 	for (int i = 0; i < counter_of_all_comp_missons; i++) {
 		ptr_completed->dequeue(ptr_hold);
-		outputfile << ptr_hold->getCD() << '\t' << ptr_hold->getID() << '\t' << ptr_hold->getFD() << '\t' << ptr_hold->getWD() << '\t' << ptr_hold->getED();
+		outputfile << ptr_hold->getCD() << '\t' << ptr_hold->getID() << '\t' << ptr_hold->getFD() << '\t' << ptr_hold->getWD() << '\t' << ptr_hold->getED() << endl;
 	}
-	outputfile << "............................................................................";
-	outputfile << "............................................................................";
+	outputfile << "............................................................................" <<endl;
+	outputfile << "............................................................................" <<endl;
 
-	outputfile << "Missions : " << counter_of_all_comp_missons << "[M:" << counter_of_mount_comp_missons << "," <<
+	outputfile << "Missions: " << counter_of_all_comp_missons <<"  "<< "[M:" << counter_of_mount_comp_missons << "," <<
 		"P:" << counter_of_polar_comp_missons << "," << "E:" << counter_of_emergency_comp_missons << "]" << endl;
 
-	outputfile << "Rovers : " << counter_of_all_rovers << "[M:" << counter_of_mount_rovers << "," <<
-		"P:" << counter_of_polar_rovers << "," << "E:" << counter_of_emergency_rovers << "]" << endl;
+	
 
-	outputfile << "Avg Wait :" << (counter_of_all_comp_missons == 0) ? 0 : (sumWD / counter_of_all_comp_missons)*100;
-	outputfile << "Avg Exec :" << (counter_of_all_comp_missons == 0) ? 0 : (sumED / counter_of_all_comp_missons)*100;
-	outputfile << "Auto-promoted" << (counter_of_mount_comp_missons == 0) ? 0 : (AutoPcount / counter_of_mount_comp_missons) * 100;
+	outputfile << "Rovers: " << counter_of_all_rovers<< "  " << "[M:" << numof_mount_rovers << "," <<
+		"P:" << numof_polar_rovers << "," << "E:" << numof_emer_rovers << "]" << endl;
+
+
+
+	if (counter_of_all_comp_missons != 0) {
+		outputfile << "Avg Wait: " << (sumWD / counter_of_all_comp_missons);
+		outputfile << ',' << '\t';
+		outputfile << "Avg Execution: " << (sumED / counter_of_all_comp_missons);
+		outputfile << endl;
+		outputfile << "Auto-promoted: " <<  (AutoPcount / num_of_mount_missons) * 100;
+		outputfile << "%";
+	}
+	else {
+		outputfile << "Avg Wait: " << 0;
+		outputfile << '\t' << ',';
+		outputfile << "Avg Execution: " << 0;
+		outputfile << endl;
+		outputfile << "Auto-promoted: " << 0;
+		outputfile << "%";
+	
+	}
 	outputfile.close();
 }

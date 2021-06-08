@@ -7,7 +7,7 @@ CancelEvent::CancelEvent(int r_eventD, int r_mID) : Event(r_eventD, r_mID) {
 void CancelEvent::Execute(MarsStation* pS)
 {
     // TODO: Create a new mission and add it to the appropriate list
-
+    
     pStation = pS;
 
     //Cancellation is always for mountinuios missions only 
@@ -28,7 +28,7 @@ void CancelEvent::Execute(MarsStation* pS)
     else {
         traversal = saveFirstMisson;
         pML->enqueue(traversal);
-        //pML->dequeue(traversal);
+        
         //Now traversal pointer looks at the second entry in the queue
         do {
             //being in this loop means that the queue has not come to a complete round yet
@@ -39,7 +39,7 @@ void CancelEvent::Execute(MarsStation* pS)
             }
             else {
                 pML->enqueue(traversal);
-                // pML->dequeue(traversal);
+            
             }
             pML->peek(traversal);
         } while (traversal->getID() != saveFirstMisson->getID());

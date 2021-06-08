@@ -398,9 +398,10 @@ void UI::EveryDayOutput() {
 
 void UI::InteractiveMode()
 {
+	getchar();
 	EveryDayOutput();
-	cout << "\nEnter any thing to continue...\n" << endl;
-	cin >> z;
+	cout << endl;
+	
 }
 void UI::StepByStepMode()
 {
