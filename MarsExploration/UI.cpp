@@ -11,6 +11,7 @@ UI::UI()
 {
 	pS = NULL;
 	Mode = 0;
+	Printed = false;
 }
 
 void UI::Output(MarsStation* pS)
@@ -50,6 +51,8 @@ void UI::ReadData(MarsStation* pS)
 {
 	//Emergency Missions are in PriorityQueue
 	//Other Missions are in LinkedQueue
+
+	this->pS = pS;
 
 	WEM = new PriorityQueue<Mission*>(*(pS->getWEMList()));
 	WMM = new LinkedQueue<Mission*>(*(pS->getWMMList()));
@@ -170,172 +173,11 @@ void UI::ReadData(MarsStation* pS)
 	CompletedMissions = new LinkedQueue<Mission*>(*(pS->getCompletedMissions()));
 
 }
-void UI::InteractiveMode()
-{
-	std::cout << "------------------------------------------------------" << endl;
-	std::cout << inex << "  In-Execution Missions/Rovers:" << " ";
-	if (inexE != 0)
-	{
-		std::cout << "[" << " ";
-		while (InEx->dequeue(M))
-		{
-			if (M->getType() == 'E')
-				std::cout << M->getID() << "/" << (M->getAssignedRover())->getID();
-			if (InEx->peek(M))
-				std::cout << " , ";
-		}
-		std::cout << "]" << " ";
-	}
-	if (inexP != 0)
-	{
-		std::cout << "(";
-		while (InEx->dequeue(M))
-		{
-			if (M->getType() == 'P')
-				std::cout << M->getID() << "/" << (M->getAssignedRover())->getID();
-			if (InEx->peek(M))
-				std::cout << " , ";
-		}
-		std::cout << ")" << " ";
-	}
-	if (inexM != 0)
-	{
-		std::cout << "{";
-		while (InEx->dequeue(M))
-		{
-			if (M->getType() == 'M')
-				std::cout << M->getID() << "/" << (M->getAssignedRover())->getID();
-			if (InEx->peek(M))
-				std::cout << " , ";
-		}
-		std::cout << "}" << " " << endl;;
-	}
-	if (inex == 0)
-	{
-		std::cout << endl;
-	}
-	std::cout << "------------------------------------------------------" << endl;
-	std::cout << avrovers << "  Available Rovers :" << "";
-	if (!AvailableER->isEmpty())
-	{
-		std::cout << "[" << " ";
-		while (AvailableER->dequeue(R))
-		{
-			std::cout << R->getID();
-			if (AvailableER->peek(R))
-				std::cout << " , ";
-		}
-		std::cout << "]" << " ";
-	}
-	if (!AvailablePR->isEmpty())
-	{
-		std::cout << "(" << " ";
-		while (AvailablePR->dequeue(R))
-		{
-			std::cout << R->getID();
-			if (AvailablePR->peek(R))
-				std::cout << " , ";
-		}
-		std::cout << ")" << " ";
-	}
-	if (!AvailableMR->isEmpty())
-	{
-		std::cout << "{" << " ";
-		while (AvailableMR->dequeue(R))
-		{
-			std::cout << R->getID();
-			if (AvailableMR->peek(R))
-				std::cout << " , ";
-		}
-		std::cout << "}" << " " << endl;
-	}
-	if (avrovers == 0)
-	{
-		std::cout << endl;
-	}
-	std::cout << "------------------------------------------------------" << endl;
-	std::cout << incheck << " In - Checkup Rovers :" << " ";
-	if (!InCheckupER->isEmpty())
-	{
-		std::cout << "[" << " ";
-		while (InCheckupER->dequeue(R))
-		{
-			std::cout << R->getID();
-			if (InCheckupER->peek(R))
-				std::cout << " , ";
-		}
-		std::cout << "]" << " ";
-	}
-	if (!InCheckupPR->isEmpty())
-	{
-		std::cout << "(";
-		while (InCheckupPR->dequeue(R))
-		{
-			std::cout << R->getID();
-			if (InCheckupPR->peek(R))
-				std::cout << " , ";
-		}
-		std::cout << ")" << " ";
-	}
-	if (!InCheckupMR->isEmpty())
-	{
-		std::cout << "{";
-		while (InCheckupMR->dequeue(R))
-		{
-			std::cout << R->getID();
-			if (InCheckupMR->peek(R))
-				std::cout << " , ";
-		}
-		std::cout << "}" << " " << endl;
-	}
-	if (incheck == 0)
-	{
-		std::cout << endl;
-	}
-	std::cout << "------------------------------------------------------" << endl;
-	std::cout << completedmissions << " Completed Missions:" << " ";
-	if (compE != 0)
-	{
-		std::cout << "[" << " ";
-		while (CompletedMissions->dequeue(M))
-		{
-			if (M->getType() == 'E')
-				std::cout << M->getID() << "/" << (M->getAssignedRover())->getID();
-			if (CompletedMissions->peek(M))
-				std::cout << " , ";
-		}
-		std::cout << "]" << " ";
-	}
-	if (compP != 0)
-	{
-		std::cout << "(";
-		while (CompletedMissions->dequeue(M))
-		{
-			if (M->getType() == 'P')
-				std::cout << M->getID() << "/" << (M->getAssignedRover())->getID();
-			if (CompletedMissions->peek(M))
-				std::cout << " , ";
-		}
-		std::cout << ")" << " ";
-	}
-	if (compM != 0)
-	{
-		std::cout << "{";
-		while (CompletedMissions->dequeue(M))
-		{
-			if (M->getType() == 'M')
-				std::cout << M->getID() << "/" << (M->getAssignedRover())->getID();
-			if (CompletedMissions->peek(M))
-				std::cout << " , ";
-		}
-		std::cout << "}" << " " << endl;
-	}
-	cout << " Enter any thing to continue: " << " " << endl;
-	cin >> z;
-}
-void UI::StepByStepMode()
-{
+
+void UI::EveryDayOutput() {
+	cout << "=================" << endl;
 	std::cout << "Current Day : " << pS->GetCurrentDay() << endl;
+	cout << "=================" << endl;
 	std::cout << wem << "  Waiting Missions :" << " ";
 	if (!WEM->isEmpty())
 	{
@@ -378,37 +220,47 @@ void UI::StepByStepMode()
 	std::cout << inex << "  In-Execution Missions/Rovers:" << " ";
 	if (inexE != 0)
 	{
+		PriorityQueue<Mission*> InExCopy(*InEx);
 		std::cout << "[" << " ";
-		while (InEx->dequeue(M))
+		while (InExCopy.dequeue(M))
 		{
-			if (M->getType() == 'E')
+			if (M->getType() == 'E') {
 				std::cout << M->getID() << "/" << (M->getAssignedRover())->getID();
-			if (InEx->peek(M))
-				std::cout << " , ";
+				inexE--;
+				if (inexE > 0)
+					std::cout << " , ";
+			}
 		}
 		std::cout << "]" << " ";
 	}
+
 	if (inexP != 0)
 	{
+		PriorityQueue<Mission*> InExCopy(*InEx);
 		std::cout << "(";
-		while (InEx->dequeue(M))
+		while (InExCopy.dequeue(M))
 		{
-			if (M->getType() == 'P')
+			if (M->getType() == 'P') {
 				std::cout << M->getID() << "/" << (M->getAssignedRover())->getID();
-			if (InEx->peek(M))
-				std::cout << " , ";
+				inexP--;
+				if (inexP > 0)
+					std::cout << " , ";
+			}
 		}
 		std::cout << ")" << " ";
 	}
 	if (inexM != 0)
 	{
+		PriorityQueue<Mission*> InExCopy(*InEx);
 		std::cout << "{";
-		while (InEx->dequeue(M))
+		while (InExCopy.dequeue(M))
 		{
-			if (M->getType() == 'M')
+			if (M->getType() == 'M') {
 				std::cout << M->getID() << "/" << (M->getAssignedRover())->getID();
-			if (InEx->peek(M))
-				std::cout << " , ";
+				inexM--;
+				if (inexM > 0)
+					std::cout << " , ";
+			}
 		}
 		std::cout << "}" << " " << endl;;
 	}
@@ -449,8 +301,9 @@ void UI::StepByStepMode()
 			if (AvailableMR->peek(R))
 				std::cout << " , ";
 		}
-		std::cout << "}" << " " << endl;
+		std::cout << "}" << " ";
 	}
+	std::cout << endl;
 	if (avrovers == 0)
 	{
 		std::cout << endl;
@@ -499,48 +352,76 @@ void UI::StepByStepMode()
 	if (compE != 0)
 	{
 		std::cout << "[" << " ";
-		while (CompletedMissions->dequeue(M))
+		LinkedQueue<Mission*> CMCopy(*CompletedMissions);
+		while (CMCopy.dequeue(M))
 		{
-			if (M->getType() == 'E')
-				std::cout << M->getID() << "/" << (M->getAssignedRover())->getID();
-			if (CompletedMissions->peek(M))
-				std::cout << " , ";
+			if (M->getType() == 'E') {
+				std::cout << M->getID();
+				compE--;
+				if (compE > 0)
+					std::cout << " , ";
+			}
 		}
 		std::cout << "]" << " ";
 	}
 	if (compP != 0)
 	{
+		LinkedQueue<Mission*> CMCopy(*CompletedMissions);
 		std::cout << "(";
-		while (CompletedMissions->dequeue(M))
+		while (CMCopy.dequeue(M))
 		{
-			if (M->getType() == 'P')
-				std::cout << M->getID() << "/" << (M->getAssignedRover())->getID();
-			if (CompletedMissions->peek(M))
-				std::cout << " , ";
+			if (M->getType() == 'P') {
+				std::cout << M->getID();
+				compP--;
+				if (compP > 0)
+					std::cout << " , ";
+			}
 		}
 		std::cout << ")" << " ";
 	}
 	if (compM != 0)
 	{
+		LinkedQueue<Mission*> CMCopy(*CompletedMissions);
 		std::cout << "{";
-		while (CompletedMissions->dequeue(M))
+		while (CMCopy.dequeue(M))
 		{
-			if (M->getType() == 'M')
-				std::cout << M->getID() << "/" << (M->getAssignedRover())->getID();
-			if (CompletedMissions->peek(M))
-				std::cout << " , ";
+			if (M->getType() == 'M') {
+				std::cout << M->getID();
+				compM--;
+				if (compM > 0)
+					std::cout << " , ";
+			}
 		}
 		std::cout << "}" << " " << endl;
 	}
+}
+
+void UI::InteractiveMode()
+{
+	EveryDayOutput();
+	cout << "\nEnter any thing to continue...\n" << endl;
+	cin >> z;
+}
+void UI::StepByStepMode()
+{
+	EveryDayOutput();
 	std::cout.flush();
-	this_thread::sleep_for(chrono::milliseconds(10000));
+	this_thread::sleep_for(chrono::milliseconds(1000));
 }
 void UI::SilentMode()
 {
-	std::cout << "Silent Mode" << endl;
-	std::cout << "Simulation Starts..." << endl;
-	std::cout << "Simulation ends, Output file created" << endl;
+	if (!Printed) {
+		std::cout << "Silent Mode" << endl;
+		std::cout << "Simulation Starts..." << endl;
+		std::cout << "Simulation ends, Output file created" << endl;
+		Printed = true;
+	}
+	
 
+}
+bool UI::getPrinted() const
+{
+	return Printed;
 }
 UI::~UI()
 {

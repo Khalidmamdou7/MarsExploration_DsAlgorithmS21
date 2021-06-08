@@ -18,7 +18,7 @@ class UI
 private:
 	MarsStation* pS;
 	int Mode;
-
+	bool Printed;
 	// Variables needed for output
 	PriorityQueue<Mission*>* WEM;
 	LinkedQueue<Mission*>*   WMM;
@@ -41,9 +41,11 @@ public:
 	void Output(MarsStation*);
 	int ReadMode();
 	void ReadData(MarsStation* pS);
+	void EveryDayOutput();
 	void InteractiveMode();
 	void StepByStepMode();
 	void SilentMode();
+	bool getPrinted() const;
 	~UI();
 };
 

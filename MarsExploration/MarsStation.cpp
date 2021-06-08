@@ -80,7 +80,7 @@ void MarsStation::assign()
 		M->setWD(current_day - M->getFD());
 		M->setED(ED);
 		M->setCD(current_day + ED);
-		InEx->enqueue(M, current_day+ ED);
+		InEx->enqueue(M, -1 *(current_day + ED));
 	}
 
 	while (!WaitingPolar->isEmpty())
@@ -91,7 +91,7 @@ void MarsStation::assign()
 			M->setAssignedRover(R);
 			M->setStatus('E');
 			ED = ceil(M->getTargetLocation() / (R->getSpeed() * 25)) + M->getDuration();
-			InEx->enqueue(M, current_day + ED);
+			InEx->enqueue(M, -1 * (current_day + ED));
 			M->setWD(current_day - M->getFD());
 			M->setED(ED);
 			M->setCD(current_day + ED);
@@ -118,7 +118,7 @@ void MarsStation::assign()
 		ED = ceil(M->getTargetLocation() / (R->getSpeed() * 25)) + M->getDuration();
 		M->setAssignedRover(R);
 		M->setStatus('E');
-		InEx->enqueue(M, current_day + ED);
+		InEx->enqueue(M, -1 *(current_day + ED));
 		M->setWD(current_day - M->getFD());
 		M->setED(ED);
 		M->setCD(current_day + ED);
@@ -180,7 +180,7 @@ void MarsStation::assign()
  
 
 void MarsStation::load() {
-	ifstream inputfile("Input_File", ios::in);
+	ifstream inputfile("Input_File.txt", ios::in);
 	while (!inputfile.eof())
 	{
 		//Reading rovers and their properties to add them to the rovers queue
@@ -255,15 +255,24 @@ void MarsStation::load() {
 	}
 }
 
+bool MarsStation::FinishedSimulation() {
+	return (Events->isEmpty() && WaitingEmergency->isEmpty() && WaitingMount->isEmpty() && WaitingPolar->isEmpty() && InEx->isEmpty() && InCheckupER->isEmpty() && InCheckupMR->isEmpty() && InCheckupPR->isEmpty());
+}
+
 void MarsStation::Simulate() {
 
-	ExecuteEvents();
-	FinishedExecution();
-	FinishedCheckup();
-	assign();
-	// Collect Statistics
-	ui->Output(this);
-	// save
+	while (!FinishedSimulation()) {
+		current_day++;
+		ExecuteEvents();
+		FinishedExecution();
+		FinishedCheckup();
+		assign();
+		// Collect Statistics
+		ui->Output(this);
+		// save
+	}
+	
+
 
 }
 

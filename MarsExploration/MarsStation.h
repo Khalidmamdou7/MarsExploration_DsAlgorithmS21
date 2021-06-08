@@ -69,7 +69,7 @@ private:
 	LinkedQueue<Rover*>* InCheckupPR;
 
 
-	int current_day = 1;
+	int current_day = 0;
 
 	int numof_mount_rovers=0, numof_emer_rovers = 0, numof_polar_rovers = 0;
 	int speed_mount_rovers=0, speed_emer_rovers = 0, speed_polar_rovers = 0;
@@ -97,6 +97,7 @@ public:
 	void AutoP();
 	void load();
 	void Simulate();
+	bool FinishedSimulation();
 	void ExecuteEvents();		// Execute the events that should be executed at that day
 	void FinishedExecution();	// Checks if missions finished execution
 	void FinishedCheckup();		// Checks if rovers finished checkup and move it to available rovers
