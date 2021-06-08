@@ -88,6 +88,11 @@ private:
 	int sumED, sumWD;			// sum of the Execution and  the waiting days of the missions
 	int AutoPcount;				// numbers of mountainuous mission which has been auto promoted
 
+	int counter_of_all_comp_missons, counter_of_all_rovers;
+	int counter_of_mount_comp_missons, counter_of_mount_rovers;
+	int counter_of_emergency_comp_missons , counter_of_emergency_rovers;
+	int counter_of_polar_comp_missons , counter_of_polar_rovers;
+	int sum_of_all_wating_days;
 	////////////////////////////////////////////END DECLERATION//////////////////////////////////////////
 
 
@@ -115,7 +120,7 @@ public:
 	LinkedQueue<Mission*>* getCompletedMissions();
 	void assign();
 	void autoP();
-
+	void Save();
 	void justfortest();
 	
 };

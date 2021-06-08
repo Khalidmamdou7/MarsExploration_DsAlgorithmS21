@@ -36,6 +36,11 @@ MarsStation::MarsStation(){
 
 	// Data Statistics
 	sumED = 0, sumWD = 0, AutoPcount = 0;
+	counter_of_all_comp_missons = 0 , counter_of_all_rovers=0;
+	counter_of_mount_comp_missons = 0 , counter_of_mount_rovers =0;
+	counter_of_emergency_comp_missons = 0 , counter_of_emergency_rovers;
+	counter_of_polar_comp_missons = 0 , counter_of_polar_rovers =0;
+	sum_of_all_wating_days=0;
 
 }
 
@@ -290,11 +295,6 @@ void MarsStation::ExecuteEvents()
 	}
 }
 
-void MarsStation::AutoP(){
-
-
-}
-
 // Check every day if missions finished Execution
 void MarsStation::FinishedExecution()
 {
@@ -345,6 +345,13 @@ void MarsStation::FinishedExecution()
 
 	while (Q1.dequeue(pM)) {
 		CompletedMissions->enqueue(pM);
+		counter_of_all_comp_missons++;
+		sumWD = sumWD + pM->getWD();
+		sumED = sumED + pM->getED();
+
+		if (pM->getType() == 'M') counter_of_mount_comp_missons++;
+		if (pM->getType() == 'E') counter_of_emergency_comp_missons++;
+		if (pM->getType() == 'P') counter_of_polar_comp_missons++;
 	}
 
 }
@@ -370,7 +377,6 @@ void MarsStation::FinishedCheckup()
 		else
 			break;
 	}
-
 	while (InCheckupMR->peek(pR)) {
 		if (pR->Checkuped(current_day)) {
 			InCheckupMR->dequeue(pR);
@@ -388,6 +394,32 @@ Mission* pM = NULL;
 		if ((current_day - pM->getFD()) == mount_rovers_autoP) {
 			WaitingMount->dequeue(pM);
 			WaitingEmergency->enqueue(pM,pM->getPriority());
+			AutoPcount++;
 		}
 	}
+}
+
+
+void MarsStation::Save() {
+	ofstream outputfile("Output_File.txt", ios::out);
+	LinkedQueue<Mission*>* ptr_completed = CompletedMissions;
+	Mission* ptr_hold = NULL;
+	outputfile << "CD" << '\t' << "ID" << '\t' << "FD" << '\t' << "WD" << '\t' << "ED";
+	for (int i = 0; i < counter_of_all_comp_missons; i++) {
+		ptr_completed->dequeue(ptr_hold);
+		outputfile << ptr_hold->getCD() << '\t' << ptr_hold->getID() << '\t' << ptr_hold->getFD() << '\t' << ptr_hold->getWD() << '\t' << ptr_hold->getED();
+	}
+	outputfile << "............................................................................";
+	outputfile << "............................................................................";
+
+	outputfile << "Missions : " << counter_of_all_comp_missons << "[M:" << counter_of_mount_comp_missons << "," <<
+		"P:" << counter_of_polar_comp_missons << "," << "E:" << counter_of_emergency_comp_missons << "]" << endl;
+
+	outputfile << "Rovers : " << counter_of_all_rovers << "[M:" << counter_of_mount_rovers << "," <<
+		"P:" << counter_of_polar_rovers << "," << "E:" << counter_of_emergency_rovers << "]" << endl;
+
+	outputfile << "Avg Wait :" << (sumWD/ counter_of_all_comp_missons)*100;
+	outputfile << "Avg Exec :" << (sumWD / counter_of_all_comp_missons)*100 <<endl;
+	outputfile << "Auto-promoted" << (AutoPcount / counter_of_mount_comp_missons) * 100;
+	outputfile.close();
 }
