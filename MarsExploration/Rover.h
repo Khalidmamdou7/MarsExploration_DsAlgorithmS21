@@ -2,6 +2,7 @@
 class Rover
 {
 private:
+	static int RoverCount;
 	char Type;				// Rover Type (E: Emergency, P: Polar, M: Mountainous)
 	int CheckupDuration;	// The duration (in days) of checkups that a rover needs to perform after completing N missions.
 	int Speed;

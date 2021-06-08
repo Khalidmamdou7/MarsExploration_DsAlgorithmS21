@@ -179,7 +179,7 @@ void MarsStation::assign()
  
 
 void MarsStation::load() {
-	ifstream inputfile("Input_File", ios::in);
+	ifstream inputfile("Input_File.txt", ios::in);
 	while (!inputfile.eof())
 	{
 		//Reading rovers and their properties to add them to the rovers queue
@@ -254,15 +254,24 @@ void MarsStation::load() {
 	}
 }
 
+bool MarsStation::FinishedSimulation() {
+	return (Events->isEmpty() && WaitingEmergency->isEmpty() && WaitingMount->isEmpty() && WaitingPolar->isEmpty() && InEx->isEmpty() && InCheckupER->isEmpty() && InCheckupMR->isEmpty() && InCheckupPR->isEmpty());
+}
+
 void MarsStation::Simulate() {
 
-	ExecuteEvents();
-	FinishedExecution();
-	FinishedCheckup();
-	assign();
-	// Collect Statistics
-	ui->Output(this);
-	// save
+	while (!FinishedSimulation()) {
+		current_day++;
+		ExecuteEvents();
+		FinishedExecution();
+		FinishedCheckup();
+		assign();
+		// Collect Statistics
+		ui->Output(this);
+		// save
+	}
+	
+
 
 }
 

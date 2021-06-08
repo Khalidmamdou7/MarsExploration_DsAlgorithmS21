@@ -16,6 +16,7 @@ UI::UI()
 void UI::Output(MarsStation* pS)
 {
 	ReadData(pS);
+	cout << endl;
 	switch (Mode)
 	{
 	case 1:
@@ -50,6 +51,8 @@ void UI::ReadData(MarsStation* pS)
 {
 	//Emergency Missions are in PriorityQueue
 	//Other Missions are in LinkedQueue
+
+	this->pS = pS;
 
 	WEM = new PriorityQueue<Mission*>(*(pS->getWEMList()));
 	WMM = new LinkedQueue<Mission*>(*(pS->getWMMList()));
@@ -172,6 +175,21 @@ void UI::ReadData(MarsStation* pS)
 }
 void UI::InteractiveMode()
 {
+	cout << "=================" << endl;
+	std::cout << "Current Day : " << pS->GetCurrentDay() << endl;
+	cout << "=================" << endl;
+	std::cout << wem << "  Waiting Missions :" << " ";
+	if (!WEM->isEmpty())
+	{
+		std::cout << "[" << " ";
+		while (WEM->dequeue(M))
+		{
+			std::cout << M->getID();
+			if (WEM->peek(M))
+				std::cout << " , ";
+		}
+		std::cout << "]" << " ";
+	}
 	std::cout << "------------------------------------------------------" << endl;
 	std::cout << inex << "  In-Execution Missions/Rovers:" << " ";
 	if (inexE != 0)
@@ -335,7 +353,11 @@ void UI::InteractiveMode()
 }
 void UI::StepByStepMode()
 {
+
+
+	cout << "=================" << endl;
 	std::cout << "Current Day : " << pS->GetCurrentDay() << endl;
+	cout << "==============" << endl;
 	std::cout << wem << "  Waiting Missions :" << " ";
 	if (!WEM->isEmpty())
 	{
@@ -378,37 +400,47 @@ void UI::StepByStepMode()
 	std::cout << inex << "  In-Execution Missions/Rovers:" << " ";
 	if (inexE != 0)
 	{
+		PriorityQueue<Mission*> InExCopy(*InEx);
 		std::cout << "[" << " ";
-		while (InEx->dequeue(M))
+		while (InExCopy.dequeue(M))
 		{
-			if (M->getType() == 'E')
+			if (M->getType() == 'E') {
 				std::cout << M->getID() << "/" << (M->getAssignedRover())->getID();
-			if (InEx->peek(M))
-				std::cout << " , ";
+				inexE--;
+				if (inexE > 0)
+					std::cout << " , ";
+			}
 		}
 		std::cout << "]" << " ";
 	}
+	
 	if (inexP != 0)
 	{
+		PriorityQueue<Mission*> InExCopy(*InEx);
 		std::cout << "(";
-		while (InEx->dequeue(M))
+		while (InExCopy.dequeue(M))
 		{
-			if (M->getType() == 'P')
+			if (M->getType() == 'P') {
 				std::cout << M->getID() << "/" << (M->getAssignedRover())->getID();
-			if (InEx->peek(M))
-				std::cout << " , ";
+				inexP--;
+				if (inexP > 0)
+					std::cout << " , ";
+			}
 		}
 		std::cout << ")" << " ";
 	}
 	if (inexM != 0)
 	{
+		PriorityQueue<Mission*> InExCopy(*InEx);
 		std::cout << "{";
-		while (InEx->dequeue(M))
+		while (InExCopy.dequeue(M))
 		{
-			if (M->getType() == 'M')
+			if (M->getType() == 'M') {
 				std::cout << M->getID() << "/" << (M->getAssignedRover())->getID();
-			if (InEx->peek(M))
-				std::cout << " , ";
+				inexM--;
+				if (inexM > 0)
+					std::cout << " , ";
+			}
 		}
 		std::cout << "}" << " " << endl;;
 	}
@@ -449,8 +481,9 @@ void UI::StepByStepMode()
 			if (AvailableMR->peek(R))
 				std::cout << " , ";
 		}
-		std::cout << "}" << " " << endl;
+		std::cout << "}" << " ";
 	}
+	std::cout << endl;
 	if (avrovers == 0)
 	{
 		std::cout << endl;
@@ -502,7 +535,7 @@ void UI::StepByStepMode()
 		while (CompletedMissions->dequeue(M))
 		{
 			if (M->getType() == 'E')
-				std::cout << M->getID() << "/" << (M->getAssignedRover())->getID();
+				std::cout << M->getID();
 			if (CompletedMissions->peek(M))
 				std::cout << " , ";
 		}
@@ -514,7 +547,7 @@ void UI::StepByStepMode()
 		while (CompletedMissions->dequeue(M))
 		{
 			if (M->getType() == 'P')
-				std::cout << M->getID() << "/" << (M->getAssignedRover())->getID();
+				std::cout << M->getID();
 			if (CompletedMissions->peek(M))
 				std::cout << " , ";
 		}
@@ -526,14 +559,14 @@ void UI::StepByStepMode()
 		while (CompletedMissions->dequeue(M))
 		{
 			if (M->getType() == 'M')
-				std::cout << M->getID() << "/" << (M->getAssignedRover())->getID();
+				std::cout << M->getID();
 			if (CompletedMissions->peek(M))
 				std::cout << " , ";
 		}
 		std::cout << "}" << " " << endl;
 	}
 	std::cout.flush();
-	this_thread::sleep_for(chrono::milliseconds(10000));
+	this_thread::sleep_for(chrono::milliseconds(100));
 }
 void UI::SilentMode()
 {
