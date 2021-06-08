@@ -406,7 +406,7 @@ void UI::StepByStepMode()
 {
 	EveryDayOutput();
 	std::cout.flush();
-	this_thread::sleep_for(chrono::milliseconds(1000));
+	this_thread::sleep_for(chrono::milliseconds(100));
 }
 void UI::SilentMode()
 {

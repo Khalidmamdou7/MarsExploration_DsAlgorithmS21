@@ -274,7 +274,7 @@ void MarsStation::Simulate() {
 		autoP();
 		assign();
 		ui->Output(this);
-		Save();
+		//Save();
 	}
 	
 
@@ -390,7 +390,7 @@ void MarsStation::FinishedCheckup()
 
 void MarsStation::autoP() {
 	Mission* pM = NULL;
-	while (WaitingMount->peek(pM)) {
+	if (WaitingMount->peek(pM)) {
 		if ((current_day - pM->getFD()) == mount_rovers_autoP) {
 			WaitingMount->dequeue(pM);
 			WaitingEmergency->enqueue(pM,pM->getPriority());
