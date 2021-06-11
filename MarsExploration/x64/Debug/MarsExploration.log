@@ -1,2 +1,6 @@
-﻿  UI.cpp
+﻿  MarsStation.cpp
+C:\Users\Marwan\Desktop\MarsExploration_DsAlgorithmS21\MarsExploration\MarsStation.cpp(82,64): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\Users\Marwan\Desktop\MarsExploration_DsAlgorithmS21\MarsExploration\MarsStation.cpp(98,67): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\Users\Marwan\Desktop\MarsExploration_DsAlgorithmS21\MarsExploration\MarsStation.cpp(123,66): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\Users\Marwan\Desktop\MarsExploration_DsAlgorithmS21\MarsExploration\MarsStation.cpp(264,67): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
   MarsExploration.vcxproj -> C:\Users\Marwan\Desktop\MarsExploration_DsAlgorithmS21\MarsExploration\x64\Debug\MarsExploration.exe
