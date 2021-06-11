@@ -295,7 +295,7 @@ void MarsStation::load() {
 }
 
 bool MarsStation::FinishedSimulation() {
-	return (Events->isEmpty() && WaitingEmergency->isEmpty() && WaitingMount->isEmpty() && WaitingPolar->isEmpty() && InEx->isEmpty() && InCheckupER->isEmpty() && InCheckupMR->isEmpty() && InCheckupPR->isEmpty());
+	return ( WaitingEmergency->isEmpty() && WaitingMount->isEmpty() && WaitingPolar->isEmpty() && InEx->isEmpty() && InCheckupER->isEmpty() && InCheckupMR->isEmpty() && InCheckupPR->isEmpty() && Events->isEmpty());
 }
 
 void MarsStation::Simulate() {
@@ -308,6 +308,7 @@ void MarsStation::Simulate() {
 		autoP();
 		assign();
 		ui->Output(this);
+
 
 
 	}
@@ -462,13 +463,19 @@ void MarsStation::Save() {
 
 
 
-	if (counter_of_all_comp_missons != 0) {
+	if (counter_of_all_comp_missons != 0 ) {
 		outputfile << "Avg Wait: " << (sumWD / counter_of_all_comp_missons);
 		outputfile << ',' << '\t';
 		outputfile << "Avg Execution: " << (sumED / counter_of_all_comp_missons);
 		outputfile << endl;
-		outputfile << "Auto-promoted: " <<  (AutoPcount / num_of_mount_missons) * 100;
-		outputfile << "%";
+		if (num_of_mount_missons != 0) {
+			outputfile << "Auto-promoted: " << (AutoPcount / num_of_mount_missons) * 100;
+			outputfile << "%";
+		}
+		else {
+			outputfile << "Auto-promoted: " << 0;
+			outputfile << "%";
+		}
 	}
 	else {
 		outputfile << "Avg Wait: " << 0;

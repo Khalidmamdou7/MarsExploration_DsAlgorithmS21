@@ -210,12 +210,12 @@ void UI::EveryDayOutput() {
 			if (WMM->peek(M))
 				std::cout << " , ";
 		}
-		std::cout << "}" << endl;
+		std::cout << "}";
 	}
-	if (wem == 0)
-	{
+
+	
 		std::cout << endl;
-	}
+
 	std::cout << "------------------------------------------------------" << endl;
 	std::cout << inex << "  In-Execution Missions/Rovers:" << " ";
 	if (inexE != 0)
@@ -262,12 +262,12 @@ void UI::EveryDayOutput() {
 					std::cout << " , ";
 			}
 		}
-		std::cout << "}" << " " << endl;;
+		std::cout << "}" << " " ;
 	}
-	if (inex == 0)
-	{
+
+	
 		std::cout << endl;
-	}
+
 	std::cout << "------------------------------------------------------" << endl;
 	std::cout << avrovers << "  Available Rovers :" << "";
 	if (!AvailableER->isEmpty())
@@ -303,11 +303,9 @@ void UI::EveryDayOutput() {
 		}
 		std::cout << "}" << " ";
 	}
+
 	std::cout << endl;
-	if (avrovers == 0)
-	{
-		std::cout << endl;
-	}
+	
 	std::cout << "------------------------------------------------------" << endl;
 	std::cout << incheck << " In - Checkup Rovers :" << " ";
 	if (!InCheckupER->isEmpty())
@@ -341,14 +339,13 @@ void UI::EveryDayOutput() {
 			if (InCheckupMR->peek(R))
 				std::cout << " , ";
 		}
-		std::cout << "}" << " " << endl;
+		std::cout << "}" << " ";
 	}
-	if (incheck == 0)
-	{
+	
 		std::cout << endl;
-	}
+	
 	std::cout << "------------------------------------------------------" << endl;
-	std::cout << completedmissions << " Completed Missions:" << " ";
+	std::cout << completedmissions << " Completed Missions:" << " " << endl;
 	if (compE != 0)
 	{
 		std::cout << "[" << " ";
@@ -392,8 +389,9 @@ void UI::EveryDayOutput() {
 					std::cout << " , ";
 			}
 		}
-		std::cout << "}" << " " << endl;
+		std::cout << "}" << " ";
 	}
+	std::cout << endl;
 }
 
 void UI::InteractiveMode()
@@ -407,7 +405,7 @@ void UI::StepByStepMode()
 {
 	EveryDayOutput();
 	std::cout.flush();
-	this_thread::sleep_for(chrono::milliseconds(100));
+	this_thread::sleep_for(chrono::milliseconds(1000));
 }
 void UI::SilentMode()
 {
