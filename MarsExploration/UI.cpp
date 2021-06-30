@@ -60,9 +60,9 @@ void UI::ReadData(MarsStation* pS)
 
 	InEx = new PriorityQueue<Mission*>(*(pS->getInEx()));
 
-	AvailableER = new LinkedQueue<Rover*>(*(pS->getAvailableER()));
-	AvailableMR = new LinkedQueue<Rover*>(*(pS->getAvailableMR()));
-	AvailablePR = new LinkedQueue<Rover*>(*(pS->getAvailablePR()));
+	AvailableER = new PriorityQueue<Rover*> (*(pS->getAvailableER()));
+	AvailableMR = new PriorityQueue<Rover*> (*(pS->getAvailableMR()));
+	AvailablePR = new PriorityQueue<Rover*> (*(pS->getAvailablePR()) );
 
 	InCheckupER = new LinkedQueue<Rover*>(*(pS->getInCheckupER()));
 	InCheckupMR = new LinkedQueue<Rover*>(*(pS->getInCheckupMR()));
@@ -162,9 +162,9 @@ void UI::ReadData(MarsStation* pS)
 
 	InEx = new PriorityQueue<Mission*>(*(pS->getInEx()));
 
-	AvailableER = new LinkedQueue<Rover*>(*(pS->getAvailableER()));
-	AvailableMR = new LinkedQueue<Rover*>(*(pS->getAvailableMR()));
-	AvailablePR = new LinkedQueue<Rover*>(*(pS->getAvailablePR()));
+	AvailableER = new PriorityQueue<Rover*>(*(pS->getAvailableER()));
+	AvailableMR = new PriorityQueue<Rover*>(*(pS->getAvailableMR()));
+	AvailablePR = new PriorityQueue<Rover*>(*(pS->getAvailablePR()));
 
 	InCheckupER = new LinkedQueue<Rover*>(*(pS->getInCheckupER()));
 	InCheckupMR = new LinkedQueue<Rover*>(*(pS->getInCheckupMR()));
@@ -210,12 +210,12 @@ void UI::EveryDayOutput() {
 			if (WMM->peek(M))
 				std::cout << " , ";
 		}
-		std::cout << "}" << endl;
+		std::cout << "}";
 	}
-	if (wem == 0)
-	{
+
+	
 		std::cout << endl;
-	}
+
 	std::cout << "------------------------------------------------------" << endl;
 	std::cout << inex << "  In-Execution Missions/Rovers:" << " ";
 	if (inexE != 0)
@@ -262,12 +262,12 @@ void UI::EveryDayOutput() {
 					std::cout << " , ";
 			}
 		}
-		std::cout << "}" << " " << endl;;
+		std::cout << "}" << " " ;
 	}
-	if (inex == 0)
-	{
+
+	
 		std::cout << endl;
-	}
+
 	std::cout << "------------------------------------------------------" << endl;
 	std::cout << avrovers << "  Available Rovers :" << "";
 	if (!AvailableER->isEmpty())
@@ -303,11 +303,9 @@ void UI::EveryDayOutput() {
 		}
 		std::cout << "}" << " ";
 	}
+
 	std::cout << endl;
-	if (avrovers == 0)
-	{
-		std::cout << endl;
-	}
+	
 	std::cout << "------------------------------------------------------" << endl;
 	std::cout << incheck << " In - Checkup Rovers :" << " ";
 	if (!InCheckupER->isEmpty())
@@ -341,14 +339,13 @@ void UI::EveryDayOutput() {
 			if (InCheckupMR->peek(R))
 				std::cout << " , ";
 		}
-		std::cout << "}" << " " << endl;
+		std::cout << "}" << " ";
 	}
-	if (incheck == 0)
-	{
+	
 		std::cout << endl;
-	}
+	
 	std::cout << "------------------------------------------------------" << endl;
-	std::cout << completedmissions << " Completed Missions:" << " ";
+	std::cout << completedmissions << " Completed Missions:" << " " << endl;
 	if (compE != 0)
 	{
 		std::cout << "[" << " ";
@@ -392,15 +389,17 @@ void UI::EveryDayOutput() {
 					std::cout << " , ";
 			}
 		}
-		std::cout << "}" << " " << endl;
+		std::cout << "}" << " ";
 	}
+	std::cout << endl;
 }
 
 void UI::InteractiveMode()
 {
+	getchar();
 	EveryDayOutput();
-	cout << "\nEnter any thing to continue...\n" << endl;
-	cin >> z;
+	cout << endl;
+	
 }
 void UI::StepByStepMode()
 {
