@@ -1,4 +1,4 @@
-# Mars Exploration Simulator
+# Mars Exploration Station Simulator
 
 MarsExploration is a simple command-line simulator for a hypothetical Mars exploaration mission. This project was assigned to us during Data Structures and Algorithms course. It was aimed after the completion of this project that we will be able to:
 - Understand unstructured, natural language problem description and derive an appropriate
