@@ -8,6 +8,14 @@ among team members.
 - Build and use data structures to implement the proposed design.
 - Write a complete object-oriented C++ program that performs a non-trivial task.
 
+# Table of Contents
+
+1. [Context for the simulator](#Context-for-the-simulator)
+2. [How it works](#How-it-works)
+3. [Contributing](#Contributing)
+4. [License](#License)
+
+
 # Context for the simulator
 
 In the hope of getting to know more about Mars and the possibility of life on its surface, a
