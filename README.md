@@ -6,7 +6,8 @@ design.
 - Intuitively modularize a design into independent components and divide these components
 among team members.
 - Build and use data structures to implement the proposed design.
-- Write a complete object-oriented C++ program that performs a non-trivial task.
+- Write a complete object-oriented C++ program from scratch that performs a non-trivial task.
+- Deal with files in c++, reading (loading) and writing in files (saving).
 
 # Table of Contents
 
@@ -27,20 +28,22 @@ missions and to which they return after mission completion. The base station bas
 missions to the different rovers.
 
 # How it works
-It gets from the user information about the rovers and the missions required, Then it will simulates the mission assignment process and calculates some related statistics in order to help improve the overall process. 
+It gets information about the rovers and the missions required from the user (from a text files), Then it will simulates the mission assignment process and calculates some related statistics in order to help improve the overall process. 
 
 There are 3 interface modes available
   - Interactive mode
   - Step-by-step mode
   - Silent mode
 
-The description of each mode and more of the program details is available on the project description file.
+The description of each mode and more of the program details is available on the [project description file](CMPN102-Project-S2021.pdf).
 
 
-## Contributing
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
-
-Please make sure to update tests as appropriate.
+## Contributers
+Contributers in the project:
+- [Ahmed Fathy](https://github.com/ahmed1234552)
+- [Khalid Mamdouh](https://github.com/Khalidmamdou7)
+- [Marwan Mostafa](https://github.com/Marwan-9)
+- [Seif Albaghdady](https://github.com/seifAlbaghdady)
 
 ## License
 MIT License
