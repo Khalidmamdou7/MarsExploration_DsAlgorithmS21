@@ -13,7 +13,7 @@ among team members.
 
 1. [Context for the simulator](#Context-for-the-simulator)
 2. [How it works](#How-it-works)
-3. [Contributing](#Contributing)
+3. [Contributers](#Contributers)
 4. [License](#License)
 
 
